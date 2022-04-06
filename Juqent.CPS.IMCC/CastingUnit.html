@@ -1,0 +1,1861 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>浇注单元</title>
+    <style type="text/css">
+        .alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 300px;
+            max-width: 600px;
+            transform: translate(-50%,-50%);
+            z-index: 99999;
+            text-align: center;
+            padding: 15px;
+            border-radius: 3px;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-info {
+            color: #31708f;
+            background-color: #d9edf7;
+            border-color: #bce8f1;
+        }
+
+        .alert-warning {
+            color: #8a6d3b;
+            background-color: #fcf8e3;
+            border-color: #faebcc;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+    </style>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main_hd.css" rel="stylesheet">
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader_hd">
+            <div class="rmlogo_hd"></div>
+            <div class="rmtitle_hd">
+                <strong>浇注单元</strong>
+                <div class="rmsubtitlebg_hd"></div>
+                <div class="rmsubtitle_hd"><b></b><span>Casting Unit</span><em></em></div>
+            </div>
+            <div class="rmdatetime_hd">
+                <span><!--<a href=""><img src="images/icon_pr_hd.png" alt=""></a><a href=""><img src="images/icon_back_hd.png" alt=""></a><a href=""><img src="images/icon_close_hd.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="rm_hd_cont_2">
+            <div class="rm_hd_cas_box">
+                <div class="rm_hd_cas_1">
+                    <div class="rm_hd_title"><span>GR1200保温炉</span><i>#1</i></div>
+                    <div class="rm_hd_contbox">
+                        <div class="h208_hd hd_cont_border">
+                            <div class="cont_box_leftop"></div>
+                            <div class="cont_box_righttop"></div>
+                            <div class="cont_box_leftbom"></div>
+                            <div class="cont_box_rightbom"></div>
+                            <div class="hd_contwarp4">
+                                <div>
+                                    <div class="ris_time_hd_box_1_title">铝液实时温度</div>
+                                    <div class="hd_contwarp4">
+                                        <div><img src="images/img_tem_hd.png" alt="" class="hd_contwarp4_temimg"></div>
+                                        <div class="temp_hd_box"><strong id="MoltenAluminumTemperature1">180</strong><span>℃</span></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="ris_time_hd_box_1_title">炉气实时温度</div>
+                                    <div class="hd_contwarp4">
+                                        <div><img src="images/img_tem_hd.png" alt="" class="hd_contwarp4_temimg"></div>
+                                        <div class="temp_hd_box"><strong id="FurnaceGasTemperature1">180</strong><span>℃</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h370_hd hd_cont_border">
+                            <div class="cont_box_leftop"></div>
+                            <div class="cont_box_righttop"></div>
+                            <div class="cont_box_leftbom"></div>
+                            <div class="cont_box_rightbom"></div>
+                            <div class="hd_contwarp2">
+                                <div class="rmcont_hd_title">用电能耗</div>
+                                <div class="rm_hd_flx" id="main0"></div>
+                            </div>
+                        </div>
+                        <div class="h263_hd hd_cont_border">
+                            <div class="cont_box_leftop"></div>
+                            <div class="cont_box_righttop"></div>
+                            <div class="cont_box_leftbom"></div>
+                            <div class="cont_box_rightbom"></div>
+                            <div class="hd_contwarp2">
+                                <div class="ris_time_hd_box_1_title">设备状态</div>
+                                <div class="ments_hd_tatus_box tatus_midbox">
+                                    <ul>
+                                        <li>
+                                            <p>通电</p><span id="status_1a" class="ments_0_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>运行</p><span id="status_2a" class="ments_1_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>暂停</p><span id="status_3a" class="ments_2_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>故障</p><span id="status_4a" class="ments_3_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>报警</p><span id="status_5a" class="ments_4_0"></span>
+                                        </li>
+                                        <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rm_hd_cas_2">
+                    <div class="rm_hd_title"><span>YHGI 取件臂</span></div>
+                    <div class="rm_hd_contbox">
+                        <div class="rm_hd_contbox_row rm_hd_flx">
+                            <div class="w495_hd rm_hd_contbox_column">
+                                <div class="h528_hd hd_cont_border">
+                                    <div class="cont_box_leftop"></div>
+                                    <div class="cont_box_righttop"></div>
+                                    <div class="cont_box_leftbom"></div>
+                                    <div class="cont_box_rightbom"></div>
+                                    <div class="hd_contwarp2">
+                                        <div class="ris_time_hd_box_1_title">浇注机 完工确认</div>
+                                        <div class="jzj_hd_box">
+                                            <div class="jzj_hd_box_li">
+                                                <div class="gzj_hd_box">1#</div>
+                                                <em><img src="images/icon_temok_hd.png" alt="" id="CastingMachineConfirmCompletionImg1"></em>
+                                                <span id="CastingMachineConfirmCompletion1">完工</span>
+                                            </div>
+                                            <div class="jzj_hd_box_li">
+                                                <div class="gzj_hd_box">2#</div>
+                                                <em><img src="images/icon_tmload_hd.png" alt="" id="CastingMachineConfirmCompletionImg2"></em>
+                                                <span class="hide" id="CastingMachineConfirmCompletion2"></span>
+                                            </div>
+                                            <div class="jzj_hd_box_li">
+                                                <div class="gzj_hd_box">3#</div>
+                                                <em><img src="images/icon_tmload_hd.png" alt="" id="CastingMachineConfirmCompletionImg3"></em>
+                                                <span class="hide" id="CastingMachineConfirmCompletion3"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="h314_hd hd_cont_border">
+                                    <div class="cont_box_leftop"></div>
+                                    <div class="cont_box_righttop"></div>
+                                    <div class="cont_box_leftbom"></div>
+                                    <div class="cont_box_rightbom"></div>
+                                    <div class="hd_contwarp3">
+                                        <div class="amount_box_hd_libox">
+                                            <div class="amount_box_hd_title">生产数量</div>
+                                            <div class="amount_box_hd">
+                                                <strong>产量</strong>
+                                                <span id="CapacityCountYHGI">561200<em>PCS</em></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w529_hd rm_hd_contbox_column">
+                                <div class="h422_hd hd_cont_border">
+                                    <div class="cont_box_leftop"></div>
+                                    <div class="cont_box_righttop"></div>
+                                    <div class="cont_box_leftbom"></div>
+                                    <div class="cont_box_rightbom"></div>
+                                    <div class="hd_contwarp2">
+                                        <div class="rmcont_hd_title">15单元天然气能耗</div>
+                                        <div class="rm_hd_flx" id="main1"></div>
+                                    </div>
+                                </div>
+                                <div class="h422_hd hd_cont_border">
+                                    <div class="cont_box_leftop"></div>
+                                    <div class="cont_box_righttop"></div>
+                                    <div class="cont_box_leftbom"></div>
+                                    <div class="cont_box_rightbom"></div>
+                                    <div class="hd_contwarp2">
+                                        <div class="rmcont_hd_title">设备状态</div>
+                                        <div class="ments_hd_tatus_box tatus_mid2box">
+                                            <ul>
+                                                <li>
+                                                    <p>通电</p><span id="status_1c" class="ments_0_0"></span>
+                                                </li>
+                                                <li>
+                                                    <p>运行</p><span id="status_2c" class="ments_1_0"></span>
+                                                </li>
+                                                <li>
+                                                    <p>暂停</p><span id="status_3c" class="ments_2_0"></span>
+                                                </li>
+                                                <li>
+                                                    <p>故障</p><span id="status_4c" class="ments_3_0"></span>
+                                                </li>
+                                                <li>
+                                                    <p>报警</p><span id="status_5c" class="ments_4_0"></span>
+                                                </li>
+                                                <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rm_hd_cas_3">
+                    <div class="rm_hd_title"><span>IRB6700 机器人</span></div>
+                    <div class="rm_hd_contbox">
+                        <div class="rm_hd_contbox_row rm_hd_flx">
+                            <div class="w580_hd rm_hd_contbox_column">
+                                <div class="h145_hd hd_cont_border">
+                                    <div class="cont_box_leftop"></div>
+                                    <div class="cont_box_righttop"></div>
+                                    <div class="cont_box_leftbom"></div>
+                                    <div class="cont_box_rightbom"></div>
+                                    <div>
+                                        <div class="bwl_hd_boxli">
+                                            <div class="ris_time_hd_box_1_title bwl_hd_boxli_left">#</div>
+                                            <div class="ris_time_hd_box_1_title">当前取液保温炉号</div>
+                                            <div class="bwl_hd_boxli_right"><strong id="HoldingFurnace1">1#</strong></div>
+                                        </div>
+                                        <div class="bwl_hd_boxli">
+                                            <div class="bwl_hd_boxli_left"><img src="images/img_yt_hd.png" alt="" class="bwl_hd_boxli_left_img"></div>
+                                            <div class="ris_time_hd_box_1_title">保温炉&nbsp;&nbsp;1#&nbsp;&nbsp;加液数</div>
+                                            <div class="bwl_hd_boxli_right"><strong id="FeedMaterial1">10</strong><span>次</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="h145_hd hd_cont_border">
+                                    <div class="cont_box_leftop"></div>
+                                    <div class="cont_box_righttop"></div>
+                                    <div class="cont_box_leftbom"></div>
+                                    <div class="cont_box_rightbom"></div>
+                                    <div>
+                                        <div class="bwl_hd_boxli">
+                                            <div class="ris_time_hd_box_1_title bwl_hd_boxli_left">#</div>
+                                            <div class="ris_time_hd_box_1_title">当前取液保温炉号</div>
+                                            <div class="bwl_hd_boxli_right"><strong class="bwl_off" id="HoldingFurnace2">2#</strong></div>
+                                        </div>
+                                        <div class="bwl_hd_boxli">
+                                            <div class="bwl_hd_boxli_left"><img src="images/img_yt_hd.png" alt="" class="bwl_hd_boxli_left_img"></div>
+                                            <div class="ris_time_hd_box_1_title">保温炉&nbsp;&nbsp;2#&nbsp;&nbsp;加液数</div>
+                                            <div class="bwl_hd_boxli_right"><strong class="bwl_off" id="FeedMaterial2">10</strong><span>次<span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="h208_hd hd_cont_border">
+                                    <div class="cont_box_leftop"></div>
+                                    <div class="cont_box_righttop"></div>
+                                    <div class="cont_box_leftbom"></div>
+                                    <div class="cont_box_rightbom"></div>
+                                    <div class="jzj_hd_box">
+                                        <div class="ris_time_hd_box_1_title">浇注机号</div>
+                                        <div class="jzj_hd_box_2">
+                                            <div class="gzj_hd_box" id="SerialNumberForMaterial1">1#</div>
+                                            <div class="gzj_hd_box gzj_hd_box_off" id="SerialNumberForMaterial2">2#</div>
+                                            <div class="gzj_hd_box gzj_hd_box_off" id="SerialNumberForMaterial3">3#</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="h314_hd hd_cont_border">
+                                    <div class="cont_box_leftop"></div>
+                                    <div class="cont_box_righttop"></div>
+                                    <div class="cont_box_leftbom"></div>
+                                    <div class="cont_box_rightbom"></div>
+                                    <div class="hd_contwarp3">
+                                        <div class="amount_box_hd_libox">
+                                            <div class="amount_box_hd_title">生产数量</div>
+                                            <div class="amount_box_hd">
+                                                <strong>产量</strong>
+                                                <span id="CapacityCountRobot">561200<em>PCS</em></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w1024_hd rm_hd_contbox_column ">
+                                <div class="h608_hd cont_black_hd rm_hd_contbox_row rm_hd_flx">
+                                    <div class="w500_hd rm_hd_contbox_column">
+                                        <div class="h145_hd">
+                                            <div class="jqr_box_title">
+                                                <div class="cont_box_leftop"></div>
+                                                <div class="cont_box_righttop"></div>
+                                                <div class="cont_box_leftbom"></div>
+                                                <div class="cont_box_rightbom"></div>
+                                                <div>
+                                                    浇注机<br>请求铝液
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="h145_hd hd_cont_border">
+                                            <div class="cont_box_leftop"></div>
+                                            <div class="cont_box_righttop"></div>
+                                            <div class="cont_box_leftbom"></div>
+                                            <div class="cont_box_rightbom"></div>
+                                            <div class="jqr_box_li">
+                                                <div class="jqr_box_num" id="CastingMachineAskForMaterial1_1">1#</div>
+                                                <div class="jqr_box_btn" id="CastingMachineAskForMaterial1_2"></div>
+                                                <div class="jqr_box_text" id="CastingMachineAskForMaterial1_3">已启动</div>
+                                            </div>
+                                        </div>
+                                        <div class="h145_hd hd_cont_border">
+                                            <div class="cont_box_leftop"></div>
+                                            <div class="cont_box_righttop"></div>
+                                            <div class="cont_box_leftbom"></div>
+                                            <div class="cont_box_rightbom"></div>
+                                            <div class="jqr_box_li">
+                                                <div class="jqr_box_num jqr_box_num_off" id="CastingMachineAskForMaterial2_1">2#</div>
+                                                <div class="jqr_box_btn jqr_box_btn_off" id="CastingMachineAskForMaterial2_2"></div>
+                                                <div class="jqr_box_text hide" id="CastingMachineAskForMaterial2_3">已启动</div>
+                                            </div>
+                                        </div>
+                                        <div class="h145_hd hd_cont_border">
+                                            <div class="cont_box_leftop"></div>
+                                            <div class="cont_box_righttop"></div>
+                                            <div class="cont_box_leftbom"></div>
+                                            <div class="cont_box_rightbom"></div>
+                                            <div class="jqr_box_li">
+                                                <div class="jqr_box_num jqr_box_num_off" id="CastingMachineAskForMaterial3_1">3#</div>
+                                                <div class="jqr_box_btn jqr_box_btn_off" id="CastingMachineAskForMaterial3_2"></div>
+                                                <div class="jqr_box_text hide" id="CastingMachineAskForMaterial3_3">已启动</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w500_hd rm_hd_contbox_column">
+                                        <div class="h145_hd">
+                                            <div class="jqr_box_title">
+                                                <div class="cont_box_leftop"></div>
+                                                <div class="cont_box_righttop"></div>
+                                                <div class="cont_box_leftbom"></div>
+                                                <div class="cont_box_rightbom"></div>
+                                                <div>
+                                                    浇注机<br>取料确认
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="h145_hd hd_cont_border">
+                                            <div class="cont_box_leftop"></div>
+                                            <div class="cont_box_righttop"></div>
+                                            <div class="cont_box_leftbom"></div>
+                                            <div class="cont_box_rightbom"></div>
+                                            <div class="jqr_box_li">
+                                                <div class="jqr_box_num" id="CastingMachineReclaimMaterial1_1">1#</div>
+                                                <div class="jqr_box_btn2" id="CastingMachineReclaimMaterial1_2">
+                                                    <span>取料启动</span>
+                                                </div>
+                                                <div class="jqr_box_text" id="CastingMachineReclaimMaterial1_3">已启动</div>
+                                            </div>
+                                        </div>
+                                        <div class="h145_hd hd_cont_border">
+                                            <div class="cont_box_leftop"></div>
+                                            <div class="cont_box_righttop"></div>
+                                            <div class="cont_box_leftbom"></div>
+                                            <div class="cont_box_rightbom"></div>
+                                            <div class="jqr_box_li">
+                                                <div class="jqr_box_num jqr_box_num_off" id="CastingMachineReclaimMaterial2_1">2#</div>
+                                                <div class="jqr_box_btn2 jqr_box_btn2_off" id="CastingMachineReclaimMaterial2_2">
+                                                    <span>取料未启动</span>
+                                                </div>
+                                                <div class="jqr_box_text hide" id="CastingMachineReclaimMaterial2_3">已启动</div>
+                                            </div>
+                                        </div>
+                                        <div class="h145_hd hd_cont_border">
+                                            <div class="cont_box_leftop"></div>
+                                            <div class="cont_box_righttop"></div>
+                                            <div class="cont_box_leftbom"></div>
+                                            <div class="cont_box_rightbom"></div>
+                                            <div class="jqr_box_li">
+                                                <div class="jqr_box_num jqr_box_num_off" id="CastingMachineReclaimMaterial3_1">3#</div>
+                                                <div class="jqr_box_btn2 jqr_box_btn2_off" id="CastingMachineReclaimMaterial3_2">
+                                                    <span>取料未启动</span>
+                                                </div>
+                                                <div class="jqr_box_text hide" id="CastingMachineReclaimMaterial3_3">已启动</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w529_hd rm_hd_contbox_column">
+                                <div class="h422_hd hd_cont_border">
+                                    <div class="cont_box_leftop"></div>
+                                    <div class="cont_box_righttop"></div>
+                                    <div class="cont_box_leftbom"></div>
+                                    <div class="cont_box_rightbom"></div>
+                                    <div class="hd_contwarp2">
+                                        <div class="rmcont_hd_title">用电能耗</div>
+                                        <div class="rm_hd_flx" id="main2"></div>
+                                    </div>
+                                </div>
+                                <div class="h422_hd hd_cont_border">
+                                    <div class="cont_box_leftop"></div>
+                                    <div class="cont_box_righttop"></div>
+                                    <div class="cont_box_leftbom"></div>
+                                    <div class="cont_box_rightbom"></div>
+                                    <div class="hd_contwarp2">
+                                        <div class="rmcont_hd_title">设备状态</div>
+                                        <div class="ments_hd_tatus_box tatus_mid2box">
+                                            <ul>
+                                                <li>
+                                                    <p>通电</p><span id="status_1d" class="ments_0_0"></span>
+                                                </li>
+                                                <li>
+                                                    <p>运行</p><span id="status_2d" class="ments_1_0"></span>
+                                                </li>
+                                                <li>
+                                                    <p>暂停</p><span id="status_3d" class="ments_2_0"></span>
+                                                </li>
+                                                <li>
+                                                    <p>故障</p><span id="status_4d" class="ments_3_0"></span>
+                                                </li>
+                                                <li>
+                                                    <p>报警</p><span id="status_5d" class="ments_4_0"></span>
+                                                </li>
+                                                <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rm_hd_cas_box">
+                <div class="rm_hd_cas_1">
+                    <div class="rm_hd_title"><span>GR1200保温炉</span><i>#2</i></div>
+                    <div class="rm_hd_contbox">
+                        <div class="h208_hd hd_cont_border">
+                            <div class="cont_box_leftop"></div>
+                            <div class="cont_box_righttop"></div>
+                            <div class="cont_box_leftbom"></div>
+                            <div class="cont_box_rightbom"></div>
+                            <div class="hd_contwarp4">
+                                <div>
+                                    <div class="ris_time_hd_box_1_title">铝液实时温度</div>
+                                    <div class="hd_contwarp4">
+                                        <div><img src="images/img_tem_hd.png" alt="" class="hd_contwarp4_temimg"></div>
+                                        <div class="temp_hd_box"><strong id="MoltenAluminumTemperature2">180</strong><span>℃</span></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="ris_time_hd_box_1_title">炉气实时温度</div>
+                                    <div class="hd_contwarp4">
+                                        <div><img src="images/img_tem_hd.png" alt="" class="hd_contwarp4_temimg"></div>
+                                        <div class="temp_hd_box"><strong id="FurnaceGasTemperature2">180</strong><span>℃</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h370_hd hd_cont_border">
+                            <div class="cont_box_leftop"></div>
+                            <div class="cont_box_righttop"></div>
+                            <div class="cont_box_leftbom"></div>
+                            <div class="cont_box_rightbom"></div>
+                            <div class="hd_contwarp2">
+                                <div class="rmcont_hd_title">用电能耗</div>
+                                <div class="rm_hd_flx" id="main3"></div>
+                            </div>
+                        </div>
+                        <div class="h263_hd hd_cont_border">
+                            <div class="cont_box_leftop"></div>
+                            <div class="cont_box_righttop"></div>
+                            <div class="cont_box_leftbom"></div>
+                            <div class="cont_box_rightbom"></div>
+                            <div class="hd_contwarp2">
+                                <div class="ris_time_hd_box_1_title">设备状态</div>
+                                <div class="ments_hd_tatus_box tatus_midbox">
+                                    <ul>
+                                        <li>
+                                            <p>通电</p><span id="status_1b" class="ments_0_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>运行</p><span id="status_2b" class="ments_1_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>暂停</p><span id="status_3b" class="ments_2_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>故障</p><span id="status_4b" class="ments_3_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>报警</p><span id="status_5b" class="ments_4_0"></span>
+                                        </li>
+                                        <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rm_hd_cas_4">
+                    <div class="rm_hd_title rm_hd_title_2"><span>NZJ370QD5浇注机</span><i>#1</i></div>
+                    <div class="rm_hd_contbox">
+                        <div class="h208_hd hd_cont_border">
+                            <div class="cont_box_leftop"></div>
+                            <div class="cont_box_righttop"></div>
+                            <div class="cont_box_leftbom"></div>
+                            <div class="cont_box_rightbom"></div>
+                            <div class="gzj_hd_box_1">
+                                <div class="gzj_hd_box_title">
+                                    <div>模具<br>温度</div><img src="images/img_tem_hd.png" alt="" class="hd_contwarp4_temimg">
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#1</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature1E">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#2</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature2E">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#3</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature3E">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#4</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature4E">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#5</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature5E">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#6</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature6E">180</strong><span>℃</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h145_hd rm_hd_contbox_row">
+                            <div class="w600_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="gzj_hd_box_2">
+                                    <div class="ris_time_hd_box_1">
+                                        <p class="ris_time_hd_box_1_title">时间</p>
+                                        <p><img src="images/icon_tload_hd.png" alt=""></p>
+                                    </div>
+                                    <div class="ris_time_hd_box_2">
+                                        <p><strong>冷却</strong><span id="CoolingTimeE">6000<em>s</em></span></p>
+                                        <p><strong>抽气</strong><span id="AirPumpingTimeE">15<em>s</em></span></p>
+                                    </div>
+                                    <div class="ris_time_hd_box_2">
+                                        <p><strong>倾倒</strong><span id="PouringTimeE">15<em>s</em></span></p>
+                                        <p><strong>节拍</strong><span id="TempoE">15<em>s</em></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w445_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="gzj_hd_box_2">
+                                    <div class="ris_time_hd_box_1_title">
+                                        吸烟状态
+                                        <p><img src="images/img_xy_hd.png" alt=""></p>
+                                    </div>
+                                    <div class="xy_hd_box">
+                                        <p class="ris_time_hd_box_1_title">进</p><span id="SmokingInStatusE">启动</span>
+                                    </div>
+                                    <div class="xy_hd_box"><p class="ris_time_hd_box_1_title">出</p><span class="off" id="SmokingOutStatusE">未启动</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h145_hd rm_hd_contbox_row">
+                            <div class="w600_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="jqr_box_li gzj_hd_box_3">
+                                    <div class="jqr_box_title">
+                                        <div class="cont_box_leftop"></div>
+                                        <div class="cont_box_righttop"></div>
+                                        <div class="cont_box_leftbom"></div>
+                                        <div class="cont_box_rightbom"></div>
+                                        <div>
+                                            浇注<br>模具
+                                        </div>
+                                    </div>
+                                    <div class="jqr_box_btn3 jqr_box_btn3_off" id="ConfirmToTiltingE">
+                                        <strong>翻转</strong>
+                                        <span>翻转未启动</span>
+                                    </div>
+                                    <div class="jqr_box_btn2 jqr_box_btn2_off" id="ConfirmToReclaimingE">
+                                        <strong>取料</strong>
+                                        <span>取料未启动</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w445_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="jqr_box_li gzj_hd_box_3">
+                                    <div class="jqr_box_title">
+                                        <div class="cont_box_leftop"></div>
+                                        <div class="cont_box_righttop"></div>
+                                        <div class="cont_box_leftbom"></div>
+                                        <div class="cont_box_rightbom"></div>
+                                        <div>
+                                            请求<br>铝液
+                                        </div>
+                                    </div>
+                                    <div class="jqr_box_btn4 jqr_box_btn4_off" id="RequestForMaterialE1"></div>
+                                    <div class="jqr_box_textbox"><div class="jqr_box_text hide" id="RequestForMaterialE2">已启动</div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h330_hd rm_hd_contbox_row">
+                            <div class="w378_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="jzj_hd_bombox">
+                                    <div class="jzj_hd_bombox_cont" id="main4"></div>
+                                    <div class="amount_box_hd_title">用电能耗</div>
+                                </div>
+                            </div>
+                            <div class="w310_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="hd_contwarp3">
+                                    <div class="amount_box_hd_libox">
+                                        <div class="amount_box_hd_title">生产数量</div>
+                                        <div class="amount_box_hd">
+                                            <strong>实时产量</strong>
+                                            <span id="CapacityCountE">561200<em>PCS</em></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w350_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="hd_contwarp5">
+                                    <div class="ris_time_hd_box_1_title">设备状态</div>
+                                    <div class="ments_hd_tatus_box">
+                                        <ul>
+                                            <li>
+                                                <p>通电</p><span id="status_1e" class="ments_0_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>运行</p><span id="status_2e" class="ments_1_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>暂停</p><span id="status_3e" class="ments_2_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>故障</p><span id="status_4e" class="ments_3_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>报警</p><span id="status_5e" class="ments_4_0"></span>
+                                            </li>
+                                            <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rm_hd_cas_4">
+                    <div class="rm_hd_title rm_hd_title_2"><span>NZJ370QD5浇注机</span><i>#2</i></div>
+                    <div class="rm_hd_contbox">
+                        <div class="h208_hd hd_cont_border">
+                            <div class="cont_box_leftop"></div>
+                            <div class="cont_box_righttop"></div>
+                            <div class="cont_box_leftbom"></div>
+                            <div class="cont_box_rightbom"></div>
+                            <div class="gzj_hd_box_1">
+                                <div class="gzj_hd_box_title">
+                                    <div>模具<br>温度</div><img src="images/img_tem_hd.png" alt="" class="hd_contwarp4_temimg">
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#1</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature1F">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#2</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature2F">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#3</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature3F">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#4</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature4F">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#5</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature5F">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#6</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature6F">180</strong><span>℃</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h145_hd rm_hd_contbox_row">
+                            <div class="w600_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="gzj_hd_box_2">
+                                    <div class="ris_time_hd_box_1">
+                                        <p class="ris_time_hd_box_1_title">时间</p>
+                                        <p><img src="images/icon_tload_hd.png" alt=""></p>
+                                    </div>
+                                    <div class="ris_time_hd_box_2">
+                                        <p><strong>冷却</strong><span id="CoolingTimeF">6000<em>s</em></span></p>
+                                        <p><strong>抽气</strong><span id="AirPumpingTimeF">15<em>s</em></span></p>
+                                    </div>
+                                    <div class="ris_time_hd_box_2">
+                                        <p><strong>倾倒</strong><span id="PouringTimeF">15<em>s</em></span></p>
+                                        <p><strong>节拍</strong><span id="TempoF">15<em>s</em></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w445_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="gzj_hd_box_2">
+                                    <div class="ris_time_hd_box_1_title">
+                                        吸烟状态
+                                        <p><img src="images/img_xy_hd.png" alt=""></p>
+                                    </div>
+                                    <div class="xy_hd_box">
+                                        <p class="ris_time_hd_box_1_title">进</p><span id="SmokingInStatusF">启动</span>
+                                    </div>
+                                    <div class="xy_hd_box"><p class="ris_time_hd_box_1_title">出</p><span class="off" id="SmokingOutStatusF">未启动</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h145_hd rm_hd_contbox_row">
+                            <div class="w600_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="jqr_box_li gzj_hd_box_3">
+                                    <div class="jqr_box_title">
+                                        <div class="cont_box_leftop"></div>
+                                        <div class="cont_box_righttop"></div>
+                                        <div class="cont_box_leftbom"></div>
+                                        <div class="cont_box_rightbom"></div>
+                                        <div>
+                                            浇注<br>模具
+                                        </div>
+                                    </div>
+                                    <div class="jqr_box_btn3 jqr_box_btn3_off" id="ConfirmToTiltingF">
+                                        <strong>翻转</strong>
+                                        <span>翻转未启动</span>
+                                    </div>
+                                    <div class="jqr_box_btn2 jqr_box_btn2_off" id="ConfirmToReclaimingF">
+                                        <strong>取料</strong>
+                                        <span>取料未启动</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w445_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="jqr_box_li gzj_hd_box_3">
+                                    <div class="jqr_box_title">
+                                        <div class="cont_box_leftop"></div>
+                                        <div class="cont_box_righttop"></div>
+                                        <div class="cont_box_leftbom"></div>
+                                        <div class="cont_box_rightbom"></div>
+                                        <div>
+                                            请求<br>铝液
+                                        </div>
+                                    </div>
+                                    <div class="jqr_box_btn4 jqr_box_btn4_off" id="RequestForMaterialF1"></div>
+                                    <div class="jqr_box_textbox"><div class="jqr_box_text hide" id="RequestForMaterialF2">已启动</div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h330_hd rm_hd_contbox_row">
+                            <div class="w378_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="jzj_hd_bombox">
+                                    <div class="jzj_hd_bombox_cont" id="main5"></div>
+                                    <div class="amount_box_hd_title">用电能耗</div>
+                                </div>
+                            </div>
+                            <div class="w310_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="hd_contwarp3">
+                                    <div class="amount_box_hd_libox">
+                                        <div class="amount_box_hd_title">生产数量</div>
+                                        <div class="amount_box_hd">
+                                            <strong>实时产量</strong>
+                                            <span id="CapacityCountF">561200<em>PCS</em></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w350_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="hd_contwarp5">
+                                    <div class="ris_time_hd_box_1_title">设备状态</div>
+                                    <div class="ments_hd_tatus_box">
+                                        <ul>
+                                            <li>
+                                                <p>通电</p><span id="status_1f" class="ments_0_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>运行</p><span id="status_2f" class="ments_1_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>暂停</p><span id="status_3f" class="ments_2_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>故障</p><span id="status_4f" class="ments_3_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>报警</p><span id="status_5f" class="ments_4_0"></span>
+                                            </li>
+                                            <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rm_hd_cas_4">
+                    <div class="rm_hd_title rm_hd_title_2"><span>NZJ370QD5浇注机</span><i>#3</i></div>
+                    <div class="rm_hd_contbox">
+                        <div class="h208_hd hd_cont_border">
+                            <div class="cont_box_leftop"></div>
+                            <div class="cont_box_righttop"></div>
+                            <div class="cont_box_leftbom"></div>
+                            <div class="cont_box_rightbom"></div>
+                            <div class="gzj_hd_box_1">
+                                <div class="gzj_hd_box_title">
+                                    <div>模具<br>温度</div><img src="images/img_tem_hd.png" alt="" class="hd_contwarp4_temimg">
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#1</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature1G">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#2</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature2G">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#3</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature3G">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#4</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature4G">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#5</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature5G">180</strong><span>℃</span></div>
+                                </div>
+                                <div class="gzj_hd_box_li">
+                                    <div class="gzj_hd_box_title">#6</div>
+                                    <div class="temp_hd_box"><strong id="MoldTemperature6G">180</strong><span>℃</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h145_hd rm_hd_contbox_row">
+                            <div class="w600_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="gzj_hd_box_2">
+                                    <div class="ris_time_hd_box_1">
+                                        <p class="ris_time_hd_box_1_title">时间</p>
+                                        <p><img src="images/icon_tload_hd.png" alt=""></p>
+                                    </div>
+                                    <div class="ris_time_hd_box_2">
+                                        <p><strong>冷却</strong><span id="CoolingTimeG">6000<em>s</em></span></p>
+                                        <p><strong>抽气</strong><span id="AirPumpingTimeG">15<em>s</em></span></p>
+                                    </div>
+                                    <div class="ris_time_hd_box_2">
+                                        <p><strong>倾倒</strong><span id="PouringTimeG">15<em>s</em></span></p>
+                                        <p><strong>节拍</strong><span id="TempoG">15<em>s</em></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w445_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="gzj_hd_box_2">
+                                    <div class="ris_time_hd_box_1_title">
+                                        吸烟状态
+                                        <p><img src="images/img_xy_hd.png" alt=""></p>
+                                    </div>
+                                    <div class="xy_hd_box">
+                                        <p class="ris_time_hd_box_1_title">进</p><span id="SmokingInStatusG">启动</span>
+                                    </div>
+                                    <div class="xy_hd_box"><p class="ris_time_hd_box_1_title">出</p><span class="off" id="SmokingOutStatusG">未启动</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h145_hd rm_hd_contbox_row">
+                            <div class="w600_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="jqr_box_li gzj_hd_box_3">
+                                    <div class="jqr_box_title">
+                                        <div class="cont_box_leftop"></div>
+                                        <div class="cont_box_righttop"></div>
+                                        <div class="cont_box_leftbom"></div>
+                                        <div class="cont_box_rightbom"></div>
+                                        <div>
+                                            浇注<br>模具
+                                        </div>
+                                    </div>
+                                    <div class="jqr_box_btn3" id="ConfirmToTiltingG">
+                                        <strong>翻转</strong>
+                                        <span>翻转启动</span>
+                                    </div>
+                                    <div class="jqr_box_btn2" id="ConfirmToReclaimingG">
+                                        <strong>取料</strong>
+                                        <span>取料启动</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w445_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="jqr_box_li gzj_hd_box_3">
+                                    <div class="jqr_box_title">
+                                        <div class="cont_box_leftop"></div>
+                                        <div class="cont_box_righttop"></div>
+                                        <div class="cont_box_leftbom"></div>
+                                        <div class="cont_box_rightbom"></div>
+                                        <div>
+                                            请求<br>铝液
+                                        </div>
+                                    </div>
+                                    <div class="jqr_box_btn4" id="RequestForMaterialG1"></div>
+                                    <div class="jqr_box_textbox"><div class="jqr_box_text" id="RequestForMaterialG2">已启动</div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h330_hd rm_hd_contbox_row">
+                            <div class="w378_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="jzj_hd_bombox">
+                                    <div class="jzj_hd_bombox_cont" id="main6"></div>
+                                    <div class="amount_box_hd_title">用电能耗</div>
+                                </div>
+                            </div>
+                            <div class="w310_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="hd_contwarp3">
+                                    <div class="amount_box_hd_libox">
+                                        <div class="amount_box_hd_title">生产数量</div>
+                                        <div class="amount_box_hd">
+                                            <strong>实时产量</strong>
+                                            <span id="CapacityCountG">561200<em>PCS</em></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w350_hd hd_cont_border">
+                                <div class="cont_box_leftop"></div>
+                                <div class="cont_box_righttop"></div>
+                                <div class="cont_box_leftbom"></div>
+                                <div class="cont_box_rightbom"></div>
+                                <div class="hd_contwarp5">
+                                    <div class="ris_time_hd_box_1_title">设备状态</div>
+                                    <div class="ments_hd_tatus_box">
+                                        <ul>
+                                            <li>
+                                                <p>通电</p><span id="status_1g" class="ments_0_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>运行</p><span id="status_2g" class="ments_1_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>暂停</p><span id="status_3g" class="ments_2_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>故障</p><span id="status_4g" class="ments_3_0"></span>
+                                            </li>
+                                            <li>
+                                                <p>报警</p><span id="status_5g" class="ments_4_0"></span>
+                                            </li>
+                                            <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--声音报警-->
+        <audio id="bgMusic">
+            <source src="/js/4031.mp3" type="audio/mp3">
+        </audio>
+        <div class="alert"></div>
+
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script type="text/javascript">
+        var alarmMessage = [];
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                //仪表1 保温炉1
+                var myChart0 = ec.init(document.getElementById("main0"));
+                var option0 = t2(); //调用函数生成仪表
+                option0.series[0].title.color = '#61b3eb';
+                option0.series[0].min = 0;
+                option0.series[0].max = 100;
+                option0.series[0].splitNumber = 5;
+                option0.series[0].detail.formatter = "{value}kw";
+                option0.series[0].detail.padding = [2, 7, 2, 7];
+                option0.series[0].detail.textStyle.fontSize = 14;
+                option0.series[0].axisLabel.fontSize = 10;
+                option0.series[0].title.fontSize = 12;
+                option0.series[0].axisLine.lineStyle.width = 6;
+                option0.series[0].axisTick.length = 8;
+                option0.series[0].splitLine.length = 10;
+                option0.series[0].data[0].value = 50;
+                option0.series[0].data[0].name = "瞬时功率"; //
+                option0.tooltip.formatter = "{a} <br/> {c}w"; //设置弹出提示框的输出格式
+                option0.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option0.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option0.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart0.setOption(option0);
+
+                //仪表2 取件臂
+                var myChart1 = ec.init(document.getElementById("main1"));
+                var option1 = t2(); //调用函数生成仪表
+                option1.series[0].title.color = '#61b3eb';
+                option1.series[0].min = 0;
+                option1.series[0].max = 30;
+                option1.series[0].splitNumber = 10;
+                option1.series[0].detail.formatter = "{value}立方";
+                option1.series[0].detail.padding = [2, 7, 2, 7];
+                option1.series[0].detail.textStyle.fontSize = 14;
+                option1.series[0].axisLabel.fontSize = 10;
+                option1.series[0].title.fontSize = 12;
+                option1.series[0].axisLine.lineStyle.width = 6;
+                option1.series[0].axisTick.length = 8;
+                option1.series[0].splitLine.length = 10;
+                option1.series[0].data[0].value = 50;
+                option1.series[0].data[0].name = "瞬时流量"; //
+                option1.tooltip.formatter = "{a} <br/> {c}立方"; //设置弹出提示框的输出格式
+                option1.series[0].name = "瞬时流量"; //设置弹出提示框的名称
+                option1.series[0].axisLine.lineStyle.shadowColor = "#6ACA8B";
+                option1.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2ec977'],
+                    [0.8, '#98f0f5'],
+                    [1, '#e0923d']
+                ]; //刻度线的颜色设置
+                myChart1.setOption(option1);
+
+                //仪表3 机器人
+                var myChart2 = ec.init(document.getElementById("main2"));
+                var option2 = t2(); //调用函数生成仪表
+                option2.series[0].title.color = '#61b3eb';
+                option2.series[0].min = 0;
+                option2.series[0].max = 30;
+                option2.series[0].splitNumber = 6;
+                option2.series[0].detail.formatter = "{value}kw";
+                option2.series[0].detail.padding = [2, 7, 2, 7];
+                option2.series[0].detail.textStyle.fontSize = 14;
+                option2.series[0].axisLabel.fontSize = 10;
+                option2.series[0].title.fontSize = 12;
+                option2.series[0].axisLine.lineStyle.width = 6;
+                option2.series[0].axisTick.length = 8;
+                option2.series[0].splitLine.length = 10;
+                option2.series[0].data[0].value = 50;
+                option2.series[0].data[0].name = "瞬时功率"; //
+                option2.tooltip.formatter = "{a} <br/> {c}w"; //设置弹出提示框的输出格式
+                option2.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option2.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option2.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart2.setOption(option2);
+
+                //仪表4 保温炉2
+                var myChart3 = ec.init(document.getElementById("main3"));
+                var option3 = t2(); //调用函数生成仪表
+                option3.series[0].title.color = '#61b3eb';
+                option3.series[0].min = 0;
+                option3.series[0].max = 100;
+                option3.series[0].splitNumber = 5;
+                option3.series[0].detail.formatter = "{value}kw";
+                option3.series[0].detail.padding = [2, 7, 2, 7];
+                option3.series[0].detail.textStyle.fontSize = 14;
+                option3.series[0].axisLabel.fontSize = 10;
+                option3.series[0].title.fontSize = 12;
+                option3.series[0].axisLine.lineStyle.width = 6;
+                option3.series[0].axisTick.length = 8;
+                option3.series[0].splitLine.length = 10;
+                option3.series[0].data[0].value = 50;
+                option3.series[0].data[0].name = "瞬时功率"; //
+                option3.tooltip.formatter = "{a} <br/> {c}w"; //设置弹出提示框的输出格式
+                option3.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option3.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option3.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart3.setOption(option3);
+
+                //仪表5 浇注机1
+                var myChart4 = ec.init(document.getElementById("main4"));
+                var option4 = t2(); //调用函数生成仪表
+                option4.series[0].title.color = '#61b3eb';
+                option4.series[0].min = 0;
+                option4.series[0].max = 30;
+                option4.series[0].splitNumber = 10;
+                option4.series[0].detail.formatter = "{value}kw";
+                option4.series[0].detail.padding = [2, 7, 2, 7];
+                option4.series[0].detail.textStyle.fontSize = 14;
+                option4.series[0].axisLabel.fontSize = 10;
+                option4.series[0].title.fontSize = 12;
+                option4.series[0].axisLine.lineStyle.width = 6;
+                option4.series[0].axisTick.length = 8;
+                option4.series[0].splitLine.length = 10;
+                option4.series[0].data[0].value = 50;
+                option4.series[0].data[0].name = "瞬时功率"; //
+                option4.tooltip.formatter = "{a} <br/> {c}w"; //设置弹出提示框的输出格式
+                option4.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option4.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option4.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart4.setOption(option4);
+
+                //仪表6 浇注机2
+                var myChart5 = ec.init(document.getElementById("main5"));
+                var option5 = t2(); //调用函数生成仪表
+                option5.series[0].title.color = '#61b3eb';
+                option5.series[0].min = 0;
+                option5.series[0].max = 30;
+                option5.series[0].splitNumber = 10;
+                option5.series[0].detail.formatter = "{value}kw";
+                option5.series[0].detail.padding = [2, 7, 2, 7];
+                option5.series[0].detail.textStyle.fontSize = 14;
+                option5.series[0].axisLabel.fontSize = 10;
+                option5.series[0].title.fontSize = 12;
+                option5.series[0].axisLine.lineStyle.width = 6;
+                option5.series[0].axisTick.length = 8;
+                option5.series[0].splitLine.length = 10;
+                option5.series[0].data[0].value = 50;
+                option5.series[0].data[0].name = "瞬时功率"; //
+                option5.tooltip.formatter = "{a} <br/> {c}w"; //设置弹出提示框的输出格式
+                option5.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option5.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option5.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart5.setOption(option5);
+
+                //仪表7 浇注机3
+                var myChart6 = ec.init(document.getElementById("main6"));
+                var option6 = t2(); //调用函数生成仪表
+                option6.series[0].title.color = '#61b3eb';
+                option6.series[0].min = 0;
+                option6.series[0].max = 30;
+                option6.series[0].splitNumber = 10;
+                option6.series[0].detail.formatter = "{value}kw";
+                option6.series[0].detail.padding = [2, 7, 2, 7];
+                option6.series[0].detail.textStyle.fontSize = 14;
+                option6.series[0].axisLabel.fontSize = 10;
+                option6.series[0].title.fontSize = 12;
+                option6.series[0].axisLine.lineStyle.width = 6;
+                option6.series[0].axisTick.length = 8;
+                option6.series[0].splitLine.length = 10;
+                option6.series[0].data[0].value = 50;
+                option6.series[0].data[0].name = "瞬时功率"; //
+                option6.tooltip.formatter = "{a} <br/> {c}w"; //设置弹出提示框的输出格式
+                option6.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option6.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option6.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart6.setOption(option6);
+
+                var getdata = GetData();
+                clearInterval(timeTicket);
+                var timeTicket = setInterval(GetData, 20000);
+                function GetData() {
+                    //保温炉
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetHoldingFurnaceList"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            for (var i = 0; i < data.result.length; i++) {
+                                if (data.result[i].deviceErrorMessage) {
+                                    alarmMessage.push(data.result[i].deviceErrorMessage);
+                                }
+                            }
+
+                            //1#保温炉设备状态
+                            setStatusX(data.result[0].deviceStatus, "a");
+
+                            //2#保温炉设备状态
+                            setStatusX(data.result[1].deviceStatus, "b");
+
+                            //1#保温炉用电能耗
+                            option0.series[0].data[0].value = data.result[0].electricityConsumption;
+                            myChart0.setOption(option0, true);
+
+                            //2#保温炉用电能耗
+                            option3.series[0].data[0].value = data.result[1].electricityConsumption;
+                            myChart3.setOption(option3, true);
+
+                            //1#保温炉铝液实时温度
+                            document.getElementById("MoltenAluminumTemperature1").innerText = data.result[0].moltenAluminumTemperature;
+
+                            //2#保温炉铝液实时温度
+                            document.getElementById("MoltenAluminumTemperature2").innerText = data.result[1].moltenAluminumTemperature;
+
+                            //1#保温炉炉气实时温度
+                            document.getElementById("FurnaceGasTemperature1").innerText = data.result[0].furnaceGasTemperature;
+
+                            //2#保温炉炉气实时温度
+                            document.getElementById("FurnaceGasTemperature2").innerText = data.result[1].furnaceGasTemperature;
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetHoldingFurnaceList,error:' + msg.responseText);
+                        }
+                    });
+
+                    //取件臂
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetYHGI"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            //取件臂设备状态
+                            setStatusX(data.result.deviceStatus, "c");
+
+                            //取件臂天然气能耗
+                            option1.series[0].data[0].value = data.result.naturalGasConsumption;
+                            myChart1.setOption(option1, true);
+
+                            //1#浇注机完工确认
+                            document.getElementById("CastingMachineConfirmCompletion1").innerText = data.result.castingMachineConfirmCompletion1;
+                            if (data.result.castingMachineConfirmCompletion1 == null || data.result.castingMachineConfirmCompletion1 == "") {
+                                document.getElementById("CastingMachineConfirmCompletionImg1").src = "images/icon_tmload_hd.png";
+                                document.getElementById("CastingMachineConfirmCompletion1").setAttribute("class", "hide");
+                            }
+                            else {
+                                document.getElementById("CastingMachineConfirmCompletionImg1").src = "images/icon_temok_hd.png";
+                                document.getElementById("CastingMachineConfirmCompletion1").setAttribute("class", "");
+                            }
+
+                            //2#浇注机完工确认
+                            document.getElementById("CastingMachineConfirmCompletion2").innerText = data.result.castingMachineConfirmCompletion2;
+                            if (data.result.castingMachineConfirmCompletion2 == null || data.result.castingMachineConfirmCompletion2 == "") {
+                                document.getElementById("CastingMachineConfirmCompletionImg2").src = "images/icon_tmload_hd.png";
+                                document.getElementById("CastingMachineConfirmCompletion2").setAttribute("class", "hide");
+                            }
+                            else {
+                                document.getElementById("CastingMachineConfirmCompletionImg2").src = "images/icon_temok_hd.png";
+                                document.getElementById("CastingMachineConfirmCompletion2").setAttribute("class", "");
+                            }
+
+                            //3#浇注机完工确认
+                            document.getElementById("CastingMachineConfirmCompletion3").innerText = data.result.castingMachineConfirmCompletion3;
+                            if (data.result.castingMachineConfirmCompletion3 == null || data.result.castingMachineConfirmCompletion3 == "") {
+                                document.getElementById("CastingMachineConfirmCompletionImg3").src = "images/icon_tmload_hd.png";
+                                document.getElementById("CastingMachineConfirmCompletion3").setAttribute("class", "hide");
+                            }
+                            else {
+                                document.getElementById("CastingMachineConfirmCompletionImg3").src = "images/icon_temok_hd.png";
+                                document.getElementById("CastingMachineConfirmCompletion3").setAttribute("class", "");
+                            }
+
+                            //生产计数 capacityQuantity
+                            document.getElementById("CapacityCountYHGI").innerHTML = data.result.capacityCount + "<em>PCS</em>";
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetYHGI,error:' + msg.responseText);
+                        }
+                    });
+
+                    //机器人
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetRobotIRB6700"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            //取件臂设备状态
+                            setStatusX(data.result.deviceStatus, "d");
+
+                            //取件臂用电能耗
+                            option2.series[0].data[0].value = data.result.electricityConsumption;
+                            myChart2.setOption(option2, true);
+
+                            if (data.result.holdingFurnace1 == "1") {
+                                $('#HoldingFurnace1').removeClass('bwl_off');
+                                $('#FeedMaterial1').removeClass('bwl_off');
+                            }
+                            else {
+                                $('#HoldingFurnace1').addClass('bwl_off');
+                                $('#FeedMaterial1').addClass('bwl_off');
+                            }                               
+                            if (data.result.holdingFurnace2 == "1") {
+                                $('#HoldingFurnace2').removeClass('bwl_off');
+                                $('#FeedMaterial2').removeClass('bwl_off');
+                            }
+                            else {
+                                $('#holdingFurnace2').addClass('bwl_off');
+                                $('#FeedMaterial2').addClass('bwl_off');
+                            }
+                            //保温炉1号加液数
+                            document.getElementById("FeedMaterial1").innerText = data.result.feedMaterial1;
+                            //保温炉2号加液数
+                            document.getElementById("FeedMaterial2").innerText = data.result.feedMaterial2;
+
+                            if (data.result.WCastingMachineAskForMaterial1 != "")
+                                data.result.serialNumberForMaterial = data.result.WCastingMachineAskForMaterial1;
+                            if (data.result.WCastingMachineAskForMaterial2 != "")
+                                data.result.serialNumberForMaterial = data.result.WCastingMachineAskForMaterial2;
+                            if (data.result.WCastingMachineAskForMaterial3 != "")
+                                data.result.serialNumberForMaterial = data.result.WCastingMachineAskForMaterial3;
+                            //浇注机号
+                            switch (data.result.serialNumberForMaterial) {
+                                case "1#":
+                                    document.getElementById("SerialNumberForMaterial1").setAttribute("class", "gzj_hd_box");
+                                    document.getElementById("SerialNumberForMaterial2").setAttribute("class", "gzj_hd_box gzj_hd_box_off");
+                                    document.getElementById("SerialNumberForMaterial3").setAttribute("class", "gzj_hd_box gzj_hd_box_off");
+                                    break;
+                                case "2#":
+                                    document.getElementById("SerialNumberForMaterial1").setAttribute("class", "gzj_hd_box gzj_hd_box_off");
+                                    document.getElementById("SerialNumberForMaterial2").setAttribute("class", "gzj_hd_box");
+                                    document.getElementById("SerialNumberForMaterial3").setAttribute("class", "gzj_hd_box gzj_hd_box_off");
+                                    break;
+                                case "3#":
+                                    document.getElementById("SerialNumberForMaterial1").setAttribute("class", "gzj_hd_box gzj_hd_box_off");
+                                    document.getElementById("SerialNumberForMaterial2").setAttribute("class", "gzj_hd_box gzj_hd_box_off");
+                                    document.getElementById("SerialNumberForMaterial3").setAttribute("class", "gzj_hd_box");
+                                    break;
+                                default:
+                                    document.getElementById("SerialNumberForMaterial1").setAttribute("class", "gzj_hd_box gzj_hd_box_off");
+                                    document.getElementById("SerialNumberForMaterial2").setAttribute("class", "gzj_hd_box gzj_hd_box_off");
+                                    document.getElementById("SerialNumberForMaterial3").setAttribute("class", "gzj_hd_box gzj_hd_box_off");
+
+                            }
+                            //data.result.castingMachineAskForMaterial1 = "";
+                            //data.result.castingMachineAskForMaterial2 = "启动";
+                            //浇注机请求铝液
+                            switch ("启动") {
+                                case data.result.castingMachineAskForMaterial1:
+                                    document.getElementById("CastingMachineAskForMaterial1_1").setAttribute("class", "jqr_box_num");
+                                    document.getElementById("CastingMachineAskForMaterial1_2").setAttribute("class", "jqr_box_btn");
+                                    document.getElementById("CastingMachineAskForMaterial1_3").setAttribute("class", "jqr_box_text");
+                                    document.getElementById("CastingMachineAskForMaterial2_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineAskForMaterial2_2").setAttribute("class", "jqr_box_btn jqr_box_btn_off");
+                                    document.getElementById("CastingMachineAskForMaterial2_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineAskForMaterial3_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineAskForMaterial3_2").setAttribute("class", "jqr_box_btn jqr_box_btn_off");
+                                    document.getElementById("CastingMachineAskForMaterial3_3").setAttribute("class", "jqr_box_text hide");
+                                    break;
+                                case data.result.castingMachineAskForMaterial2:
+                                    document.getElementById("CastingMachineAskForMaterial1_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineAskForMaterial1_2").setAttribute("class", "jqr_box_btn jqr_box_btn_off");
+                                    document.getElementById("CastingMachineAskForMaterial1_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineAskForMaterial2_1").setAttribute("class", "jqr_box_num");
+                                    document.getElementById("CastingMachineAskForMaterial2_2").setAttribute("class", "jqr_box_btn");
+                                    document.getElementById("CastingMachineAskForMaterial2_3").setAttribute("class", "jqr_box_text");
+                                    document.getElementById("CastingMachineAskForMaterial3_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineAskForMaterial3_2").setAttribute("class", "jqr_box_btn jqr_box_btn_off");
+                                    document.getElementById("CastingMachineAskForMaterial3_3").setAttribute("class", "jqr_box_text hide");
+                                    break;
+                                case data.result.castingMachineAskForMaterial3:
+                                    document.getElementById("CastingMachineAskForMaterial1_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineAskForMaterial1_2").setAttribute("class", "jqr_box_btn jqr_box_btn_off");
+                                    document.getElementById("CastingMachineAskForMaterial1_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineAskForMaterial2_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineAskForMaterial2_2").setAttribute("class", "jqr_box_btn jqr_box_btn_off");
+                                    document.getElementById("CastingMachineAskForMaterial2_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineAskForMaterial3_1").setAttribute("class", "jqr_box_num");
+                                    document.getElementById("CastingMachineAskForMaterial3_2").setAttribute("class", "jqr_box_btn");
+                                    document.getElementById("CastingMachineAskForMaterial3_3").setAttribute("class", "jqr_box_text");
+                                    break;
+                                default:
+                                    document.getElementById("CastingMachineAskForMaterial1_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineAskForMaterial1_2").setAttribute("class", "jqr_box_btn jqr_box_btn_off");
+                                    document.getElementById("CastingMachineAskForMaterial1_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineAskForMaterial2_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineAskForMaterial2_2").setAttribute("class", "jqr_box_btn jqr_box_btn_off");
+                                    document.getElementById("CastingMachineAskForMaterial2_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineAskForMaterial3_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineAskForMaterial3_2").setAttribute("class", "jqr_box_btn jqr_box_btn_off");
+                                    document.getElementById("CastingMachineAskForMaterial3_3").setAttribute("class", "jqr_box_text hide");
+
+                            }
+                            //data.result.castingMachineReclaimMaterial1 = "";
+                            //data.result.castingMachineReclaimMaterial3 = "启动";
+                            //浇注机取料确认
+                            switch ("启动") {
+                                case data.result.castingMachineReclaimMaterial1:
+                                    document.getElementById("CastingMachineReclaimMaterial1_1").setAttribute("class", "jqr_box_num");
+                                    document.getElementById("CastingMachineReclaimMaterial1_2").setAttribute("class", "jqr_box_btn2");
+                                    document.getElementById("CastingMachineReclaimMaterial1_2").innerHTML = "<span>取料启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial1_3").setAttribute("class", "jqr_box_text");
+                                    document.getElementById("CastingMachineReclaimMaterial2_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineReclaimMaterial2_2").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                                    document.getElementById("CastingMachineReclaimMaterial2_2").innerHTML = "<span>取料未启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial2_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineReclaimMaterial3_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineReclaimMaterial3_2").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                                    document.getElementById("CastingMachineReclaimMaterial3_2").innerHTML = "<span>取料未启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial3_3").setAttribute("class", "jqr_box_text hide");
+                                    break;
+                                case data.result.castingMachineReclaimMaterial2:
+                                    document.getElementById("CastingMachineReclaimMaterial1_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineReclaimMaterial1_2").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                                    document.getElementById("CastingMachineReclaimMaterial1_2").innerHTML = "<span>取料未启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial1_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineReclaimMaterial2_1").setAttribute("class", "jqr_box_num");
+                                    document.getElementById("CastingMachineReclaimMaterial2_2").setAttribute("class", "jqr_box_btn2");
+                                    document.getElementById("CastingMachineReclaimMaterial2_2").innerHTML = "<span>取料启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial2_3").setAttribute("class", "jqr_box_text");
+                                    document.getElementById("CastingMachineReclaimMaterial3_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineReclaimMaterial3_2").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                                    document.getElementById("CastingMachineReclaimMaterial3_2").innerHTML = "<span>取料未启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial3_3").setAttribute("class", "jqr_box_text hide");
+                                    break;
+                                case data.result.castingMachineReclaimMaterial3:
+                                    document.getElementById("CastingMachineReclaimMaterial1_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineReclaimMaterial1_2").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                                    document.getElementById("CastingMachineReclaimMaterial1_2").innerHTML = "<span>取料未启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial1_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineReclaimMaterial2_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineReclaimMaterial2_2").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                                    document.getElementById("CastingMachineReclaimMaterial2_2").innerHTML = "<span>取料未启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial2_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineReclaimMaterial3_1").setAttribute("class", "jqr_box_num");
+                                    document.getElementById("CastingMachineReclaimMaterial3_2").setAttribute("class", "jqr_box_btn2");
+                                    document.getElementById("CastingMachineReclaimMaterial3_2").innerHTML = "<span>取料启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial3_3").setAttribute("class", "jqr_box_text");
+                                    break;
+                                default:
+                                    document.getElementById("CastingMachineReclaimMaterial1_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineReclaimMaterial1_2").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                                    document.getElementById("CastingMachineReclaimMaterial1_2").innerHTML = "<span>取料未启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial1_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineReclaimMaterial2_1").setAttribute("class", "jqr_box_num jqr_box_num_off");
+                                    document.getElementById("CastingMachineReclaimMaterial2_2").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                                    document.getElementById("CastingMachineReclaimMaterial2_2").innerHTML = "<span>取料未启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial2_3").setAttribute("class", "jqr_box_text hide");
+                                    document.getElementById("CastingMachineReclaimMaterial3_1").setAttribute("class", "jqr_box_num jqr_box_btn2_off");
+                                    document.getElementById("CastingMachineReclaimMaterial3_2").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                                    document.getElementById("CastingMachineReclaimMaterial3_2").innerHTML = "<span>取料未启动</span>";
+                                    document.getElementById("CastingMachineReclaimMaterial3_3").setAttribute("class", "jqr_box_text hide");
+                            }
+
+                            //生产计数
+                            document.getElementById("CapacityCountRobot").innerHTML = data.result.capacityCount + "<em>PCS</em>";
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetRobotIRB6700,error:' + msg.responseText);
+                        }
+                    });
+
+                    //浇注机
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetCastingList"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                           
+                            for (var i = 0; i < data.result.length; i++) {
+                                if (data.result[i].deviceErrorMessage) {
+                                    alarmMessage.push(data.result[i].deviceErrorMessage);
+                                }
+                            }
+                            CallAlarmMessage();
+
+                            //1#浇注机设备状态
+                            setStatusX(data.result[0].deviceStatus, "e");
+
+                            //2#浇注机设备状态
+                            setStatusX(data.result[1].deviceStatus, "f");
+
+                            //3#浇注机设备状态
+                            setStatusX(data.result[2].deviceStatus, "g");
+
+                            //1#浇注机用电能耗
+                            option4.series[0].data[0].value = data.result[0].electricityConsumption;
+                            myChart4.setOption(option4, true);
+
+                            //2#浇注机用电能耗
+                            option5.series[0].data[0].value = data.result[1].electricityConsumption;
+                            myChart5.setOption(option5, true);
+
+                            //3#浇注机用电能耗
+                            option6.series[0].data[0].value = data.result[2].electricityConsumption;
+                            myChart6.setOption(option6, true);
+
+                            //1#浇注机模具温度
+                            document.getElementById("MoldTemperature1E").innerText = data.result[0].moldTemperature1;
+                            document.getElementById("MoldTemperature2E").innerText = data.result[0].moldTemperature2;
+                            document.getElementById("MoldTemperature3E").innerText = data.result[0].moldTemperature3;
+                            document.getElementById("MoldTemperature4E").innerText = data.result[0].moldTemperature4;
+                            document.getElementById("MoldTemperature5E").innerText = data.result[0].moldTemperature5;
+                            document.getElementById("MoldTemperature6E").innerText = data.result[0].moldTemperature6;
+
+                            //2#浇注机模具温度
+                            document.getElementById("MoldTemperature1F").innerText = data.result[1].moldTemperature1;
+                            document.getElementById("MoldTemperature2F").innerText = data.result[1].moldTemperature2;
+                            document.getElementById("MoldTemperature3F").innerText = data.result[1].moldTemperature3;
+                            document.getElementById("MoldTemperature4F").innerText = data.result[1].moldTemperature4;
+                            document.getElementById("MoldTemperature5F").innerText = data.result[1].moldTemperature5;
+                            document.getElementById("MoldTemperature6F").innerText = data.result[1].moldTemperature6;
+
+                            //3#浇注机模具温度
+                            document.getElementById("MoldTemperature1G").innerText = data.result[2].moldTemperature1;
+                            document.getElementById("MoldTemperature2G").innerText = data.result[2].moldTemperature2;
+                            document.getElementById("MoldTemperature3G").innerText = data.result[2].moldTemperature3;
+                            document.getElementById("MoldTemperature4G").innerText = data.result[2].moldTemperature4;
+                            document.getElementById("MoldTemperature5G").innerText = data.result[2].moldTemperature5;
+                            document.getElementById("MoldTemperature6G").innerText = data.result[2].moldTemperature6;
+
+                            //1#浇注机 冷却时间+抽气时间+倾倒时间+节拍时间
+                            document.getElementById("CoolingTimeE").innerHTML = data.result[0].coolingTime + "<em>s</em>";
+                            document.getElementById("AirPumpingTimeE").innerHTML = data.result[0].airPumpingTime + "<em>s</em>";
+                            document.getElementById("PouringTimeE").innerHTML = data.result[0].pouringTime + "<em>s</em>";
+                            document.getElementById("TempoE").innerHTML = data.result[0].tempo + "<em>s</em>";
+                            //2#浇注机冷却时间+抽气时间+倾倒时间+节拍时间
+                            document.getElementById("CoolingTimeF").innerHTML = data.result[1].coolingTime + "<em>s</em>";
+                            document.getElementById("AirPumpingTimeF").innerHTML = data.result[1].airPumpingTime + "<em>s</em>";
+                            document.getElementById("PouringTimeF").innerHTML = data.result[1].pouringTime + "<em>s</em>";
+                            document.getElementById("TempoF").innerHTML = data.result[1].tempo + "<em>s</em>";
+                            //3#浇注机冷却时间+抽气时间+倾倒时间+节拍时间
+                            document.getElementById("CoolingTimeG").innerHTML = data.result[2].coolingTime + "<em>s</em>";
+                            document.getElementById("AirPumpingTimeG").innerHTML = data.result[2].airPumpingTime + "<em>s</em>";
+                            document.getElementById("PouringTimeG").innerHTML = data.result[2].pouringTime + "<em>s</em>";
+                            document.getElementById("TempoG").innerHTML = data.result[2].tempo + "<em>s</em>";
+
+                            //1#浇注机吸烟状态
+                            document.getElementById("SmokingInStatusE").innerText = data.result[0].smokingInStatus == 1 ? "启动" : "未启动";
+                            if (data.result[0].smokingInStatus == "1") {
+                                document.getElementById("SmokingInStatusE").setAttribute("class", "");
+                            }
+                            else {
+                                document.getElementById("SmokingInStatusE").setAttribute("class", "off");
+                            }
+                            document.getElementById("SmokingOutStatusE").innerText = data.result[0].smokingOutStatus == 1 ? "启动" : "未启动";
+                            if (data.result[0].smokingOutStatus == "1") {
+                                document.getElementById("SmokingOutStatusE").setAttribute("class", "");
+                            }
+                            else {
+                                document.getElementById("SmokingOutStatusE").setAttribute("class", "off");
+                            }
+
+                            //2#浇注机吸烟状态
+                            document.getElementById("SmokingInStatusF").innerText = data.result[1].smokingInStatus == 1 ? "启动" : "未启动";
+                            if (data.result[1].smokingInStatus == "1") {
+                                document.getElementById("SmokingInStatusF").setAttribute("class", "");
+                            }
+                            else {
+                                document.getElementById("SmokingInStatusF").setAttribute("class", "off");
+                            }
+                            document.getElementById("SmokingOutStatusF").innerText = data.result[1].smokingOutStatus == 1 ? "启动" : "未启动";
+                            if (data.result[1].smokingOutStatus == "1") {
+                                document.getElementById("SmokingOutStatusF").setAttribute("class", "");
+                            }
+                            else {
+                                document.getElementById("SmokingOutStatusF").setAttribute("class", "off");
+                            }
+
+                            //3#浇注机吸烟状态
+                            document.getElementById("SmokingInStatusG").innerText = data.result[2].smokingInStatus == 1 ? "启动" : "未启动";
+                            if (data.result[2].smokingInStatus == "1") {
+                                document.getElementById("SmokingInStatusG").setAttribute("class", "");
+                            }
+                            else {
+                                document.getElementById("SmokingInStatusG").setAttribute("class", "off");
+                            }
+                            document.getElementById("SmokingOutStatusG").innerText = data.result[2].smokingOutStatus == 1 ? "启动" : "未启动";
+                            if (data.result[2].smokingOutStatus == "1") {
+                                document.getElementById("SmokingOutStatusG").setAttribute("class", "");
+                            }
+                            else {
+                                document.getElementById("SmokingOutStatusG").setAttribute("class", "off");
+                            }
+
+                            //1#浇注机模具
+                            //翻转状态
+                            if (data.result[0].confirmToTilting == "启动") {
+                                document.getElementById("ConfirmToTiltingE").innerHTML = "<strong>翻转</strong>< span > 翻转完成</span >";
+                                document.getElementById("ConfirmToTiltingE").setAttribute("class", "jqr_box_btn3");
+                            }
+                            else {
+                                document.getElementById("ConfirmToTiltingE").innerHTML = "<strong>翻转</strong>< span > 翻转未启动</span >";
+                                document.getElementById("ConfirmToTiltingE").setAttribute("class", "jqr_box_btn3 jqr_box_btn3_off");
+                            }
+                            // 取料状态
+                            if (data.result[0].confirmToReclaiming == "启动") {
+                                document.getElementById("ConfirmToReclaimingE").innerHTML = "<strong>取料</strong>< span > 正在取料</span >";
+                                document.getElementById("ConfirmToReclaimingE").setAttribute("class", "jqr_box_btn2");
+                            }
+                            else {
+                                document.getElementById("ConfirmToReclaimingE").innerHTML = "<strong>取料</strong>< span > 取料未启动</span >";
+                                document.getElementById("ConfirmToReclaimingE").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                            }
+
+                            //2#浇注机模具
+                            //翻转状态
+                            if (data.result[1].confirmToTilting == "启动") {
+                                document.getElementById("ConfirmToTiltingF").innerHTML = "<strong>翻转</strong>< span > 翻转完成</span >";
+                                document.getElementById("ConfirmToTiltingF").setAttribute("class", "jqr_box_btn3");
+                            }
+                            else {
+                                document.getElementById("ConfirmToTiltingF").innerHTML = "<strong>翻转</strong>< span > 翻转未启动</span >";
+                                document.getElementById("ConfirmToTiltingF").setAttribute("class", "jqr_box_btn3 jqr_box_btn3_off");
+                            }
+                            // 取料状态
+                            if (data.result[1].confirmToReclaiming == "启动") {
+                                document.getElementById("ConfirmToReclaimingF").innerHTML = "<strong>取料</strong>< span > 正在取料</span >";
+                                document.getElementById("ConfirmToReclaimingF").setAttribute("class", "jqr_box_btn2");
+                            }
+                            else {
+                                document.getElementById("ConfirmToReclaimingF").innerHTML = "<strong>取料</strong>< span > 取料未启动</span >";
+                                document.getElementById("ConfirmToReclaimingF").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                            }
+
+                            //3#浇注机模具
+                            //翻转状态
+                            if (data.result[2].confirmToTilting == "启动") {
+                                document.getElementById("ConfirmToTiltingG").innerHTML = "<strong>翻转</strong>< span > 翻转完成</span >";
+                                document.getElementById("ConfirmToTiltingG").setAttribute("class", "jqr_box_btn3");
+                            }
+                            else {
+                                document.getElementById("ConfirmToTiltingG").innerHTML = "<strong>翻转</strong>< span > 翻转未启动</span >";
+                                document.getElementById("ConfirmToTiltingG").setAttribute("class", "jqr_box_btn3 jqr_box_btn3_off");
+                            }
+                            // 取料状态
+                            if (data.result[2].confirmToReclaiming == "启动") {
+                                document.getElementById("ConfirmToReclaimingG").innerHTML = "<strong>取料</strong>< span > 正在取料</span >";
+                                document.getElementById("ConfirmToReclaimingG").setAttribute("class", "jqr_box_btn2");
+                            }
+                            else {
+                                document.getElementById("ConfirmToReclaimingG").innerHTML = "<strong>取料</strong>< span > 取料未启动</span >";
+                                document.getElementById("ConfirmToReclaimingG").setAttribute("class", "jqr_box_btn2 jqr_box_btn2_off");
+                            }
+
+                            //1#浇注机请求铝液
+                            if (data.result[0].requestForMaterial == "请求") {
+                                document.getElementById("RequestForMaterialE1").setAttribute("class", "jqr_box_btn4");
+                                document.getElementById("RequestForMaterialE2").setAttribute("class", "jqr_box_text");
+                            }
+                            else {
+                                document.getElementById("RequestForMaterialE1").setAttribute("class", "jqr_box_btn4 jqr_box_btn4_off");
+                                document.getElementById("RequestForMaterialE2").setAttribute("class", "jqr_box_text hide");
+                            }
+                            //2#浇注机请求铝液
+                            if (data.result[1].requestForMaterial == "请求") {
+                                document.getElementById("RequestForMaterialF1").setAttribute("class", "jqr_box_btn4");
+                                document.getElementById("RequestForMaterialF2").setAttribute("class", "jqr_box_text");
+                            }
+                            else {
+                                document.getElementById("RequestForMaterialF1").setAttribute("class", "jqr_box_btn4 jqr_box_btn4_off");
+                                document.getElementById("RequestForMaterialF2").setAttribute("class", "jqr_box_text hide");
+                            }
+                            //3#浇注机请求铝液
+                            if (data.result[2].requestForMaterial == "请求") {
+                                document.getElementById("RequestForMaterialG1").setAttribute("class", "jqr_box_btn4");
+                                document.getElementById("RequestForMaterialG2").setAttribute("class", "jqr_box_text");
+                            }
+                            else {
+                                document.getElementById("RequestForMaterialG1").setAttribute("class", "jqr_box_btn4 jqr_box_btn4_off");
+                                document.getElementById("RequestForMaterialG2").setAttribute("class", "jqr_box_text hide");
+                            }
+
+                            //1#浇注机生产取数
+                            document.getElementById("CapacityCountE").innerHTML = data.result[0].capacityCount + "<em>PCS</em>";
+                            //2#浇注机生产取数
+                            document.getElementById("CapacityCountF").innerHTML = data.result[1].capacityCount + "<em>PCS</em>";
+                            //3#浇注机生产取数
+                            document.getElementById("CapacityCountG").innerHTML = data.result[2].capacityCount + "<em>PCS</em>";
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetCastingList,error:' + msg.responseText);
+                        }
+                    });
+
+
+                    ////仪表1
+                    //var min0 = option0.series[0].min;
+                    //var max0 = option0.series[0].max;
+                    //option0.series[0].data[0].value = Math.floor(Math.random() * (max0 - min0)) + min0;
+                    //myChart0.setOption(option0, true);
+
+                    ////仪表2
+                    //var min1 = option1.series[0].min;
+                    //var max1 = option1.series[0].max;
+                    //option1.series[0].data[0].value = Math.floor(Math.random() * (max1 - min1)) + min1;
+                    //myChart1.setOption(option1, true);
+
+                    ////仪表3
+                    //var min2 = option2.series[0].min;
+                    //var max2 = option2.series[0].max;
+                    //option2.series[0].data[0].value = Math.floor(Math.random() * (max2 - min2)) + min2;
+                    //myChart2.setOption(option2, true);
+
+                    ////仪表4
+                    //var min3 = option3.series[0].min;
+                    //var max3 = option3.series[0].max;
+                    //option3.series[0].data[0].value = Math.floor(Math.random() * (max3 - min3)) + min3;
+                    //myChart3.setOption(option3, true);
+
+
+                    ////仪表5
+                    //var min4 = option4.series[0].min;
+                    //var max4 = option4.series[0].max;
+                    //option4.series[0].data[0].value = Math.floor(Math.random() * (max4 - min4)) + min4;
+                    //myChart4.setOption(option4, true);
+
+
+                    ////仪表6
+                    //var min5 = option5.series[0].min;
+                    //var max5 = option5.series[0].max;
+                    //option5.series[0].data[0].value = Math.floor(Math.random() * (max5 - min5)) + min5;
+                    //myChart5.setOption(option5, true);
+
+                    ////仪表7
+                    //var min6 = option6.series[0].min;
+                    //var max6 = option6.series[0].max;
+                    //option6.series[0].data[0].value = Math.floor(Math.random() * (max6 - min6)) + min6;
+                    //myChart6.setOption(option6, true);
+                }
+            }
+        );
+
+        function CallAlarmMessage() {
+            if (alarmMessage && alarmMessage.length > 0) {
+                //播放(继续播放)
+                var audio = document.getElementById("bgMusic");
+                audio.play();
+                $('.alert').html('报警设备:</br>' + alarmMessage.join('</br>')).addClass('alert-success').show().delay(10000).fadeOut();
+                alarmMessage = [];
+            }
+        }
+    </script>
+</body>
+</html>

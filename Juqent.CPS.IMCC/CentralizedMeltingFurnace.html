@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>集中熔化炉</title>
+    <style type="text/css">
+        .alert {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 300px;
+            max-width: 600px;
+            transform: translate(-50%,-50%);
+            z-index: 99999;
+            text-align: center;
+            padding: 15px;
+            border-radius: 3px;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-info {
+            color: #31708f;
+            background-color: #d9edf7;
+            border-color: #bce8f1;
+        }
+
+        .alert-warning {
+            color: #8a6d3b;
+            background-color: #fcf8e3;
+            border-color: #faebcc;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+    </style>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader">
+            <div class="rmlogo"></div>
+            <div class="rmtitle large_title">
+                <strong>集中熔化炉</strong>
+                <div class="rmsubtitlebg"></div>
+                <div class="rmsubtitle"><b></b><span>Centralized Melting Furnace</span><em></em></div>
+            </div>
+            <div class="rmdatetime">
+                <span><!--<a href=""><img src="images/icon_pr.png" alt=""></a><a href=""><img src="images/icon_back.png" alt=""></a><a href=""><img src="images/icon_close.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="rmcont">
+            <div class="cont_w626">
+                <div class="cont_h407 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">铝液温度<div>Molten aluminum temperature</div></div>
+                        <div class="rmcont_cbox">
+                            <div class="alum_tem_box">
+                                <div class="alum_tem_img"></div>
+                                <div class="alum_tem_text"><span id="moltenAluminumTemperature">180</span><em>℃</em></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_h528 margin_top_10 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">用电能耗<div>Electricity Consumption</div></div>
+                        <div class="rmcont_cbox" id="main1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w626">
+                <div class="cont_h407">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="rmcont_cbox pr_box"><img src="images/pr/Melting.png" alt=""></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_h528 margin_top_12 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">天然气能耗<div>Natural Gas Consumption</div></div>
+                        <div class="rmcont_cbox" id="main2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w626">
+                <div class="cont_h407 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">重量<div>Weight</div></div>
+                        <div class="rmcont_cbox" id='main3'></div>
+                    </div>
+                </div>
+                <div class="cont_h528 margin_top_10 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">设备状态<div>Device Status</div></div>
+                        <div class="rmcont_cbox">
+                            <div class="ments_tatus_box">
+                                <ul>
+                                    <li>
+                                        <p>通电</p><span id="status1" class="ments_0_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>运行</p><span id="status2" class="ments_1_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>暂停</p><span id="status3" class="ments_2_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>故障</p><span id="status4" class="ments_3_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>报警</p><span id="status5" class="ments_4_0"></span>
+                                    </li>
+                                    <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--声音报警-->
+        <audio id="bgMusic">
+            <source src="/js/4031.mp3" type="audio/mp3">
+        </audio>
+        <div class="alert"></div>
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                //---------------------用电能耗设置
+                var myChart = ec.init(document.getElementById('main1'));
+                var option = t2(); //调用函数生成仪表
+                option.series[0].title.color = '#61b3eb';
+                option.series[0].max = 1000;
+                option.series[0].min = 0;
+                option.series[0].splitNumber = 10;
+                option.series[0].detail.formatter = "{value}kw";
+                option.series[0].data[0].value = 10;
+                option.series[0].data[0].name = "瞬时功率"; //
+                //option.series[0].axisLabel.fontSize = 16;
+                //option.series[0].title.fontSize = 26;
+
+                option.series[0].detail.textStyle.fontSize = getScreenSize()[0];//数值字体大小
+                option.series[0].axisLabel.fontSize = getScreenSize()[1];//刻度字体大小
+                option.series[0].axisLine.lineStyle.width = getScreenSize()[2];//仪表盘宽度
+                option.series[0].title.fontSize = getScreenSize()[3];//标题字体大小
+
+                option.tooltip.formatter = "{a} <br/> {c}kw"; //设置弹出提示框的输出格式
+                option.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart.setOption(option);
+
+
+                //---------------------天然气能耗表
+                var myChart1 = ec.init(document.getElementById('main2'));
+                var option1 = t2();
+                option1.series[0].max = 300;
+                option1.series[0].title.color = '#39c87a';
+                option1.series[0].detail.formatter = "{value}立方";
+                option1.series[0].data[0].value = 20;
+                option1.series[0].data[0].name = "瞬时流量"; //
+                //option1.series[0].axisLabel.fontSize = 16;
+                //option1.series[0].title.fontSize = 26;
+
+                option1.series[0].detail.textStyle.fontSize = getScreenSize()[0];//数值字体大小
+                option1.series[0].axisLabel.fontSize = getScreenSize()[1];//刻度字体大小
+                option1.series[0].axisLine.lineStyle.width = getScreenSize()[2];//仪表盘宽度
+                option1.series[0].title.fontSize = getScreenSize()[3];//标题字体大小
+
+                option1.tooltip.formatter = "{a} <br/> {c}立方"; //设置弹出提示框的输出格式
+                option1.series[0].name = "瞬时流量"; //设置弹出提示框的名称
+                option1.series[0].axisLine.lineStyle.shadowColor = "#6ACA8B";
+                option1.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2ec977'],
+                    [0.8, '#98f0f5'],
+                    [1, '#e0923d']
+                ]; //刻度线的颜色设置
+                myChart1.setOption(option1);
+
+                //------------
+                var myChart2 = ec.init(document.getElementById('main3'));
+                var option2 = {
+                    baseOption: {
+                        radius: '100%',
+                        grid: {
+                            borderWidth: '0',
+                            x: '20%',
+                            y: '35',
+                            right: '10%',
+                            bottom:'20%'
+                        },
+                        calculable: true,
+                        xAxis: [{
+                            type: 'category',
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#fff',
+                                    fontSize: 16
+                                }
+                            },
+                            axisLine: { lineStyle: { color: "#1d3f62", width: 4 } },
+                            data: ['投料', '出铝液']
+                        }],
+                        yAxis: [{
+                            type: 'value',
+                            name: 'kg',
+                            nameTextStyle: {
+                                color: '#2579cf', fontSize: 16, align: 'left'
+                            },
+                            axisLabel: {
+                                textStyle: {
+                                    color: '#fff',
+                                    fontSize: 16
+                                }
+                            },
+                            axisLine: { lineStyle: { color: "#1d3f62", width: 4 } },
+                            splitLine: {
+                                show: false
+                            }
+
+                        }],
+                        series: [{
+                            name: '原砂',
+                            type: 'bar',
+                            barCategoryGap: '70%',
+                            itemStyle: {
+                                normal: {
+                                    color: new echarts.graphic.LinearGradient(
+                                        0, 0, 0, 1, [
+                                            { offset: 0, color: '#009fe8' },
+                                            { offset: 0.5, color: '#045883' },
+                                            { offset: 1, color: '#1d3f62' }
+                                        ]
+                                    )
+                                },
+
+                            },
+                            data: [60, 50],
+                            label: {
+                                normal: {
+                                    show: true,
+                                    position: 'top',
+                                    color: '#00a0e9',
+                                    fontSize: 20
+                                }
+                            },
+
+                        },
+
+                        ]
+                    },
+                    media: [
+                        {
+                            //移动端
+                            query: { maxWidth: 300},
+                            option: {
+                                radius: '100%',
+                                grid: {
+                                    borderWidth: '0',
+                                    x: '20%',
+                                    y: '35',
+                                    right: '10%'
+                                },
+                                calculable: true,
+                                xAxis: [{
+                                    type: 'category',
+                                    axisLabel: {
+                                        textStyle: {
+                                            color: '#fff',
+                                            fontSize: 6
+                                        }
+                                    },
+                                    axisLine: { lineStyle: { color: "#1d3f62", width: 2 } },
+                                    data: ['投料', '出铝液']
+                                }],
+                                yAxis: [{
+                                    type: 'value',
+                                    name: 'kg',
+                                    nameTextStyle: {
+                                        color: '#2579cf', fontSize: 8, align: 'left'
+                                    },
+                                    axisLabel: {
+                                        textStyle: {
+                                            color: '#fff',
+                                            fontSize: 3
+                                        }
+                                    },
+                                    axisLine: { lineStyle: { color: "#1d3f62", width: 2 } },
+                                    splitLine: {
+                                        show: false
+                                    }
+
+                                }],
+                                series: [{
+                                    name: '原砂',
+                                    type: 'bar',
+                                    barCategoryGap: '70%',
+                                    itemStyle: {
+                                        normal: {
+                                            color: new echarts.graphic.LinearGradient(
+                                                0, 0, 0, 1, [
+                                                    { offset: 0, color: '#009fe8' },
+                                                    { offset: 0.5, color: '#045883' },
+                                                    { offset: 1, color: '#1d3f62' }
+                                                ]
+                                            )
+                                        },
+
+                                    },
+                                    data: [60, 50],
+                                    label: {
+                                        normal: {
+                                            show: true,
+                                            position: 'top',
+                                            color: '#00a0e9',
+                                            fontSize: 8
+                                        }
+                                    },
+
+                                },
+
+                                ]
+                            }
+                        }
+                    ]
+                };
+                //刻度线的颜色设置
+                myChart2.setOption(option2);
+                var getdata = GetData();
+                clearInterval(timeTicket);
+                var timeTicket = setInterval(GetData, 20000);
+
+                function GetData() {
+
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetCentralizedMeltingFurnace"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            console.log(JSON.stringify(data));
+                            if (data.result.deviceErrorMessage) {
+                                CallAlarmMessage(data.result.deviceErrorMessage);
+                            }
+                            //设备状态
+                            setStatus(data.result.deviceStatus);
+
+                            //用电能耗
+                            option.series[0].data[0].value = data.result.electricityConsumption;
+                            myChart.setOption(option, true);
+
+                            //天然气能耗
+                            option1.series[0].data[0].value = data.result.naturalGasConsumption;
+                            myChart1.setOption(option1, true);
+
+                            //成分重量 PC
+                            option2.baseOption.series[0].data[0] = data.result.feedingWeight;
+                            option2.baseOption.series[0].data[1] = data.result.moltenAluminumWeight;
+                            //成分重量 移动端
+                            option2.media[0].option.series[0].data[0] = data.result.feedingWeight;
+                            option2.media[0].option.series[0].data[1] = data.result.moltenAluminumWeight;
+
+                            myChart2.setOption(option2, true);
+
+                            //铝液温度
+                            document.getElementById("moltenAluminumTemperature").innerText = data.result.moltenAluminumTemperature;
+
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetCentralizedMeltingFurnace,error:' + msg.responseText);
+                        }
+                    });
+
+                  
+                }
+            }
+        );
+
+        function CallAlarmMessage(message) {
+            if (message && message.length > 0) {
+                //播放(继续播放)
+                var audio = document.getElementById("bgMusic");
+                audio.play();
+                $('.alert').html('报警设备:' + message).addClass('alert-success').show().delay(10000).fadeOut();
+            }
+        }
+    </script>
+</body>
+</html>

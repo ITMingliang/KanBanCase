@@ -1,0 +1,750 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>工段级别看板</title>
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/contain.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/contain.js"></script>
+    <style>
+        .title1 {
+            position: relative;
+            margin: 1.3vh;
+            height: 3.5vh;
+            width: 100%;
+        }
+
+            .title1 span {
+                font-size: 20px;
+                color: #fff;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
+                -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
+                -moz-animation: neon2 2.5s ease-in-out infinite alternate;
+                animation: neon2 2.5s ease-in-out infinite alternate;
+            }
+
+        .mainlist {
+            width: 85%;
+            height: 85%;
+            margin-top: 6.5vh;
+            padding-left: 3.5vw;
+        }
+
+            .mainlist p {
+                font-size: 18px;
+                color: #fff;
+                margin-top: 7.5%;
+            }
+
+                .mainlist p span {
+                    font-size: 20px;
+                    color: #fff;
+                    -webkit-transition: all 0.5s;
+                    -moz-transition: all 0.5s;
+                    transition: all 0.5s;
+                    -webkit-animation: neon5 2.5s ease-in-out infinite alternate;
+                    -moz-animation: neon5 2.5s ease-in-out infinite alternate;
+                    animation: neon5 2.5s ease-in-out infinite alternate;
+                }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="cheader">
+            <div class="ctitle">
+                <strong>化成工段看板</strong>
+            </div>
+            <div class="rmdatetime">
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="rmcont_row">
+            <div class="cont_vw300">
+                <div class="boxall cont_h468 mt1">
+                    <div class="alltitle">工单信息</div>
+                    <div class="navboxall main_table" id="char3">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>工单号</th>
+                                    <th>工单数量</th>
+                                    <th>完成数量</th>
+                                    <th>产成率</th>
+                                    <th>工单状态</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tab2">
+                                <tr class="tr_sky">
+                                    <td>1</td>
+                                    <td>PT001-2</td>
+                                    <td>300</td>
+                                    <td>300</td>
+                                    <td>100%</td>
+                                    <td>已完成</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>2</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>3</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>4</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>5</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>6</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>7</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>8</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_red">
+                                    <td>9</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                                <tr class="tr_red">
+                                    <td>10</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="boxall cont_h407 ">
+                    <div class="alltitle">良率</div>
+                    <div class="navboxall" id="char2"></div>
+                </div>
+                <!--<div class="boxall cont_h407">
+                    <div class="alltitle">工单进度</div>
+                    <div class="navboxall" id="char2"></div>
+                </div>-->
+                <!--<div class="boxall cont_h228">
+                    <div class="alltitle">设备OEE</div>
+                    <div class="navboxall" id="char6"></div>
+                </div>-->
+            </div>
+            <div class="cont_vw400">
+                <div class="boxallnobg cont_h468 mt1" >
+                    <div class="navboxall" id="char1"></div>                 
+                </div>
+                <div class="boxall cont_h407">
+                    <div class="alltitle">工段产出</div>
+                    <div class="navboxall" id="char4"></div>
+                </div>
+
+            </div>
+            <div class="cont_w626">
+                <!--<div class="boxall cont_h468 mt1">
+                    <div class="alltitle">产量</div>
+                    <div class="navboxall" id="char5"></div>
+                </div>-->
+                <div class="boxall cont_h468 mt1">
+                    <div class="alltitle">OEE</div>
+                    <div class="navboxall" id="char5"></div>
+                </div>
+                <div class="boxall cont_h407">
+                    <div class="alltitle">SPC</div>
+                    <div class="navboxall" id="char6"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        //给背景粒子高度设为网页全部正文高度，滚动条到的地方也包含
+        $("#particles-js")[0].style.setProperty('height', document.body.scrollHeight + "px");
+    </script>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script type="text/javascript" src="js/echarts/echarts-liquidfill.js"></script>
+    <script src="js/echarts/mooutputcharts.js"></script>
+    <script src="js/progress.js"></script>
+
+    <!--动态粒子背景js-->
+    <!--<script src="js/particles.min.js"></script>-->
+    <!--动态粒子背景js-->
+    <!--<script src="js/app.js"></script>-->
+
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar',
+            ],
+            function (ec) {
+
+                var char1 = echarts.init(document.getElementById("char1"))
+                var option1 = {
+                    tooltip: {},
+                    animationDurationUpdate: function (idx) {
+                        // 越往后的数据延迟越大
+                        return idx * 100;
+                    },
+                    animationEasingUpdate: 'bounceIn',
+                    color: ['#fff', '#fff', '#fff'],
+                    series: [{
+                        type: 'graph',
+                        layout: 'force',
+                        force: {
+                            repulsion: 300,
+                            edgeLength: 100
+                        },
+                        roam: true,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'inside',
+                                formatter: '{b}',
+                                fontSize: 30,
+                                fontStyle: '600',
+                            }
+                        }
+                        ,
+                        data: [{
+                            "name": "SPC",
+                            "value": 10000,
+                            x: 400,
+                            y: 56,
+                            "symbolSize": 75,
+                            "draggable": true,
+                            "itemStyle": {
+                                "normal": {
+                                    "borderColor": "#FF8C00",
+                                    "borderWidth": 4,
+                                    "shadowBlur": 100,
+                                    "shadowColor": "#FF8C00",
+                                    "color": "#FF8C00"
+                                }
+                            }
+                        }, {
+                            "name": "产出",
+                            "value": 6181,
+                            x: 0,
+                            y: 0,
+                            "symbolSize": 75,
+                            "draggable": true,
+                            "itemStyle": {
+                                "normal": {
+                                    "borderColor": "#FFDA00",
+                                    "borderWidth": 4,
+                                    "shadowBlur": 100,
+                                    "shadowColor": "#FFDA00",
+                                    "color": "#FFDA00",
+                                }
+                            },
+
+                        }, {
+                            "name": "良率",
+                            "value": 4386,
+                            x: 0,
+                            y: 0,
+                            "symbolSize": 75,
+                            "draggable": true,
+                            "itemStyle": {
+                                "normal": {
+                                    "borderColor": "rgb(165, 190, 198)",
+                                    "borderWidth": 4,
+                                    "shadowBlur": 100,
+                                    "shadowColor": "rgb(165, 190, 198)",
+                                    "color": "rgb(165, 190, 198)"
+                                }
+                            }
+                        }, {
+                            "name": "监控",
+                            "value": 4055,
+                            "symbolSize": 150,
+                            x: 0,
+                            y: 0,
+                            "draggable": true,
+                            "itemStyle": {
+                                "normal": {
+                                    "borderColor": "#4DFB37",
+                                    "borderWidth": 4,
+                                    "shadowBlur": 100,
+                                    "shadowColor": "#4DFB37",
+                                    "color": "#4DFB37"
+                                }
+                            }
+                        }, {
+                            "name": "OEE",
+                            "value": 2467,
+                            x: 0,
+                            y: 0,
+                            "symbolSize": 75,
+                            "draggable": true,
+                            "itemStyle": {
+                                "normal": {
+                                    "borderColor": "#E038AD",
+                                    "borderWidth": 4,
+                                    "shadowBlur": 100,
+                                    "shadowColor": "#E038AD",
+                                    "color": "#E038AD"
+                                }
+                            }
+                        }, {
+                            "name": "工单",
+                            "value": 2244,
+                            x: 0,
+                            y: 0,
+                            "symbolSize": 75,
+                            "draggable": true,
+                            "itemStyle": {
+                                "normal": {
+                                    "borderColor": "#00BFFF",
+                                    "borderWidth": 4,
+                                    "shadowBlur": 100,
+                                    "shadowColor": "#00BFFF",
+                                    "color": "#00BFFF"
+                                }
+                            }
+                        }],
+                        links: [{
+                            "source": "SPC",
+                            "target": "监控"
+                        },
+                        {
+                            "source": "产出",
+                            "target": "监控"
+                        },
+                        {
+                            "source": "良率",
+                            "target": "监控"
+                        },
+                        {
+                            "source": "OEE",
+                            "target": "监控"
+                        },
+                        {
+                            "source": "工单",
+                            "target": "监控"
+                        }]
+                    }]
+                }
+
+                //var char1 = echarts.init(document.getElementById("char1"));
+                //var option1 = {
+                //    //backgroundColor: "#000",
+                //    grid: {
+                //        top: '25%',
+                //        bottom: '3%',
+                //    },
+                //    xAxis: {
+                //        splitLine: {
+                //            show: false
+                //        },
+                //        axisLabel: {
+                //            show: false
+                //        },
+                //        axisLine: {
+                //            show: false
+                //        }
+                //    },
+                //    yAxis: {
+                //        splitLine: {
+                //            show: false
+                //        },
+                //        axisLabel: {
+                //            show: false
+                //        },
+                //        axisLine: {
+                //            show: false
+                //        }
+                //    },
+                //    series: [
+                //        // 内圆
+                //        {
+                //            type: 'pie',
+                //            radius: ['0', '55%'],
+                //            center: ['50%', '57%'],
+                //            z: 4,
+                //            label: {
+                //                normal: {
+                //                    position: "center",
+                //                }
+                //            },
+                //            hoverAnimation: false,
+                //            data: [{
+                //                name: '工单总计',
+                //                value: 500,
+                //                itemStyle: {
+                //                    normal: {
+                //                        color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                //                            offset: 0,
+                //                            color: '#0069D3'
+                //                        }, {
+                //                            offset: 0.5,
+                //                            color: '#00B8F8'
+                //                        }, {
+                //                            offset: 1,
+                //                            color: '#0068D3'
+                //                        }])
+                //                    }
+
+                //                },
+                //                label: {
+                //                    normal: {
+                //                        rich: {
+                //                            a: {
+                //                                color: '#fff',
+                //                                align: 'center',
+                //                                fontSize: 13,
+                //                                fontWeight: "normal"
+                //                            },
+                //                            b: {
+                //                                color: 'rgba(252,230,48,1)',
+                //                                align: 'center',
+                //                                fontSize: 28
+                //                            },
+                //                            c: {
+                //                                color: '#fff',
+                //                                align: 'center',
+                //                                fontSize: 15
+                //                            }
+
+                //                        },
+                //                        formatter: function (params) {
+                //                            return "{a|" + params.name + "}\n\n" + "{b|" + params.value + "}" + "{c|个}";
+                //                        },
+                //                        position: 'center',
+                //                        show: true,
+                //                        textStyle: {
+                //                            fontSize: '14',
+                //                            fontWeight: 'normal',
+                //                            color: '#fff'
+                //                        }
+                //                    }
+                //                },
+                //                labelLine: {
+                //                    normal: {
+                //                        show: false
+                //                    }
+
+                //                }
+                //            }],
+                //        },
+                //        //进度图
+                //        {
+                //            type: 'gauge',
+                //            radius: '67%',
+                //            center: ['50%', '57%'],
+                //            min: 0,
+                //            max: 1000,
+                //            z: 5,
+                //            splitNumber: 0, //刻度数量
+                //            startAngle: 220,
+                //            endAngle: -40,
+                //            axisLine: {
+                //                show: true,
+                //                lineStyle: {
+                //                    width: 30,
+                //                    color: [
+                //                        [
+                //                            1, new echarts.graphic.LinearGradient(
+                //                                0, 0, 1, 0, [{
+                //                                    offset: 0,
+                //                                    color: '#0099FF'
+                //                                },
+                //                                {
+                //                                    offset: 1,
+                //                                    color: '#00FAFF'
+                //                                }
+                //                                ]
+                //                            )
+                //                        ]
+                //                    ]
+                //                }
+                //            },
+                //            //分隔线样式。
+                //            splitLine: {
+                //                show: false,
+                //            },
+                //            axisLabel: {
+                //                show: false
+                //            },
+                //            axisTick: {
+                //                show: false
+                //            },
+                //            pointer: {
+                //                show: false
+                //            },
+                //            title: {
+                //                show: false,
+                //                offsetCenter: [0, '-20%'], // x, y，单位px
+                //                textStyle: {
+                //                    color: '#ddd',
+                //                    fontSize: 11
+                //                }
+                //            },
+                //            //仪表盘详情，用于显示数据。
+                //            detail: {
+                //                show: false,
+                //                offsetCenter: [0, '10%'],
+                //                color: '#ddd',
+                //                formatter: function (params) {
+                //                    return params
+                //                },
+                //                textStyle: {
+                //                    fontSize: 18
+                //                }
+                //            },
+                //            data: [{
+                //                name: "在线数量",
+                //                value: 111
+                //            }]
+                //        },
+                //        //刻度尺
+                //        {
+                //            // name: "白色圈刻度",
+                //            type: "gauge",
+                //            radius: "78%",
+                //            center: ['50%', '57%'],
+                //            startAngle: 220,
+                //            endAngle: -40,
+                //            z: 2,
+                //            axisTick: {
+                //                show: true,
+                //                lineStyle: {
+                //                    color: '#00FAFF',
+                //                    width: 1
+                //                },
+                //                length: -8
+                //            }, //刻度样式
+                //            splitLine: {
+                //                show: true,
+                //                length: -16,
+                //                lineStyle: {
+                //                    color: '#00FAFF'
+                //                }
+                //            }, //分隔线样式
+                //            axisLabel: {
+                //                color: 'rgba(255,255,255,0)',
+                //                fontSize: 12,
+                //            }, //刻度节点文字颜色
+                //            pointer: {
+                //                show: false
+                //            },
+                //            axisLine: {
+                //                lineStyle: {
+                //                    opacity: 0
+                //                }
+                //            },
+                //            title: {
+                //                show: true,
+                //                offsetCenter: [-65, '84%'], // x, y，单位px
+                //                textStyle: {
+                //                    color: '#ddd',
+                //                    fontSize: 11
+                //                }
+                //            },
+                //            //仪表盘详情，用于显示数据。
+                //            detail: {
+                //                show: false,
+                //                offsetCenter: [0, '84%'],
+                //                color: '#ddd',
+                //                formatter: function (params) {
+                //                    return params
+                //                },
+                //                textStyle: {
+                //                    fontSize: 18
+                //                }
+                //            },
+                //            data: []
+                //        },
+                //        // 刻度圈
+                //        {
+                //            "type": "pie",
+                //            z: 1,
+                //            "radius": ["0%", "90%"],
+                //            "center": ["50%", "55%"],
+                //            "avoidLabelOverlap": false,
+                //            "label": {
+                //                "normal": {
+                //                    "show": false,
+                //                    "position": "center"
+                //                },
+                //                "emphasis": {
+                //                    "show": false,
+                //                    "textStyle": {
+                //                        "fontWeight": "bold"
+                //                    }
+                //                }
+                //            },
+                //            "itemStyle": {
+                //                "normal": {
+                //                    "color": {
+                //                        "type": "linear",
+                //                        "x": 0,
+                //                        "y": 0,
+                //                        "x2": 0,
+                //                        "y2": 1,
+                //                        "colorStops": [{
+                //                            "offset": 0.05,
+                //                            "color": "rgba(32,36,107, 0.2)"
+                //                        }, {
+                //                            "offset": 0.5,
+                //                            "color": "rgba(32,36,107,0.3)"
+                //                        }, {
+                //                            "offset": 0.95,
+                //                            "color": "rgba(32,36,107, 0.2)"
+                //                        }]
+                //                    }
+                //                }
+                //            },
+                //            "labelLine": {
+                //                "normal": {
+                //                    "show": false
+                //                }
+                //            },
+                //            "data": [{
+                //                "value": 3235
+                //            }]
+                //        },
+
+                //    ]
+                //}
+                //option1.series[1].axisLine.lineStyle.width = 3;
+                char1.setOption(option1);
+
+                //良品率
+                var char2 = echarts.init(document.getElementById("char2"));
+                var option2 = mochar5();
+                option2.grid.left = '5%';
+                option2.grid.right = '8%';
+                option2.grid.bottom = '20%';
+                option2.xAxis.axisTick.alignWithLabel = true;
+                char2.setOption(option2);
+
+                var char4 = echarts.init(document.getElementById("char4"));
+                var option4 = sectionchar8();
+                option4.grid.left = '5%';
+                option4.grid.bottom = '20%';
+                option4.xAxis.axisLabel.fontSize = 14;
+                char4.setOption(option4);
+
+                //OEE
+                var char2 = echarts.init(document.getElementById("char5"));
+                var option2 = mochar5();
+                option2.grid.left = '5%';
+                option2.grid.right = '8%';
+                option2.grid.bottom = '20%';
+                option2.xAxis.axisTick.alignWithLabel = true;
+                option2.series[0].itemStyle.normal.color = "#08E4DE";
+                char2.setOption(option2);
+
+                var char6 = echarts.init(document.getElementById("char6"))
+                var data = [];
+                for (var n = 0; n < 7; n++) {
+                    data.push((60 + Math.random() * 60).toFixed(2))
+                }
+                var option6 = spcchar1(data);
+                char6.setOption(option6);
+
+
+
+            }
+        );
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>生产进度监控</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader">
+            <div class="rmlogo"></div>
+            <div class="rmtitle large_title">
+                <strong>生产进度监控</strong>
+                <div class="rmsubtitlebg"></div>
+                <div class="rmsubtitle"><b></b><span>Production Schedule Monitoring</span><em></em></div>
+            </div>
+            <div class="rmdatetime">
+                <span><!--<a href=""><img src="images/icon_pr.png" alt=""></a><a href=""><img src="images/icon_back.png" alt=""></a><a href=""><img src="images/icon_close.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="rmcont">
+
+            <div class="cont_w1263">
+                <div class="rmcont_subtitle"></div>
+                <div class="cont_h890 cont_w1263 cont_box pre_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box" id='main1'></div>
+                </div>
+            </div>
+
+            <div class="cont_w627">
+                <div class="rmcont_subtitle"></div>
+                <div class="cont_h890 cont_w1263 cont_box pre_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box" id='main2'></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script type="text/javascript">
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                //---------------------用电能耗设置
+                var myChart1 = ec.init(document.getElementById('main1'));
+                //产线数据源
+                var lineData = ['MWT000437', 'CWT002635', 'CWT002689', 'CWT002712', 'CWT002728', 'DWT000183', 'MRT000156', 'MWO005185'];
+                //计划产量数据源
+                var planData = [5000, 1867, 1187, 1000, 2400, 5000, 1000, 1300];
+                //实际产量
+                var outputData = [3000, 563, 560, 600, 800 ,3265, 256, 895];
+                //百分比
+                var rateData = [60.00, 30.16, 47.18, 60, 33.34, 65.30, 25.60, 68.85];
+
+                var dataAxis = ['表1', '表2', '表3', '表4', '表5', '表6', '表7', '表8', '表9', '表10'];
+                var data = ["05 - 01", "05 - 02", "05 - 03"];
+                var data1 = [7000, 12000, 7000];
+
+                var myColor = ['#e57cef', '#892ff5', '#ffc207', '#d0a00e', '#34da62', '#00e9db', '#00c0e9', '#0096f3'];
+                var option1 = {
+                    backgroundColor: '#0e2147',
+                    grid: {
+                        left: '11%',
+                        top: '12%',
+                        right: '0%',
+                        bottom: '8%',
+                        containLabel: true
+                    },
+                    xAxis: [{
+                        show: false,
+                    }],
+                    yAxis: [{
+                        axisTick: 'none',
+                        axisLine: 'none',
+                        offset: '27',
+                        axisLabel: {
+                            textStyle: {
+                                color: '#ffffff',
+                                fontSize: '16',
+                            }
+                        },
+                        data: lineData
+                    }, {
+                        axisTick: 'none',
+                        axisLine: 'none',
+                        axisLabel: {
+                            textStyle: {
+                                color: '#ffffff',
+                                fontSize: '16',
+                            }
+                        },
+                         data: planData
+                    }, {
+                        name: '单位：件',
+                        nameGap: '50',
+                        nameTextStyle: {
+                            color: '#ffffff',
+                            fontSize: '16',
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgba(0,0,0,0)'
+                            }
+                        },
+                        data: [],
+                    }],
+                    series: [{
+                        name: '条',
+                        type: 'bar',
+                        yAxisIndex: 0,
+                        data: rateData,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'right',
+                                formatter: function (param) {
+                                    return param.value + '%' + '(' + outputData[param.dataIndex] + ')';
+                                },
+                                textStyle: {
+                                    color: '#ffffff',
+                                    fontSize: '16',
+                                }
+                            }
+                        },
+                        barWidth: 12,
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    var num = myColor.length;
+                                    return myColor[params.dataIndex % num]
+                                },
+                            }
+                        },
+                        z: 2
+                    }, {
+                        name: '白框',
+                        type: 'bar',
+                        yAxisIndex: 1,
+                        barGap: '-100%',
+                        data: [99, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5, 99.5],
+                        barWidth: 20,
+                        itemStyle: {
+                            normal: {
+                                color: '#0e2147',
+                                barBorderRadius: 5,
+                            }
+                        },
+                        z: 1
+                    }, {
+                        name: '外框',
+                        type: 'bar',
+                        yAxisIndex: 2,
+                        barGap: '-100%',
+                        data: [100, 100, 100, 100, 100, 100, 100, 100],
+                        barWidth: 24,
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    var num = myColor.length;
+                                    return myColor[params.dataIndex % num]
+                                },
+                                barBorderRadius: 5,
+                            }
+                        },
+                        z: 0
+                    },
+                    {
+                        name: '外圆',
+                        type: 'scatter',
+                        hoverAnimation: false,
+                        data: [0, 0, 0, 0, 0, 0, 0, 0],
+                        yAxisIndex: 2,
+                        symbolSize: 25,
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    var num = myColor.length;
+                                    return myColor[params.dataIndex % num]
+                                },
+                                opacity: 1,
+                            }
+                        },
+                        z: 2
+                    }]
+                };
+                myChart1.setOption(option1);
+
+                var myChart2 = ec.init(document.getElementById('main2'));
+                var option2 = {
+                    radius: '100%',
+                    grid: {
+                        borderWidth: '0',
+                        x: '15%',
+                        y: '15%',
+                        bottom: '15%',
+                        right: '10%'
+                    },
+                    xAxis: {
+                        data: dataAxis,
+                        axisLabel: {
+                            textStyle: {
+                                color: '#fff',
+                                fontSize: 13
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLine: {
+                            show: false
+                        },
+                        axisLine: { lineStyle: { color: "#1d3f62", width: "4" } },
+                        data: data,
+                    },
+                    yAxis: {
+                        axisLine: {
+                            show: false
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#aaa',
+                                fontSize: 20
+                            }
+                        },
+                        max: 10000,
+                        interval: 500,
+                        name: '(件)',
+                        nameTextStyle: {
+                            color: '#2579cf',
+                            fontSize: 18,
+                            align: 'left'
+                        },
+                        axisLine: { lineStyle: { color: "#1d3f62", width: "4" } },
+                        splitLine: {
+                            lineStyle: { color: "#1d3f62" }
+                        }
+                    },
+
+                    series: [{
+                        name: '天然气列表',
+                        type: 'bar',
+                        barCategoryGap: 60,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top',
+                                color: '#fff',
+                                fontSize: 20
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    // build a color map as your need.
+                                    var colorList = [
+                                        '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80'
+                                    ];
+                                    return colorList[params.dataIndex]
+                                },
+                            }
+                        },
+                        data: data1
+                    }]
+                };
+                myChart2.setOption(option2);  
+
+                var getdata = GetData();
+                clearInterval(timeTicket);
+                var timeTicket = setInterval(GetData, 100000);
+                function GetData() {
+
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetProductionMoScheduleMonitoring"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                           
+                            option1.yAxis[0].data = data.result.arrCode;
+                            option1.yAxis[1].data = data.result.arrPlanQty;
+                            option1.series[0].data = data.result.arrRate;
+                            outputData = data.result.arrQty;
+                         
+                            var cssLength = 0;
+                            cssLength = data.result.arrCode.length;
+                            var cssData1 = [], cssData2 = [], cssData3 = [];
+                            for (var i = 0; i < cssLength; i++) {
+                                cssData1.push(99.5);
+                                cssData2.push(100);
+                                cssData3.push(0);
+                            }
+
+                            option1.series[1].data = cssData1;
+                            option1.series[2].data = cssData2;
+                            option1.series[3].data = cssData3;
+
+                            myChart1.setOption(option1, true);
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetProductionMoScheduleMonitoring,error:' + msg.responseText);
+                        }
+                    });
+
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetProductionScheduleMonitoring"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            //产品产量
+
+                            option2.xAxis.data = data.result.arrName;
+                            option2.series[0].data = data.result.arrQty;
+
+                            myChart2.setOption(option2, true);
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetProductionScheduleMonitoring,error:' + msg.responseText);
+
+                        }
+                    });
+                }
+            }
+        );
+    </script>
+</body>
+</html>

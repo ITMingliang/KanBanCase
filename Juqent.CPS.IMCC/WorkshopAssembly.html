@@ -1,0 +1,515 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>产品装配过程监控</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">s
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+        #table {
+            color: aliceblue;
+            line-height: 2;
+            margin-right: 15px;
+            margin-left: 15px;
+        }
+
+        #table thead tr {
+           color:aliceblue;
+           text-align:right;
+        }
+        .th {
+        text-align:left;
+        }
+        .td {
+        text-align:right;
+        }
+        .font-yellow {
+        color:yellow;
+        }
+        .font-while {
+            color:white;
+        }
+        .font-green {
+            color:palegreen;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader">
+            <div class="rmlogo"></div>
+            <div class="rmtitle large_title">
+                <strong>车间装配看板</strong>
+                <div class="rmsubtitlebg"></div>
+                <div class="rmsubtitle"><b></b><span>Workshop Assembly Kanban</span><em></em></div>
+            </div>
+            <div class="rmdatetime">
+                <span><!--<a href=""><img src="images/icon_pr.png" alt=""></a><a href=""><img src="images/icon_back.png" alt=""></a><a href=""><img src="images/icon_close.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="rmcont">
+            <div class="cont_w1263">
+                <!--<div class="rmcont_subtitle"></div>-->
+                <div class="cont_h890 cont_w1263 cont_box pre_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box" id='main1'>
+                        <table id="table">
+                            <thead>
+                                <tr>
+                                    <th width="150px" class="th">批次</th>
+                                    <th class="th">工序代码</th>
+                                    <th width="150px" class="th">工单</th>
+                                    <th class="th">产品代码</th>
+                                    <th class="th">操作</th>
+                                    <th>数量</th>
+                                    <th width="95px">设备</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody">
+                                <tr class="font-green">
+                                    <td>2L180725002</td>
+                                    <td>P005</td>
+                                    <td>CWT010305</td>
+                                    <td>01.01.0329.90</td>
+                                    <td>良品</td>
+                                    <td class="td">1071</td>
+                                    <td class="td">DL-089</td>
+                                </tr>
+                                <tr class="font-yellow">
+                                    <td>2L180725002</td>
+                                    <td>P005</td>
+                                    <td>CWT010305</td>
+                                    <td>01.01.0329.90</td>
+                                    <td>拒绝</td>
+                                    <td class="td">12</td>
+                                    <td class="td">DL-089</td>
+                                </tr>
+                                <tr class="font-while">
+                                    <td>2L180725002</td>
+                                    <td>P005</td>
+                                    <td>CWT010305</td>
+                                    <td>01.01.0329.90</td>
+                                    <td>报废</td>
+                                    <td class="td">2</td>
+                                    <td class="td">DL-089</td>
+                                </tr>
+                                <tr class="font-green">
+                                    <td>2L180730005</td>
+                                    <td>P006</td>
+                                    <td>CWT010305</td>
+                                    <td>01.01.0329.90</td>
+                                    <td>良品</td>
+                                    <td class="td">1071</td>
+                                    <td class="td">DL-089</td>
+                                </tr>
+                                <tr class="font-green">
+                                    <td>2L180725003</td>
+                                    <td>P001</td>
+                                    <td>CWT010306</td>
+                                    <td>01.01.0329.96</td>
+                                    <td>良品</td>
+                                    <td class="td">2000</td>
+                                    <td class="td">DL-089</td>
+                                </tr>
+                                <tr class="font-yellow">
+                                    <td>2L180725003</td>
+                                    <td>P001</td>
+                                    <td>CWT010306</td>
+                                    <td>01.01.0329.90</td>
+                                    <td>拒绝</td>
+                                    <td class="td">10</td>
+                                    <td class="td">DL-089</td>
+                                </tr>
+                                <tr class="font-yellow">
+                                    <td>CWT010307</td>
+                                    <td>P001</td>
+                                    <td>CWT010305</td>
+                                    <td>01.01.0329.90</td>
+                                    <td>拒绝</td>
+                                    <td class="td">1071</td>
+                                    <td class="td">DL-089</td>
+                                </tr>
+                                <tr class="font-while">
+                                    <td>2L180725002</td>
+                                    <td>P001</td>
+                                    <td>CWT010307</td>
+                                    <td>01.01.0329.90</td>
+                                    <td>报废</td>
+                                    <td class="td">2</td>
+                                    <td class="td">DL-089</td>
+                                </tr>
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w627">
+                <!--<div class="rmcont_subtitle"></div>-->
+                <div class="cont_h407 cont_w627 cont_box pre_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box" id='main2'></div>
+                </div>
+                <div class="cont_h468 cont_w627 cont_box pre_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box" id='main3'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script type="text/javascript">
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                var myChart3 = ec.init(document.getElementById('main3'));
+                var dataPie = [
+                    { "value": 20, "name": "P005" },
+                    { "value": 20, "name": "P006" },
+                    { "value": 20, "name": "P007" },
+                ];
+                data_name = ['P005', 'P006','P007'];
+                for (var n in dataPie) {
+                    dataPie[n]['name'] = dataPie[n]['name'] + ' ' + dataPie[n]['value'] + '%';
+                    data_name.push(dataPie[n]['name'])
+                }
+
+                var option3 = {
+                    //backgroundColor: "#000",
+                    title: {
+                        text: '“当前工序产量“',
+                        subtext: '瑞明',
+                        left: '50%',
+                        textAlign: 'center',
+                        textStyle: {
+                            color: "#fff",
+                            fontWeight: 'normal',
+                            fontFamily: '宋体'
+                        }
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{b}"
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        top: 'center',
+                        right: 60,
+                        data: data_name,
+                        textStyle: {
+                            color: "#fff",
+                            fontWeight: 'normal',
+                            fontFamily: '宋体'
+                        }
+                    },
+                    series: [
+
+                        {
+                            name: '',
+                            type: 'pie',
+                            radius: ['40%', '55%'],
+                            data: dataPie,
+                            color: ['#12f912', '#0096f3','#e8e89a'],
+                        }
+                    ]
+                };
+                myChart3.setOption(option3);
+
+
+                var myChart2 = ec.init(document.getElementById('main2'));
+                //产线数据源
+                var lineData = [ 'CWT010306', 'CWT010307'];
+                //计划产量数据源
+                var planData = [ 3500,2500];
+                //实际产量
+                var outputData = [ 2300,1630];
+                //百分比
+                var rateData = [ 65.71,65.20];
+                var myColor = ['#12f912', '#0096f3']; 
+
+                var option2 = {
+                    backgroundColor: '#0e2147',
+                    grid: {
+                        left: '11%',
+                        top: '12%',
+                        right: '0%',
+                        bottom: '8%',
+                        containLabel: true
+                    },
+                    xAxis: [{
+                        show: false,
+                    }],
+                    yAxis: [{
+                        axisTick: 'none',
+                        axisLine: 'none',
+                        offset: '27',
+                        axisLabel: {
+                            textStyle: {
+                                color: '#ffffff',
+                                fontSize: '16',
+                            }
+                        },
+                        data: lineData
+                    }, {
+                        axisTick: 'none',
+                        axisLine: 'none',
+                        axisLabel: {
+                            textStyle: {
+                                color: '#ffffff',
+                                fontSize: '16',
+                            }
+                        },
+                        data: planData
+                    }, {
+                        name: '单位：件',
+                        nameGap: '50',
+                        nameTextStyle: {
+                            color: '#ffffff',
+                            fontSize: '16',
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgba(0,0,0,0)'
+                            }
+                        },
+                        data: [],
+                    }],
+                    series: [{
+                        name: '条',
+                        type: 'bar',
+                        yAxisIndex: 0,
+                        data: rateData,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'right',
+                                formatter: function (param) {
+                                    return param.value + '%' + '(' + outputData[param.dataIndex] + ')';
+                                },
+                                textStyle: {
+                                    color: '#ffffff',
+                                    fontSize: '16',
+                                }
+                            }
+                        },
+                        barWidth: 12,
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    var num = myColor.length;
+                                    return myColor[params.dataIndex % num]
+                                },
+                            }
+                        },
+                        z: 2
+                    }, {
+                        name: '白框',
+                        type: 'bar',
+                        yAxisIndex: 1,
+                        barGap: '-100%',
+                        data: [99.5,99.5],
+                        barWidth: 20,
+                        itemStyle: {
+                            normal: {
+                                color: '#0e2147',
+                                barBorderRadius: 5,
+                            }
+                        },
+                        z: 1
+                    }, {
+                        name: '外框',
+                        type: 'bar',
+                        yAxisIndex: 2,
+                        barGap: '-100%',
+                        data: [100,100],
+                        barWidth: 24,
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    var num = myColor.length;
+                                    return myColor[params.dataIndex % num]
+                                },
+                                barBorderRadius: 5,
+                            }
+                        },
+                        z: 0
+                    },
+                    {
+                        name: '外圆',
+                        type: 'scatter',
+                        hoverAnimation: false,
+                        data: [0, 0],
+                        yAxisIndex: 2,
+                        symbolSize: 25,
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    var num = myColor.length;
+                                    return myColor[params.dataIndex % num]
+                                },
+                                opacity: 1,
+                            }
+                        },
+                        z: 2
+                    }]
+                };
+                myChart2.setOption(option2);
+
+
+
+                var getdata = GetData();
+                clearInterval(timeTicket);
+                var timeTicket = setInterval(GetData, 10000);
+                function GetData() {
+                    //表格
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetWorkshopAssembly"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            var html = "";
+                           
+                            for (var i = 0; i < data.result.length; i++) {
+                                var trColor = "";
+                                if (data.result[i].actionResult == 2) {
+                                    trColor = 'font-green';
+                                } else if (data.result[i].actionResult == 7) {
+                                    trColor = "font-yellow";
+                                } else if (data.result[i].actionResult == 8) {
+                                    trColor = "font-while";
+                                }
+
+                                html += "<tr class='" + trColor+"'>";
+                                html += "<td>" + data.result[i].lotNumber + "</td>";
+                                html += "<td>" + data.result[i].processCode + "</td>";
+                                html += "<td>" + data.result[i].moCode + "</td>";
+                                html += "<td>" + data.result[i].itemCode + "</td>";
+                                html += "<td>" + data.result[i].actionResultName + "</td>";
+                                html += "<td class='td'>" + data.result[i].qty + "</td>";
+                                if (!data.result[i].eqpName) {
+                                    html += "<td class='td'></td>";
+                                } else {
+                                    html += "<td class='td'>" + data.result[i].eqpName + "</td>";
+                                }
+                              
+                                html += "</tr>";
+                            }
+                            $('#tbody').html(html);
+
+                        },
+                        error: function (msg) {
+                            console.log("表格查询报错，api:GetWorkshopAssembly   error:" + msg.responseText);
+                        }
+                    });
+
+                    //进度图
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetWorkshopMO"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            option2.yAxis[0].data = data.result.arrCode;
+                            option2.yAxis[1].data = data.result.arrPlanQty;
+                            option2.series[0].data = data.result.arrRate;
+                            outputData = data.result.arrQty;
+
+
+                            var cssLength = 0;
+                            if (!data.result.arrCode) { return;}
+                            cssLength = data.result.arrCode.length;
+                            var cssData1 = [], cssData2 = [], cssData3 = [];
+                            for (var i = 0; i < cssLength; i++) {
+                                cssData1.push(99);
+                                cssData2.push(100);
+                                cssData3.push(0);
+                            }
+
+                            option2.series[1].data = cssData1;
+                            option2.series[2].data = cssData2;
+                            option2.series[3].data = cssData3;
+
+                            myChart2.setOption(option2, true);
+                        },
+                        error: function (msg) {
+                            console.log("进度图报错，api:GetWorkshopAssembly   error:" + msg.responseText);
+                        }
+                    });
+
+                    //饼状图
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetWorkshopPieChart"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            option3.series[0].data = data.result;
+                            data_name = [];
+                            for (var n in data.result) {
+                                data.result[n]['name'] = data.result[n]['name'] + ' ' + data.result[n]['value'] + '个';
+                                data_name.push(data.result[n]['name'])
+                            }
+                            option3.legend.data = data_name;
+                           myChart3.setOption(option3, true);
+                        },
+                        error: function (msg) {
+                            console.log("进度图报错，api:GetWorkshopAssembly   error:" + msg.responseText);
+                        }
+                    });
+                }
+            }
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,612 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>设备</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+        .item {/*运行*/
+            font-size: 0.8vw;
+            background: #232e28;
+            color: aliceblue;
+            width: 12.5vw;
+            height: 20vh;
+            margin-right: 0.75vw;
+            margin-top: 0.5vw;
+            float: left;
+        }
+        .item2 {/*关闭*/
+            font-size: 0.8vw;
+            background: #302e2e;
+            color: aliceblue;
+            width: 12.5vw;
+            height: 20vh;
+            margin-right: 0.75vw;
+            margin-top: 0.5vw;
+            float: left;
+        }
+        .item3 {/*暂停*/
+            font-size: 0.8vw;
+            background: #233e59;
+            color: aliceblue;
+            width: 12.5vw;
+            height: 20vh;
+            margin-right: 0.75vw;
+            margin-top: 0.5vw;
+            float: left;
+        }
+        .item4 { /*故障*/
+            font-size: 0.8vw;
+            background: #454520;
+            color: aliceblue;
+            width: 12.5vw;
+            height: 20vh;
+            margin-right: 0.75vw;
+            margin-top: 0.5vw;
+            float: left;
+        }
+        .item5 { /*报警*/
+            font-size: 0.8vw;
+            background: #452328;
+            color: aliceblue;
+            width: 12.5vw;
+            height: 20vh;
+            margin-right: 0.75vw;
+            margin-top: 0.5vw;
+            float: left;
+        }
+        .item_bar {
+            width:0.4vw; 
+            height:20vh;
+            background:#2ec977;
+            float:left;
+        }
+        .item_bar2 { /*关机*/
+            width: 0.4vw;
+            height: 20vh;
+            background: #717673;
+            float: left;
+        }
+        .item_bar3 { /*暂停*/
+            width: 0.4vw;
+            height: 20vh;
+            background: dodgerblue;
+            float: left;
+        }
+        .item_bar4 { /*故障*/
+            width: 0.4vw;
+            height: 20vh;
+            background: #919123;
+            float: left;
+        }
+        .item_bar5 { /*报警*/
+            width: 0.4vw;
+            height: 20vh;
+            background: red;
+            float: left;
+        }
+        .item_data {
+            height:20vh;
+            width:9vw;
+            float:left;
+        }
+        .item_data_title {
+            text-align:left;
+            margin-top:1.5vh; 
+            padding-left:5px;
+        }
+        .item_data_name {
+            text-align:left; 
+            margin-top:1.5vh; 
+            color:#bdc1ca;
+            padding-left:5px;
+        }
+        .item_data_value {
+            text-align:left; 
+            margin-top:0.5vh; 
+            color:#bdc1ca;
+            padding-left:5px;
+        }
+        .item_data_tip {
+            height:25vh;
+            width:3vw;
+            float:left; 
+            padding:0px 0px;
+        }
+        .item_data_tip_warning {
+            height:3vh;
+        }
+        .item_data_tip_warning_call {
+            margin-left:1px; 
+            height:2.5vh;
+            width:2.5vh;
+            background-color:#919123;
+            float:right;
+            border-radius:3px 3px 3px 3px ;
+            line-height:2vh
+        }
+        .item_data_tip_warning_other {
+            margin-left:1px;
+            height:2.5vh;
+            width:2.5vh;
+            background-color:red;
+            float:right;
+            border-radius:3px 3px 3px 3px ;
+            line-height:2vh;
+        }
+        .item_data_tip_warning2 {
+            height: 14vh;
+        }
+        .item_data_tip_warning2_working {/*运行*/
+            height:3.5vh;
+            width:3vw;
+            float:right;
+            margin-top:2.5px;
+            background-color:forestgreen;
+            border-radius:8px;
+            line-height:3.5vh
+        }
+        .item_data_tip_warning2_working2 {/*关闭*/
+            height: 3.5vh;
+            width: 3vw;
+            float: right;
+            margin-top: 2.5px;
+            background-color: #5a5c64;
+            border-radius: 8px;
+            line-height: 3.5vh
+        }
+        .item_data_tip_warning2_working3 { /*暂停*/
+            height: 3.5vh;
+            width: 3vw;
+            float: right;
+            margin-top: 2.5px;
+            background-color: dodgerblue;
+            border-radius: 8px;
+            line-height: 3.5vh
+        }
+        .item_data_tip_warning2_working4 { /*故障*/
+            height: 3.5vh;
+            width: 3vw;
+            float: right;
+            margin-top: 2.5px;
+            background-color: #919123;
+            border-radius: 8px;
+            line-height: 3.5vh
+        }
+        .item_data_tip_warning2_working5 { /*报警*/
+            height: 3.5vh;
+            width: 3vw;
+            float: right;
+            margin-top: 2.5px;
+            background-color: red;
+            border-radius: 8px;
+            line-height: 3.5vh
+        }
+        .item_data_tip_warning2_model {
+            height:3.5vh;
+            width:3vw;
+            float:right;
+            margin-top:1.5px; 
+            background-color:#5a5c64;
+            border-radius:8px;
+            line-height:3.5vh;
+        }
+        .item_data_tip_foot {
+            height:3vh;
+        }
+        .item_data_tip_foot_value { /*运行*/
+            width: 4vw;
+            height: 3vh;
+            background-color: forestgreen;
+            float: right;
+            border-radius: 100px 0px 0px 0px;
+        }
+        .item_data_tip_foot_value2 { /*关闭*/
+            width: 4vw;
+            height: 3vh;
+            background-color: #717673;
+            float: right;
+            border-radius: 100px 0px 0px 0px;
+        }
+        .item_data_tip_foot_value3 { /*暂停*/
+            width: 4vw;
+            height: 3vh;
+            background-color: dodgerblue;
+            float: right;
+            border-radius: 100px 0px 0px 0px;
+        }
+        .item_data_tip_foot_value4 { /*故障*/
+            width: 4vw;
+            height: 3vh;
+            background-color: #919123;
+            float: right;
+            border-radius: 100px 0px 0px 0px;
+        }
+        .item_data_tip_foot_value5 { /*报警*/
+            width: 4vw;
+            height: 3vh;
+            background-color: red;
+            float: right;
+            border-radius: 100px 0px 0px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader">
+            <div class="rmlogo"></div>
+            <div class="rmtitle large_title">
+                <strong>设备状态监控</strong>
+                <div class="rmsubtitlebg"></div>
+                <div class="rmsubtitle"><b></b><span>Equipment Status Monitoring</span><em></em></div>
+            </div>
+            <div class="rmdatetime">
+                <span><!--<a href=""><img src="images/icon_pr.png" alt=""></a><a href=""><img src="images/icon_back.png" alt=""></a><a href=""><img src="images/icon_close.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div style="width:100%;">
+            <div id="main1" style="height:22vh;text-align:center;">
+                <!--<p style="font-size: 1vw;color:#ced2d4;word-wrap: break-word;height: 1vw;background: #0e3764;text-indent: 30px;width: 26vw;border-radius: 0px 9px 9px 0px;">制芯/装配体车间</p>-->
+                <!--<div class="item" >
+                    <div class="item_bar"></div>
+                    <div class="item_data">
+                        <P class="item_data_title">冷水机冷水机冷</P>
+                        <P class="item_data_name">冷量:</P>
+                        <P class="item_data_value"><strong style="color:#2ec977;">157.7</strong>w</P>
+                        <P class="item_data_name">温度:</P>
+                        <P class="item_data_name"><strong style="color:#2ec977;">20</strong>°</P>
+                    </div>
+                    <div class="item_data_tip" >
+                        <div class="item_data_tip_warning" >
+                            <div class="item_data_tip_warning_call" >3</div>
+                            <div class="item_data_tip_warning_other" >3</div>
+                        </div>
+                        <div class="item_data_tip_warning2" >
+                            <div class="item_data_tip_warning2_working">运行</div>
+                            <div class="item_data_tip_warning2_model" >手动</div>
+                        </div>
+                        <div class="item_data_tip_foot" >
+                            <div class="item_data_tip_foot_value" >87.8</div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+
+            <div id="main2" style="height:22vh;text-align:center;">
+            </div>
+
+            <div id="main3" style="height:22vh;text-align:center;">
+            </div>
+
+            <div id="main4" style="height:22vh;text-align:center;">
+                <!--<p style="font-size: 1vw;color:#ced2d4;word-wrap: break-word;height: 1vw;background: #0e3764;text-indent: 30px;width: 26vw;border-radius: 0px 9px 9px 0px;">制芯/装配体车间</p>-->
+                <!--<div style="font-size: 0.8vw; background:#232e28;  color:aliceblue;width:12.5vw;height:20vh;margin-right:0.75vw; margin-top:0.5vw;float:left">
+                    <div style="width:0.4vw; height:20vh;background:#2ec977;float:left;"></div>
+                    <div style="height:20vh;width:9vw;float:left;">
+                        <P style="text-align:left; margin-top:1.5vh; padding-left:5px; ">冷水机冷水机冷</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">冷量:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">157.7</strong>w</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">温度:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">20</strong>°</P>
+                    </div>
+                    <div style="height:20vh;width:3vw;float:left; padding:0px 0px; ">
+                        <div style="height:3vh;">
+                            <div style="margin-left:1px; height:2.5vh;width:2.5vh;background-color:#919123;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                            <div style="margin-left:1px;height:2.5vh;width:2.5vh;background-color:red;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                        </div>
+                        <div style="height:14vh; ">
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:2.5px;background-color:forestgreen;border-radius:8px;line-height:3.5vh">运行</div>
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:1.5px; background-color:#5a5c64;border-radius:8px;line-height:3.5vh ">手动</div>
+                        </div>
+                        <div style="height:3vh; ">
+                            <div style="width:4vw; height:3vh; background-color:dodgerblue;float:right;border-radius:100px 0px 0px 0px">87.8</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 0.8vw; background:#232e28;  color:aliceblue;width:12.5vw;height:20vh;margin-right:0.75vw; margin-top:0.5vw;float:left">
+                    <div style="width:0.4vw; height:20vh;background:#2ec977;float:left;"></div>
+                    <div style="height:20vh;width:9vw;float:left;">
+                        <P style="text-align:left; margin-top:1.5vh; padding-left:5px; ">冷水机冷水机冷</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">冷量:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">157.7</strong>w</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">温度:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">20</strong>°</P>
+                    </div>
+                    <div style="height:20vh;width:3vw;float:left; padding:0px 0px; ">
+                        <div style="height:3vh;">
+                            <div style="margin-left:1px; height:2.5vh;width:2.5vh;background-color:#919123;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                            <div style="margin-left:1px;height:2.5vh;width:2.5vh;background-color:red;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                        </div>
+                        <div style="height:14vh; ">
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:2.5px;background-color:forestgreen;border-radius:8px;line-height:3.5vh">运行</div>
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:1.5px; background-color:#5a5c64;border-radius:8px;line-height:3.5vh ">手动</div>
+                        </div>
+                        <div style="height:3vh; ">
+                            <div style="width:4vw; height:3vh; background-color:dodgerblue;float:right;border-radius:100px 0px 0px 0px">87.8</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 0.8vw; background:#232e28;  color:aliceblue;width:12.5vw;height:20vh;margin-right:0.75vw; margin-top:0.5vw;float:left">
+                    <div style="width:0.4vw; height:20vh;background:#2ec977;float:left;"></div>
+                    <div style="height:20vh;width:9vw;float:left;">
+                        <P style="text-align:left; margin-top:1.5vh; padding-left:5px; ">冷水机冷水机冷</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">冷量:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">157.7</strong>w</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">温度:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">20</strong>°</P>
+                    </div>
+                    <div style="height:20vh;width:3vw;float:left; padding:0px 0px; ">
+                        <div style="height:3vh;">
+                            <div style="margin-left:1px; height:2.5vh;width:2.5vh;background-color:#919123;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                            <div style="margin-left:1px;height:2.5vh;width:2.5vh;background-color:red;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                        </div>
+                        <div style="height:14vh; ">
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:2.5px;background-color:forestgreen;border-radius:8px;line-height:3.5vh">运行</div>
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:1.5px; background-color:#5a5c64;border-radius:8px;line-height:3.5vh ">手动</div>
+                        </div>
+                        <div style="height:3vh; ">
+                            <div style="width:4vw; height:3vh; background-color:dodgerblue;float:right;border-radius:100px 0px 0px 0px">87.8</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 0.8vw; background:#232e28;  color:aliceblue;width:12.5vw;height:20vh;margin-right:0.75vw; margin-top:0.5vw;float:left">
+                    <div style="width:0.4vw; height:20vh;background:#2ec977;float:left;"></div>
+                    <div style="height:20vh;width:9vw;float:left;">
+                        <P style="text-align:left; margin-top:1.5vh; padding-left:5px; ">冷水机冷水机冷</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">冷量:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">157.7</strong>w</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">温度:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">20</strong>°</P>
+                    </div>
+                    <div style="height:20vh;width:3vw;float:left; padding:0px 0px; ">
+                        <div style="height:3vh;">
+                            <div style="margin-left:1px; height:2.5vh;width:2.5vh;background-color:#919123;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                            <div style="margin-left:1px;height:2.5vh;width:2.5vh;background-color:red;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                        </div>
+                        <div style="height:14vh; ">
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:2.5px;background-color:forestgreen;border-radius:8px;line-height:3.5vh">运行</div>
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:1.5px; background-color:#5a5c64;border-radius:8px;line-height:3.5vh ">手动</div>
+                        </div>
+                        <div style="height:3vh; ">
+                            <div style="width:4vw; height:3vh; background-color:dodgerblue;float:right;border-radius:100px 0px 0px 0px">87.8</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 0.8vw; background:#232e28;  color:aliceblue;width:12.5vw;height:20vh;margin-right:0.75vw; margin-top:0.5vw;float:left">
+                    <div style="width:0.4vw; height:20vh;background:#2ec977;float:left;"></div>
+                    <div style="height:20vh;width:9vw;float:left;">
+                        <P style="text-align:left; margin-top:1.5vh; padding-left:5px; ">冷水机冷水机冷</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">冷量:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">157.7</strong>w</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">温度:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">20</strong>°</P>
+                    </div>
+                    <div style="height:20vh;width:3vw;float:left; padding:0px 0px; ">
+                        <div style="height:3vh;">
+                            <div style="margin-left:1px; height:2.5vh;width:2.5vh;background-color:#919123;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                            <div style="margin-left:1px;height:2.5vh;width:2.5vh;background-color:red;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                        </div>
+                        <div style="height:14vh; ">
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:2.5px;background-color:forestgreen;border-radius:8px;line-height:3.5vh">运行</div>
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:1.5px; background-color:#5a5c64;border-radius:8px;line-height:3.5vh ">手动</div>
+                        </div>
+                        <div style="height:3vh; ">
+                            <div style="width:4vw; height:3vh; background-color:dodgerblue;float:right;border-radius:100px 0px 0px 0px">87.8</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 0.8vw; background:#232e28;  color:aliceblue;width:12.5vw;height:20vh;margin-right:0.75vw; margin-top:0.5vw;float:left">
+                    <div style="width:0.4vw; height:20vh;background:#2ec977;float:left;"></div>
+                    <div style="height:20vh;width:9vw;float:left;">
+                        <P style="text-align:left; margin-top:1.5vh; padding-left:5px; ">冷水机冷水机冷</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">冷量:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">157.7</strong>w</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">温度:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">20</strong>°</P>
+                    </div>
+                    <div style="height:20vh;width:3vw;float:left; padding:0px 0px; ">
+                        <div style="height:3vh;">
+                            <div style="margin-left:1px; height:2.5vh;width:2.5vh;background-color:#919123;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                            <div style="margin-left:1px;height:2.5vh;width:2.5vh;background-color:red;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                        </div>
+                        <div style="height:14vh; ">
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:2.5px;background-color:forestgreen;border-radius:8px;line-height:3.5vh">运行</div>
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:1.5px; background-color:#5a5c64;border-radius:8px;line-height:3.5vh ">手动</div>
+                        </div>
+                        <div style="height:3vh; ">
+                            <div style="width:4vw; height:3vh; background-color:dodgerblue;float:right;border-radius:100px 0px 0px 0px">87.8</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size: 0.8vw; background:#232e28;  color:aliceblue;width:12.5vw;height:20vh;margin-right:0.75vw; margin-top:0.5vw;float:left">
+                    <div style="width:0.4vw; height:20vh;background:#2ec977;float:left;"></div>
+                    <div style="height:20vh;width:9vw;float:left;">
+                        <P style="text-align:left; margin-top:1.5vh; padding-left:5px; ">冷水机冷水机冷</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">冷量:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">157.7</strong>w</P>
+                        <P style="text-align:left; margin-top:1.5vh; color:#bdc1ca;padding-left:5px; ">温度:</P>
+                        <P style="text-align:left; margin-top:0.5vh; color:#bdc1ca;padding-left:5px; "><strong style="color:#2ec977;">20</strong>°</P>
+                    </div>
+                    <div style="height:20vh;width:3vw;float:left; padding:0px 0px; ">
+                        <div style="height:3vh;">
+                            <div style="margin-left:1px; height:2.5vh;width:2.5vh;background-color:#919123;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                            <div style="margin-left:1px;height:2.5vh;width:2.5vh;background-color:red;float:right;border-radius:3px 3px 3px 3px ;line-height:2vh">3</div>
+                        </div>
+                        <div style="height:14vh; ">
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:2.5px;background-color:forestgreen;border-radius:8px;line-height:3.5vh">运行</div>
+                            <div style="height:3.5vh;width:3vw;float:right;margin-top:1.5px; background-color:#5a5c64;border-radius:8px;line-height:3.5vh ">手动</div>
+                        </div>
+                        <div style="height:3vh; ">
+                            <div style="width:4vw; height:3vh; background-color:dodgerblue;float:right;border-radius:100px 0px 0px 0px">87.8</div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+
+        </div>
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.3.min.js"></script>
+    <script src="http://localhost:6234/signalr/hubs"></script>
+    <script type="text/javascript">
+        $(function () {
+            //$.connection.hub.url = signarlUrl;
+
+            //var chat = $.connection.chatHub;
+            //// Create a function that the hub can call back to display messages.
+            //chat.client.receiveMessage = function (data) {
+            //    // Add the message to the page.
+            //    var strData = JSON.parse(data.message);
+            //    setHtml(strData);
+            //};
+
+            //$.connection.hub.start().done(function () {
+            //    chat.server.loadingGroup('KANBAN', "IMCC_EQUIPMENTSTATUS_MONITORING");
+            //});
+            ////var getdata = getData();
+            ////var timeTicket = setInterval(getData, 10000);
+            //getData();
+        });
+        function getData() {
+            $.ajax({
+                type: "post",    //请求方式
+                async: true,     //是否异步
+                url: getUrl("GetEquipmentMonitoring"),
+                dataType: "json",    //跨域json请求一定是jsonp
+                beforeSend: function (request) {
+                    //请求前的处理
+                    request.setRequestHeader("Content-Type", "application/json");
+                },
+                success: function (data) {
+                    if (data.result.length>0) {
+                        setHtml(data.result);
+                    }
+
+                },
+                error: function (msg) {
+                    //console.log('api:GetSandCoreMakingMachineByModelNo?modelNo=KA800-185,error:' + msg.responseText);
+                }
+            });
+        }
+
+        function setHtml(data) {
+            if (!data) { return false; }
+            var html1 = [], html2 = [], html3 = [], html4 = [];
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].eqpType == 1) {
+                    getTypeHtml(data[i], html1);
+                } else if (data[i].eqpType == 2) {
+                    getTypeHtml(data[i], html2);
+                } else if (data[i].eqpType == 3) {
+                    getTypeHtml(data[i], html3);
+                } else if (data[i].eqpType == 4) {
+                    getTypeHtml(data[i], html4);
+                }
+            }
+            $('#main1').html(html1.join(''));
+            $('#main2').html(html2.join(''));
+            $('#main3').html(html3.join(''));
+            $('#main4').html(html4.join(''));
+        }
+
+        function getItemHtml(data, status) {
+            var html = [];
+            if (!data) { return ''; }
+            for (var i = 0; i < data.length; i++) {
+                html.push('<P class="item_data_name">' + data[i].itemName + ':</P>');
+                if (status === '0') {//关闭
+                    html.push(' <P class="item_data_value"><strong style="color:#bdc1ca;">' + (data[i].itemValue == null ? 0 : data[i].itemValue) + '</strong> ' + data[i].unit + '</P>');
+                } else if (status === '1') {//运行
+                    html.push(' <P class="item_data_value"><strong style="color:#2ec977;">' + (data[i].itemValue == null ? 0 : data[i].itemValue) + '</strong> ' + data[i].unit + '</P>');
+                } else if (status === '2') {//暂停
+                    html.push(' <P class="item_data_value"><strong style="color:dodgerblue;">' + (data[i].itemValue == null ? 0 : data[i].itemValue) + '</strong> ' + data[i].unit + '</P>');
+                } else if (status === '3') {//故障
+                    html.push(' <P class="item_data_value"><strong style="color:#919123;">' + (data[i].itemValue == null ? 0 : data[i].itemValue) + '</strong> ' + data[i].unit + '</P>');
+                } else {//报警
+                    html.push(' <P class="item_data_value"><strong style="color:red;">' + (data[i].itemValue == null ? 0 : data[i].itemValue) + '</strong> ' + data[i].unit + '</P>');
+                }
+            }
+            return html.join('');
+        }
+
+        function getTypeHtml(data, where) {
+            if (data.status === '0') {//关机
+                where.push('<div class="item2" >');
+                where.push('<div class="item_bar2"></div>');
+            } else if (data.status === '1') {//运行
+                where.push('<div class="item" >');
+                where.push('<div class="item_bar"></div>');
+            } else if (data.status === '2') {//暂停
+                where.push('<div class="item3" >');
+                where.push('<div class="item_bar3"></div>');
+            } else if (data.status === '3') {//故障
+                where.push('<div class="item4" >');
+                where.push('<div class="item_bar4"></div>');
+            } else if (data.status === '4') {//报警
+                where.push('<div class="item5" >');
+                where.push('<div class="item_bar5"></div>');
+            }
+
+            where.push('<div class="item_data">');
+            where.push('<P class="item_data_title">' + data.name + '</P>');
+            where.push(getItemHtml(data.items, data.status));
+            where.push('</div>');
+            where.push('<div class="item_data_tip" >');
+            where.push('<div class="item_data_tip_warning" >');
+            //判断设备的运行状态
+            if (data.status === '0') {//关闭
+
+            } else if (data.status === '1') {//运行
+
+            } else if (data.status === '2') {//暂停
+
+            }
+            else if (data.status === '3') {//故障
+                where.push('<div class="item_data_tip_warning_call" >1</div>');
+            }
+            else if (data.status === '4') {//报警
+                where.push('<div class="item_data_tip_warning_other" >1</div>');
+            }
+            where.push('</div>');
+            where.push('<div class="item_data_tip_warning2" >');
+            if (data.status === '0') {//关闭
+                where.push('<div class="item_data_tip_warning2_working2">关闭</div> ');
+            } else if (data.status === '1') {//运行
+                where.push('<div class="item_data_tip_warning2_working">运行</div> ');
+            } else if (data.status === '2') {//暂停
+                where.push('<div class="item_data_tip_warning2_working3">暂停</div> ');
+            } else if (data.status === '3') {//故障
+                where.push('<div class="item_data_tip_warning2_working4">故障</div> ');
+            } else if (data.status === '4') {//报警
+                where.push('<div class="item_data_tip_warning2_working5">报警</div> ');
+            }
+            where.push('<div class="item_data_tip_warning2_model" >手动</div>');
+            where.push('</div>');
+            where.push('<div class="item_data_tip_foot" >');
+            if (data.status === '0') {
+                where.push('<div class="item_data_tip_foot_value2" ></div>');
+            } else if (data.status === '1') {
+                where.push('<div class="item_data_tip_foot_value" ></div>');
+            } else if (data.status === '2') {
+                where.push('<div class="item_data_tip_foot_value3" ></div>');
+            } else if (data.status === '3') {
+                where.push('<div class="item_data_tip_foot_value4" ></div>');
+            } else if (data.status === '4') {
+                where.push('<div class="item_data_tip_foot_value5" ></div>');
+            }
+
+            where.push('</div></div></div>');
+        }
+    </script>
+</body>
+</html>

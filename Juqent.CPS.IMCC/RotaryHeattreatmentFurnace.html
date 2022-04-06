@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>回转式热处理炉</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader">
+            <div class="rmlogo"></div>
+            <div class="rmtitle large_title">
+                <strong>回转式热处理炉</strong>
+                <div class="rmsubtitlebg"></div>
+                <div class="rmsubtitle"><b></b><span>Rotary Heattreatment Furnace</span><em></em></div>
+            </div>
+            <div class="rmdatetime">
+                <span><!--<a href=""><img src="images/icon_pr.png" alt=""></a><a href=""><img src="images/icon_back.png" alt=""></a><a href=""><img src="images/icon_close.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="rmcont">
+            <div class="cont_w626">
+                <div class="cont_h270 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">设备状态<div>Device Status</div></div>
+                        <div class="rmcont_cbox">
+                            <div class="ments_tatus_box ments_tatus_box_min">
+                                <ul>
+                                    <li>
+                                        <p>通电</p><span id="status1" class="ments_0_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>运行</p><span id="status2" class="ments_1_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>暂停</p><span id="status3" class="ments_2_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>故障</p><span id="status4" class="ments_3_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>报警</p><span id="status5" class="ments_4_0"></span>
+                                    </li>
+                                    <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_h666 margin_top_10 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="cont_h50p"><p id="main1"></p><div class="rmcont_title">用电能耗</div></div>
+                            <div class="cont_h50p"><p id="main2"></p><div class="rmcont_title">天然气能耗</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w1262">
+                <div class="cont_h407 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="amount_box_ulbox">
+                                <div>
+                                    <div class="rmcont_title">生产数量<div>Production Quantity</div></div>
+                                    <div class="amount_box">
+                                        <strong>产量</strong>
+                                        <span id="capacityQuantity">100<em>炉</em></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="rmcont_title">早班产量<div>Morning Shift Quantity</div></div>
+                                    <div class="amount_box">
+                                        <strong>早班产量</strong>
+                                        <span id="morningShiftQuantity">50<em>炉</em></span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="rmcont_title">晚班产量<div>Night Shift Quantity</div></div>
+                                    <div class="amount_box">
+                                        <strong>晚班产量</strong>
+                                        <span id="nightShiftQuantity">50<em>炉</em></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_h528 cont_box margin_top_10">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="sol_box_ul">
+                                <div class="sol_box_li">
+                                    <div class="rmcont_title">SOL炉加热温度</div>
+                                    <div class="sol_tem_img"></div>
+                                    <div class="sol_tem_text"><strong>加热</strong><span id="TemperatureToHeatSOLFurnace">180</span><em>℃</em></div>
+                                </div>
+                                <div class="sol_box_li">
+                                    <div class="rmcont_title">SOL炉均热温度</div>
+                                    <div class="sol_tem_img"></div>
+                                    <div class="sol_tem_text"><strong>均热</strong><span id="SOLFurnaceAverageTemperature">180</span><em>℃</em></div>
+                                </div>
+                                <div class="sol_box_li">
+                                    <div class="rmcont_title">时效温度</div>
+                                    <div class="sol_tem_img"></div>
+                                    <div class="sol_tem_text"><strong>时效</strong><span id="AgingTemperature">180</span><em>℃</em></div>
+                                </div>
+                                <div class="sol_box_li">
+                                    <div class="rmcont_title">水淬火温度</div>
+                                    <div class="sol_tem_img"></div>
+                                    <div class="sol_tem_text"><strong>水淬火</strong><span id="WaterQuanchingTemperature">180</span><em>℃</em></div>
+                                </div>
+                                <div class="sol_box_li">
+                                    <div class="rmcont_title">循环时间</div>
+                                    <div class="sol_tem_time">
+                                        <div class="sol_inner_title">循环时间</div>
+                                        <div class="sol_inner_data1">0</div>
+                                        <div class="sol_inner_data2">300</div>
+                                    </div>
+                                    <div class="sol_tem_time_title"><span id="CycleTime">300</span><em>s</em></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script type="text/javascript">
+
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+
+
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                //---------------------用电能耗设置
+                var myChart1 = ec.init(document.getElementById('main1'));
+                var option1 = t2(); //调用函数生成仪表
+                option1.series[0].title.color = '#61b3eb';
+                option1.series[0].max = 200;
+                option1.series[0].min = 0;
+                option1.series[0].detail.formatter = "{value}kw";
+                option1.series[0].data[0].value = 20;
+                option1.series[0].data[0].name = "瞬时功率"; //
+                //option1.series[0].axisLabel.fontSize = 16;
+                //option1.series[0].title.fontSize = 26;
+
+                option1.series[0].detail.textStyle.fontSize = getScreenSize()[0];//数值字体大小
+                option1.series[0].axisLabel.fontSize = getScreenSize()[1];//刻度字体大小
+                option1.series[0].axisLine.lineStyle.width = getScreenSize()[2];//仪表盘宽度
+                option1.series[0].title.fontSize = getScreenSize()[3];//标题字体大小
+
+                option1.tooltip.formatter = "{a} <br/> {c}kw"; //设置弹出提示框的输出格式
+                option1.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option1.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option1.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart1.setOption(option1);
+
+
+                //---------------------天然气能耗表
+                var myChart2 = ec.init(document.getElementById('main2'));
+                var option2 = t2();
+                option2.series[0].max = 60;
+                option2.series[0].title.color = '#39c87a';
+                option2.series[0].detail.formatter = "{value}KM3/H";
+                option2.series[0].data[0].value = 10;
+                option2.series[0].data[0].name = "瞬时流量"; //
+                //option2.series[0].axisLabel.fontSize = 16;
+                //option2.series[0].title.fontSize = 26;
+
+                option2.series[0].detail.textStyle.fontSize = getScreenSize()[0];//数值字体大小
+                option2.series[0].axisLabel.fontSize = getScreenSize()[1];//刻度字体大小
+                option2.series[0].axisLine.lineStyle.width = getScreenSize()[2];//仪表盘宽度
+                option2.series[0].title.fontSize = getScreenSize()[3];//标题字体大小
+
+                option2.tooltip.formatter = "{a} <br/> {c}KM3/H"; //设置弹出提示框的输出格式
+                option2.series[0].name = "瞬时流量"; //设置弹出提示框的名称
+                option2.series[0].axisLine.lineStyle.shadowColor = "#6ACA8B";
+                option2.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2ec977'],
+                    [0.8, '#98f0f5'],
+                    [1, '#e0923d']
+                ]; //刻度线的颜色设置
+                myChart2.setOption(option2);
+                var getdata = GetData();
+                clearInterval(timeTicket);
+                var timeTicket = setInterval(GetData, 10000);
+
+                function GetData() {
+
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetRotaryHeattreatmentFurnace"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            //设备状态
+                            setStatus(data.result.deviceStatus);
+
+                            //用电能耗
+                            option1.series[0].data[0].value = data.result.electricityConsumption;
+                            myChart1.setOption(option1, true);
+
+                            //天然气能耗
+                            option2.series[0].data[0].value = data.result.naturalGasConsumption;
+                            myChart2.setOption(option2, true);
+
+                            var value = data.result.temperatureToHeatSOLFurnace;
+                            //SOL炉加热温度
+                            document.getElementById("TemperatureToHeatSOLFurnace").innerText = data.result.temperatureToHeatSOLFurnace;
+
+                            //SOL炉均热温度
+                            document.getElementById("SOLFurnaceAverageTemperature").innerText = data.result.solFurnaceAverageTemperature;
+
+                            //时效温度
+                            document.getElementById("AgingTemperature").innerText = data.result.agingTemperature;
+
+                            //水淬火温度
+                            document.getElementById("WaterQuanchingTemperature").innerText = data.result.waterQuanchingTemperature;
+
+                            //循环时间
+                            document.getElementById("CycleTime").innerText = data.result.cycleTime;
+
+                            //生产计数
+                            document.getElementById("capacityQuantity").innerHTML = data.result.capacityCount + "<em>炉</em>";
+
+                            //早班产量
+                            document.getElementById("morningShiftQuantity").innerHTML = data.result.morningShiftCapacity + "<em>炉</em>";
+
+                            //晚班产量
+                            document.getElementById("nightShiftQuantity").innerHTML = data.result.nightShiftCapacity + "<em>炉</em>";
+
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetRotaryHeattreatmentFurnace,error:' + msg.responseText);
+                        }
+                    });
+
+                    ////仪表1
+                    //var min1 = option1.series[0].min;
+                    //var max1 = option1.series[0].max;
+                    //option1.series[0].data[0].value = Math.floor(Math.random() * (max1 - min1)) + min1;
+                    //myChart1.setOption(option1, true);
+
+                    ////仪表2
+                    //var min2 = option2.series[0].min;
+                    //var max2 = option2.series[0].max;
+                    //option2.series[0].data[0].value = Math.floor(Math.random() * (max2 - min2)) + min2;
+                    //myChart2.setOption(option2, true);
+
+                }
+            }
+        );
+    </script>
+</body>
+</html>

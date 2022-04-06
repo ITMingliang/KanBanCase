@@ -1,0 +1,571 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>切割单元</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main_hd.css" rel="stylesheet">
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader_hd">
+            <div class="rmlogo_hd"></div>
+            <div class="rmtitle_hd">
+                <strong>切割单元</strong>
+                <div class="rmsubtitlebg_hd"></div>
+                <div class="rmsubtitle_hd"><b></b><span>Riser Cutting Unit</span><em></em></div>
+            </div>
+            <div class="rmdatetime_hd">
+                <span><!--<a href=""><img src="images/icon_pr_hd.png" alt=""></a><a href=""><img src="images/icon_back_hd.png" alt=""></a><a href=""><img src="images/icon_close_hd.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="rm_hd_cont">
+            <div class="rm_hd_libox">
+                <div class="rm_hd_title">
+                    <span>SYL817震砂机</span><strong>#1</strong>
+                </div>
+                <div class="rm_hd_contbox">
+                    <div class="hd_ribox_1">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp">
+                            <div class="ris_time_hd_box">
+                                <div class="ris_time_hd_box_1">
+                                    <p class="ris_time_hd_box_1_title">时间</p>
+                                    <p><img src="images/icon_tload_hd.png" alt=""></p>
+                                </div>
+                                <div class="ris_time_hd_box_2">
+                                    <p><strong>锤击 1</strong><span id="HammeringTime1a">15<em>s</em></span></p>
+                                    <p><strong>震动 1</strong><span id="ShakingTime1a">15<em>s</em></span></p>
+                                </div>
+                                <div class="ris_time_hd_box_2">
+                                    <p><strong>锤击 2</strong><span id="HammeringTime2a">15<em>s</em></span></p>
+                                    <p><strong>震动 2</strong><span id="ShakingTime2a">15<em>s</em></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hd_ribox_2">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp">
+                            <div class="amount_box_hd_ulbox">
+                                <div class="amount_box_hd_libox">
+                                    <div class="amount_box_hd_title">生产数量</div>
+                                    <div class="amount_box_hd">
+                                        <strong>产量</strong>
+                                        <span id="CapacityCountA">561200<em>PCS</em></span>
+                                    </div>
+                                </div>
+                                <div class="amount_box_hd_libox">
+                                    <div class="amount_box_hd_title">早班</div>
+                                    <div class="amount_box_hd">
+                                        <strong>早班产量</strong>
+                                        <span id="MorningShiftCapacityA">561200<em>PCS</em></span>
+                                    </div>
+                                </div>
+                                <div class="amount_box_hd_libox">
+                                    <div class="amount_box_hd_title">晚班</div>
+                                    <div class="amount_box_hd">
+                                        <strong>晚班产量</strong>
+                                        <span id="NightShiftCapacityA">561200<em>PCS</em></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hd_ribox_3">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp2">
+                            <div class="rmcont_hd_title">用电能耗<div>Electricity Consumption</div></div>
+                            <div class="rm_hd_flx" id="main0"></div>
+                        </div>
+                    </div>
+                    <div class="hd_ribox_4">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp">
+                            <div class="rmcont_hd_title">设备状态<div>Device Status</div></div>
+                            <div class="ments_hd_tatus_box">
+                                <ul>
+                                    <li>
+                                        <p>通电</p><span id="status_1a" class="ments_0_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>运行</p><span id="status_2a" class="ments_1_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>暂停</p><span id="status_3a" class="ments_2_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>故障</p><span id="status_4a" class="ments_3_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>报警</p><span id="status_5a" class="ments_4_0"></span>
+                                    </li>
+                                    <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rm_hd_libox">
+                <div class="rm_hd_title">
+                    <span>SYL817震砂机</span><strong>#2</strong>
+                </div>
+                <div class="rm_hd_contbox">
+                    <div class="hd_ribox_1">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp">
+                            <div class="ris_time_hd_box">
+                                <div class="ris_time_hd_box_1">
+                                    <p class="ris_time_hd_box_1_title">时间</p>
+                                    <p><img src="images/icon_tload_hd.png" alt=""></p>
+                                </div>
+                                <div class="ris_time_hd_box_2">
+                                    <p><strong>锤击 1</strong><span id="HammeringTime1b">15<em>s</em></span></p>
+                                    <p><strong>震动 1</strong><span id="ShakingTime1b">15<em>s</em></span></p>
+                                </div>
+                                <div class="ris_time_hd_box_2">
+                                    <p><strong>锤击 2</strong><span id="HammeringTime2b">15<em>s</em></span></p>
+                                    <p><strong>震动 2</strong><span id="ShakingTime2b">15<em>s</em></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hd_ribox_2">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp">
+                            <div class="amount_box_hd_ulbox">
+                                <div class="amount_box_hd_libox">
+                                    <div class="amount_box_hd_title">生产数量</div>
+                                    <div class="amount_box_hd">
+                                        <strong>产量</strong>
+                                        <span id="CapacityCountB">561200<em>PCS</em></span>
+                                    </div>
+                                </div>
+                                <div class="amount_box_hd_libox">
+                                    <div class="amount_box_hd_title">早班</div>
+                                    <div class="amount_box_hd">
+                                        <strong>早班产量</strong>
+                                        <span id="MorningShiftCapacityB">561200<em>PCS</em></span>
+                                    </div>
+                                </div>
+                                <div class="amount_box_hd_libox">
+                                    <div class="amount_box_hd_title">晚班</div>
+                                    <div class="amount_box_hd">
+                                        <strong>晚班产量</strong>
+                                        <span id="NightShiftCapacityB">561200<em>PCS</em></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hd_ribox_3">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp2">
+                            <div class="rmcont_hd_title">用电能耗<div>Electricity Consumption</div></div>
+                            <div class="rm_hd_flx" id="main1"></div>
+                        </div>
+                    </div>
+                    <div class="hd_ribox_4">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp">
+                            <div class="rmcont_hd_title">设备状态<div>Device Status</div></div>
+                            <div class="ments_hd_tatus_box">
+                                <ul>
+                                    <li>
+                                        <p>通电</p><span id="status_1b" class="ments_0_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>运行</p><span id="status_2b" class="ments_1_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>暂停</p><span id="status_3b" class="ments_2_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>故障</p><span id="status_4b" class="ments_3_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>报警</p><span id="status_5b" class="ments_4_0"></span>
+                                    </li>
+                                    <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rm_hd_libox">
+                <div class="rm_hd_title">
+                    <span>切割机</span>
+                </div>
+                <div class="rm_hd_contbox">
+                    <div class="hd_ribox_1">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp">
+                            <div class="ris_time_hd_box">
+                                <div class="ris_time_hd_box_3">
+                                    <p class="ris_time_hd_box_3_title">锯带速度</p>
+                                    <p class="ris_jtss_hd"><strong id="SawSpeed">3000</strong><em>mm/min</em></p>
+                                </div>
+                                <div class="ris_time_hd_box_3">
+                                    <p class="ris_time_hd_box_3_title">锯条更换记录</p>
+                                    <p class="ris_jtjt_hd"><strong id="SawReplacementRecord">20</strong><em>次</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hd_ribox_2">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp">
+                            <div class="amount_box_hd_ulbox">
+                                <div class="amount_box_hd_libox">
+                                    <div class="amount_box_hd_title">生产数量</div>
+                                    <div class="amount_box_hd">
+                                        <strong>产量</strong>
+                                        <span id="CapacityCountC">561200<em>PCS</em></span>
+                                    </div>
+                                </div>
+                                <div class="amount_box_hd_libox">
+                                    <div class="amount_box_hd_title">早班</div>
+                                    <div class="amount_box_hd">
+                                        <strong>早班产量</strong>
+                                        <span id="MorningShiftCapacityC">561200<em>PCS</em></span>
+                                    </div>
+                                </div>
+                                <div class="amount_box_hd_libox">
+                                    <div class="amount_box_hd_title">晚班</div>
+                                    <div class="amount_box_hd">
+                                        <strong>晚班产量</strong>
+                                        <span id="NightShiftCapacityC">561200<em>PCS</em></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hd_ribox_3">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp2">
+                            <div class="rmcont_hd_title">用电能耗<div>Electricity Consumption</div></div>
+                            <div class="rm_hd_flx" id="main2"></div>
+                        </div>
+                    </div>
+                    <div class="hd_ribox_4">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="hd_contwarp">
+                            <div class="rmcont_hd_title">设备状态<div>Device Status</div></div>
+                            <div class="ments_hd_tatus_box">
+                                <ul>
+                                    <li>
+                                        <p>通电</p><span id="status_1c" class="ments_0_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>运行</p><span id="status_2c" class="ments_1_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>暂停</p><span id="status_3c" class="ments_2_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>故障</p><span id="status_4c" class="ments_3_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>报警</p><span id="status_5c" class="ments_4_0"></span>
+                                    </li>
+                                    <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 18;//数值字体大小
+            var scaleSize = 16;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 16;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 18;//数值字体大小
+                scaleSize = 16;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 16;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                //---------------------用电能耗设置
+                var myChart0 = ec.init(document.getElementById('main0'));
+                var option0 = t2(); //调用函数生成仪表
+                option0.series[0].title.color = '#61b3eb';
+                option0.series[0].min = 0;
+                option0.series[0].max = 100;
+                option0.series[0].splitNumber = 10;
+                option0.series[0].detail.formatter = "{value}kw";
+                option0.series[0].detail.padding = [5, 10, 5, 10];
+                //option0.series[0].detail.textStyle.fontSize = 18;
+                //option0.series[0].axisLabel.fontSize = 16;
+                //option0.series[0].title.fontSize = 18;
+
+                option0.series[0].detail.textStyle.fontSize = getScreenSize()[0];//数值字体大小
+                option0.series[0].axisLabel.fontSize = getScreenSize()[1];//刻度字体大小
+                option0.series[0].axisLine.lineStyle.width = getScreenSize()[2];//仪表盘宽度
+                option0.series[0].title.fontSize = getScreenSize()[3];//标题字体大小
+
+                option0.series[0].data[0].value = 250;
+                option0.series[0].data[0].name = "瞬时功率"; //
+                option0.tooltip.formatter = "{a} <br/> {c}w"; //设置弹出提示框的输出格式
+                option0.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option0.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option0.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart0.setOption(option0);
+
+                var myChart1 = ec.init(document.getElementById('main1'));
+                var option1 = t2(); //调用函数生成仪表
+                option1.series[0].title.color = '#61b3eb';
+                option1.series[0].min = 0;
+                option1.series[0].max = 100;
+                option1.series[0].splitNumber = 10;
+                option1.series[0].detail.formatter = "{value}kw";
+                option1.series[0].detail.padding = [5, 10, 5, 10];
+                //option1.series[0].detail.textStyle.fontSize = 18;
+                //option1.series[0].axisLabel.fontSize = 16;
+                //option1.series[0].title.fontSize = 18;
+
+                option1.series[0].detail.textStyle.fontSize = getScreenSize()[0];//数值字体大小
+                option1.series[0].axisLabel.fontSize = getScreenSize()[1];//刻度字体大小
+                option1.series[0].axisLine.lineStyle.width = getScreenSize()[2];//仪表盘宽度
+                option1.series[0].title.fontSize = getScreenSize()[3];//标题字体大小
+
+                option1.series[0].data[0].value = 250;
+                option1.series[0].data[0].name = "瞬时功率"; //
+                option1.tooltip.formatter = "{a} <br/> {c}w"; //设置弹出提示框的输出格式
+                option1.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option1.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option1.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart1.setOption(option1);
+
+                var myChart2 = ec.init(document.getElementById('main2'));
+                var option2 = t2(); //调用函数生成仪表
+                option2.series[0].title.color = '#61b3eb';
+                option2.series[0].min = 0;
+                option2.series[0].max = 100;
+                option2.series[0].splitNumber = 10;
+                option2.series[0].detail.formatter = "{value}kw";
+                option2.series[0].detail.padding = [5, 10, 5, 10];
+                //option2.series[0].detail.textStyle.fontSize = 18;
+                //option2.series[0].axisLabel.fontSize = 16;
+                //option2.series[0].title.fontSize = 18;
+
+                option2.series[0].detail.textStyle.fontSize = getScreenSize()[0];//数值字体大小
+                option2.series[0].axisLabel.fontSize = getScreenSize()[1];//刻度字体大小
+                option2.series[0].axisLine.lineStyle.width = getScreenSize()[2];//仪表盘宽度
+                option2.series[0].title.fontSize = getScreenSize()[3];//标题字体大小
+
+                option2.series[0].data[0].value = 250;
+                option2.series[0].data[0].name = "瞬时功率"; //
+                option2.tooltip.formatter = "{a} <br/> {c}w"; //设置弹出提示框的输出格式
+                option2.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option2.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option2.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart2.setOption(option2);
+                var getdata = GetData();
+                clearInterval(timeTicket);
+                var timeTicket = setInterval(GetData, 10000);
+                function GetData() {
+                    //震砂机
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("Shakeout"),
+                        //data: { str: _date},
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            var ShakeoutA = data.result[0];
+                            var ShakeoutB = data.result[1];
+                            //1#震砂机设备状态
+                            setStatusX(ShakeoutA.turnOn, "a");
+                            //2#震砂机设备状态
+                            setStatusX(ShakeoutB.turnOn, "b");
+                            //1#震砂机用电能耗
+                            option0.series[0].data[0].value = ShakeoutA.electricityConsumption;
+                            myChart0.setOption(option0, true);
+                            //2#震砂机用电能耗
+                            option1.series[0].data[0].value = ShakeoutB.electricityConsumption;
+                            myChart1.setOption(option1, true);
+                            //1#震砂机
+                            //锤击 1
+                            document.getElementById("HammeringTime1a").innerHTML = ShakeoutA.checkTime01 + "<em>s</em>";
+                            //震动 1
+                            document.getElementById("ShakingTime1a").innerHTML = ShakeoutA.checkShakeTime01 + "<em>s</em>";
+                            //锤击 2
+                            document.getElementById("HammeringTime2a").innerHTML = ShakeoutA.checkTime02 + "<em>s</em>";
+                            //震动 23
+                            document.getElementById("ShakingTime2a").innerHTML = ShakeoutA.checkShakeTime02 + "<em>s</em>";
+                            //生产计数A
+                            document.getElementById("CapacityCountA").innerHTML = ShakeoutA.summaryOutPut + "<em>PCS</em>";
+                            document.getElementById("MorningShiftCapacityA").innerHTML = ShakeoutA.morningShiftProduction + "<em>PCS</em>";
+                            document.getElementById("NightShiftCapacityA").innerHTML = ShakeoutA.nightShiftCapacity + "<em>PCS</em>";
+                            //2#震砂机
+                            //锤击 1
+                            document.getElementById("HammeringTime1b").innerHTML = ShakeoutB.checkTime01 + "<em>s</em>";
+                            //震动 1
+                            document.getElementById("ShakingTime1b").innerHTML = ShakeoutB.checkShakeTime01 + "<em>s</em>";
+                            //锤击 2
+                            document.getElementById("HammeringTime2b").innerHTML = ShakeoutB.checkTime02 + "<em>s</em>";
+                            //震动 2
+                            document.getElementById("ShakingTime2b").innerHTML = ShakeoutB.checkShakeTime02 + "<em>s</em>";
+                            //生产计数B
+                            document.getElementById("CapacityCountB").innerHTML = ShakeoutB.summaryOutPut + "<em>PCS</em>";
+                            document.getElementById("MorningShiftCapacityB").innerHTML = ShakeoutB.morningShiftProduction + "<em>PCS</em>";
+                            document.getElementById("NightShiftCapacityB").innerHTML = ShakeoutB.nightShiftCapacity+ "<em>PCS</em>";
+                        },
+                        error: function (msg) {
+                            //不弹出提示
+                            //console.log('api:Shakeout,error:' + msg.responseText);
+                        }
+                    });
+                    //切割机
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetCutting"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            //切割机设备状态
+                            setStatusX(data.result.deviceStatus, "c");
+
+                            //切割机用电能耗
+                            option2.series[0].data[0].value = data.result.electricityConsumption;
+                            myChart2.setOption(option2, true);
+                            document.getElementById("CapacityCountC").innerHTML = data.result.capacityCount + "<em>PCS</em>";
+                            document.getElementById("MorningShiftCapacityC").innerHTML = data.result.morningShiftCapacity + "<em>PCS</em>";
+                            document.getElementById("NightShiftCapacityC").innerHTML = data.result.nightShiftCapacity + "<em>PCS</em>";
+                            ////锯带速度
+                            document.getElementById("SawSpeed").innerText = data.result.sawSpeed;
+                            //锯条更换记录
+                            document.getElementById("SawReplacementRecord").innerText = data.result.sawReplacementRecord;
+
+                            //生产计数B
+                          
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetCutting,error:' + msg.responseText);
+                        }
+                    });
+
+                    ////仪表1
+                    //var min0 = option0.series[0].min;
+                    //var max0 = option0.series[0].max;
+                    //option0.series[0].data[0].value = Math.floor(Math.random() * (max0 - min0)) + min0;
+                    //myChart0.setOption(option0, true);
+
+                    ////仪表2
+                    //var min1 = option1.series[0].min;
+                    //var max1 = option1.series[0].max;
+                    //option1.series[0].data[0].value = Math.floor(Math.random() * (max1 - min1)) + min1;
+                    //myChart1.setOption(option1, true);
+
+                    ////仪表3
+                    //var min2 = option2.series[0].min;
+                    //var max2 = option2.series[0].max;
+                    //option2.series[0].data[0].value = Math.floor(Math.random() * (max2 - min2)) + min2;
+                    //myChart2.setOption(option2, true);
+                }
+            }
+        );
+    </script>
+</body>
+</html>

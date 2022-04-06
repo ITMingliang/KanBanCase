@@ -1,0 +1,401 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>各站产出数量</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/contain.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/contain.js"></script>
+
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="cheader">
+            <div class="ctitle">
+                <strong>各站产出数量</strong>
+                <div class="ctitlebg"></div>
+            </div>
+            <div class="rmdatetime">
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="rmcont_column">
+            <div class="cont_h148 margin_top_12 cont_row">
+                <div class="cont_w686">
+                    <div class="rmcont_cont_box2">
+                        <div class="rmcont_cbox boxall">
+                            <div class="con_div_text01 pulll_left">
+                                <div class="pulll_left text01_div">
+                                    <p>产品编号</p>
+                                    <p id="ProductCode" class="sky">2001020012</p>
+                                </div>
+                            </div>
+                            <div class="con_div_text01 pulll_right">
+                                <div class="pulll_left text01_div">
+                                    <p>工单编号</p>
+                                    <p id="MoCode" class="sky">M020189004859001</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_w490">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox boxall">
+                            <div class="con_div_text02">
+                                <div class="text02_div">
+                                    <p>产品名称</p>
+                                    <p id="ProductName">智能电表</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_w686">
+                    <div class="rmcont_cont_box2">
+                        <div class="rmcont_cbox boxall">
+                            <div class="con_div_text01 pulll_left">
+                                <div class="pulll_left text01_div">
+                                    <p>工单数量</p>
+                                    <p id="MoQty" class="sky">20000</p>
+                                </div>
+                            </div>
+                            <div class="con_div_text01 pulll_right">
+                                <div class="pulll_left text01_div">
+                                    <p>工作进度</p>
+                                    <p class="sky" id="progress">75%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_h407  cont_row">
+                <div class="cont_vw489">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="cleaning_box_2 boxbg">
+                                <div style="width:24vw;">
+                                    <div id="char1" style="width:23vw;height:35vh;"></div>
+                                </div>
+                                <div style="width:24vw;">
+                                    <div id="char2" style="width:23vw;height:35vh;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_vw489">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="cleaning_box_2 boxbg">
+                                <div style="width:24vw;">
+                                    <div id="char3" style="width:23vw;height:35vh;"></div>
+                                </div>
+                                <div style="width:24vw;">
+                                    <div id="char4" style="width:23vw;height:35vh;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="cont_h407 margin_top_22 cont_row">
+                <div class="cont_vw489">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="cleaning_box_2 boxbg">
+                                <div style="width:24vw;">
+                                    <div id="char5" style="width:23vw;height:35vh;"></div>
+                                </div>
+                                <div style="width:24vw;">
+                                    <div id="char6" style="width:23vw;height:35vh;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_vw489">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="cleaning_box_2 boxbg">
+                                <div style="width:24vw;">
+                                    <div id="char7" style="width:23vw;height:35vh;"></div>
+                                </div>
+                                <div style="width:24vw;">
+                                    <div id="char8" style="width:23vw;height:35vh;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //给背景粒子高度设为网页全部正文高度，滚动条到的地方也包含
+        $("#particles-js")[0].style.setProperty('height', document.body.scrollHeight + "px");
+    </script>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script src="js/echarts/workorderinfocharts.js"></script>
+    <script src="js/progress.js"></script>
+
+    <!--动态粒子背景js-->
+    <!--<script src="js/particles.min.js"></script>-->
+    <!--动态粒子背景js-->
+    <!--<script src="js/app.js"></script>-->
+
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                var echar1 = echarts.init(document.getElementById('char1'));
+                var option1 = char10();
+                option1.title.text = "外壳打码";
+                option1.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option1.series[0].data = [3300, 3500, 2750, 3000, 1950, 3000, 2900];
+                echar1.setOption(option1);
+
+                var echar2 = echarts.init(document.getElementById('char2'));
+                var option2 = char5();
+                //option2.series[0].data = [126, 128, 124, 128, 124, 128, 128, 125];
+                //option2.series[1].data = [130, 130, 130, 130, 130, 130, 130, 130];
+                echar2.setOption(option2);
+
+                var echar3 = echarts.init(document.getElementById('char3'));
+                var option3 = char10();
+                option3.title.text = "卷芯入壳";
+                option3.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option3.series[0].data = [3300, 3500, 2750, 3000, 1950, 3000, 2900];
+                echar3.setOption(option3);
+
+                var echar4 = echarts.init(document.getElementById('char4'));
+                var option4 = char5();
+                echar4.setOption(option4);
+
+                var echar5 = echarts.init(document.getElementById('char5'));
+                var option5 = char10();
+                option5.title.text = "高温烘烤";
+                option5.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option5.series[0].data = [3300, 3500, 2750, 3000, 1950, 3000, 2900];
+                echar5.setOption(option5);
+
+                var echar6 = echarts.init(document.getElementById('char6'));
+                var option6 = char5();
+                echar6.setOption(option6);
+
+                var echar7 = echarts.init(document.getElementById('char7'));
+                var option7 = char10();
+                option7.title.text = "注液";
+                option7.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option7.series[0].data = [3300, 3500, 2750, 3000, 1950, 3000, 2900];
+                echar7.setOption(option7);
+
+                var echar8 = echarts.init(document.getElementById('char8'));
+                var option8 = char5();
+                echar8.setOption(option8);
+
+                //var gdata = gData();
+                //clearInterval(timeTicket);
+                //var timeTicket = setInterval(gData, 20000);
+                //function gData() {
+
+                //    $.ajax({
+                //        type: "post",    //请求方式
+                //        /* async: false,*/     //是否异步
+                //        url: "http://localhost:5702/api/ProductionInfo/GetStationOutputs",
+                //        dataType: "json",    //跨域json请求一定是jsonp
+                //        success: function (data) {
+
+                //            var part1 = data.part1; 
+
+                //            $("#ProductCode").html(part1.ProductCode);
+                //            $("#MoCode").html(part1.MoCode);
+                //            $("#ProductName").html(part1.ProductName);
+                //            $("#MoQty").html(part1.MoQty);
+                //            var pro = new progress({
+                //                width: 200,//进度条宽度
+                //                height: 20,//进度条高度
+                //                bgColor: "#3E4E5E",//背景颜色
+                //                proColor: "#25f3e6",//前景颜色
+                //                fontColor: "#FFFFFF",//显示字体颜色
+                //                val: part1.CompleteRate,//默认值
+                //                text: "#*val*#%",//显示文字信息
+                //                showPresent: true,
+
+                //            });
+                //            $('#progress').empty();
+                //            $('#progress').append(pro.getBody());
+
+                //            var daydata11 = [];
+                //            var daydata12 = [];
+                //            for (var i = 0; i < part1.length; i++) {                                
+                //                daydata11.push(part1[i].OutDate);
+                //                daydata12.push(part1[i].OutputQty);                                                               
+                //            }                            
+                //            option1.xAxis[0].data = daydata11;
+                //            option1.series[0].data = daydata12;
+                //            echar1.setOption(option1);                            
+
+                //            var part2 = data.part2;
+                //            var daydata21 = [];
+                //            var daydata22 = [];
+                //            for (var i = 0; i < part2.length; i++) {
+                //                daydata21.push(part2[i].OutDate);
+                //                daydata22.push(part2[i].OutputQty);
+                //            }
+
+                //            option3.xAxis[0].data = daydata21;
+                //            option3.series[0].data = daydata22;
+                //            echar3.setOption(option3);
+
+                //            var part3 = data.part3;
+                //            var daydata31 = [];
+                //            var daydata32 = [];
+                //            for (var i = 0; i < part3.length; i++) {
+                //                daydata31.push(part3[i].OutDate);
+                //                daydata32.push(part3[i].OutputQty);
+                //            }
+
+                //            option5.xAxis[0].data = daydata31;
+                //            option5.series[0].data = daydata32;
+                //            echar5.setOption(option5);
+
+                //            var part4 = data.part4;
+                //            var daydata41 = [];
+                //            var daydata42 = [];
+                //            for (var i = 0; i < part4.length; i++) {
+                //                daydata41.push(part4[i].OutDate);
+                //                daydata42.push(part4[i].OutputQty);
+                //            }
+
+                //            option7.xAxis[0].data = daydata41;
+                //            option7.series[0].data = daydata42;
+                //            echar7.setOption(option7);
+
+                //            var part5 = data.part5;
+                //            var daydata51 = [];
+                //            var daydata52 = [];
+                //            var daydata5x = [];
+                //            for (var i = 0; i < part5.length; i++) {
+                //                daydata5x.push(part5[i].PeriedTime);
+                //                daydata51.push(part5[i].PeriedQty);
+                //                daydata52.push(part5[i].PeriedTargetQty);
+                //            }
+                //            option2.xAxis.data = daydata5x;
+                //            option2.series[0].data = daydata51;
+                //            option2.series[1].data = daydata52;
+                //            echar2.setOption(option2);
+
+                //            var part6 = data.part6;
+                //            var daydata61 = [];
+                //            var daydata62 = [];
+                //            var daydata6x = [];
+                //            for (var i = 0; i < part6.length; i++) {
+                //                daydata6x.push(part6[i].PeriedTime);
+                //                daydata61.push(part6[i].PeriedQty);
+                //                daydata62.push(part6[i].PeriedTargetQty);
+                //            }
+                //            option4.xAxis.data = daydata6x;
+                //            option4.series[0].data = daydata61;
+                //            option4.series[1].data = daydata62;
+                //            echar4.setOption(option4);
+
+                //            var part7 = data.part7;
+                //            var daydata71 = [];
+                //            var daydata72 = [];
+                //            var daydata7x = [];
+                //            for (var i = 0; i < part7.length; i++) {
+                //                daydata7x.push(part7[i].PeriedTime);
+                //                daydata71.push(part7[i].PeriedQty);
+                //                daydata72.push(part7[i].PeriedTargetQty);
+                //            }
+                //            option6.xAxis.data = daydata7x;
+                //            option6.series[0].data = daydata71;
+                //            option6.series[1].data = daydata72;
+                //            echar6.setOption(option6);
+
+                //            var part8 = data.part8;
+                //            var daydata81 = [];
+                //            var daydata82 = [];
+                //            var daydata8x = [];
+                //            for (var i = 0; i < part8.length; i++) {
+                //                daydata8x.push(part8[i].PeriedTime);
+                //                daydata81.push(part8[i].PeriedQty);
+                //                daydata82.push(part8[i].PeriedTargetQty);
+                //            }
+                //            option8.xAxis.data = daydata8x;
+                //            option8.series[0].data = daydata81;
+                //            option8.series[1].data = daydata82;
+                //            echar8.setOption(option8);
+
+                            
+
+                //        },
+                //        error: function (msg) {
+                //            console.log('api:GetTestData,error:' + msg.responseText);
+                //        }
+                //    });
+
+                //}
+            }
+        );
+
+        
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>设备状态监控</title>
+
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .tr_color1 {
+            color: #46e3c7;
+        }
+
+        .tr_color2 {
+            color: #ee6e6e;
+        }
+
+        .tr_color3 {
+            color: #e6cf2e;
+        }
+    </style>
+    <script src="Scripts/jquery.signalR-2.2.3.min.js"></script>
+    <script src="http://localhost:6234/signalr/hubs"></script>
+
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader">
+            <div class="rmlogo"></div>
+            <div class="rmtitle large_title">
+                <strong>设备状态监控</strong>
+                <div class="rmsubtitlebg"></div>
+                <div class="rmsubtitle"><b></b><span>System Message Monitoring</span><em></em></div>
+            </div>
+            <div class="rmdatetime">
+                <span><!--<a href=""><img src="images/icon_pr.png" alt=""></a><a href=""><img src="images/icon_back.png" alt=""></a><a href=""><img src="images/icon_close.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="pre_box" style="width:100%; height:87vh;border-color:white;color:white;overflow-y:auto;">
+            <table class="table" style='table-layout:fixed;'>
+                <thead>
+                    <tr style="border:0px;">
+                        <th style="width:20%;">序号</th>
+                        <th style="width:30%">设备类型代码</th>
+                        <th style="width:30%">设备类型名称</th>
+                        <th style="width:30%">设备代码</th>
+                        <th style="width:30%">设备名称</th>
+                        <th style="width:30%">生产状态</th>
+                        <th style="width:40%">异常时间</th>
+                        <th style="width:80%">异常原因</th>
+                    </tr>
+                </thead>
+                <tbody id="tby">
+                    <!--<tr>
+                        <td class="td">ET002</td>
+                        <td>填孔类</td>
+                        <td>V-2</td>
+                        <td>填孔机2</td>
+                        <td>异常</td>
+                        <td>2018-08-07 16:18</td>
+                        <td>停机故障</td>
+                    </tr>
+                    <tr>
+                        <td class="td">ET002</td>
+                        <td>填孔类</td>
+                        <td>V-2</td>
+                        <td>填孔机2</td>
+                        <td>异常</td>
+                        <td>2018-08-07 16:18</td>
+                        <td>停机故障</td>
+                    </tr>
+                    <tr>
+                        <td class="td">ET002</td>
+                        <td>填孔类</td>
+                        <td>V-2</td>
+                        <td>填孔机2</td>
+                        <td>异常</td>
+                        <td>2018-08-07 16:18</td>
+                        <td>停机故障</td>
+                    </tr>
+                    <tr>
+                        <td class="td">ET002</td>
+                        <td>填孔类</td>
+                        <td>V-2</td>
+                        <td>填孔机2</td>
+                        <td>异常</td>
+                        <td>2018-08-07 16:18</td>
+                        <td>停机故障</td>
+                    </tr>
+                    <tr>
+                        <td class="td">ET002</td>
+                        <td>填孔类</td>
+                        <td>V-2</td>
+                        <td>填孔机2</td>
+                        <td>异常</td>
+                        <td>2018-08-07 16:18</td>
+                        <td>停机故障</td>
+                    </tr>
+                    <tr>
+                        <td class="td">ET002</td>
+                        <td>填孔类</td>
+                        <td>V-2</td>
+                        <td>填孔机2</td>
+                        <td>异常</td>
+                        <td>2018-08-07 16:18</td>
+                        <td>停机故障</td>
+                    </tr>
+                    <tr>
+                        <td class="td">ET002</td>
+                        <td>填孔类</td>
+                        <td>V-2</td>
+                        <td>填孔机2</td>
+                        <td>异常</td>
+                        <td>2018-08-07 16:18</td>
+                        <td>停机故障</td>
+                    </tr>
+                    <tr>
+                        <td class="td">ET002</td>
+                        <td>填孔类</td>
+                        <td>V-2</td>
+                        <td>填孔机2</td>
+                        <td>异常</td>
+                        <td>2018-08-07 16:18</td>
+                        <td>停机故障</td>
+                    </tr>-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            //$.connection.hub.url = signarlUrl;
+
+            //var chat = $.connection.chatHub;
+            //// Create a function that the hub can call back to display messages.
+            //chat.client.receiveMessage = function (data) {
+            //    // Add the message to the page.
+            //    var strData = JSON.parse(data.message);
+            //    appendHtml(strData);
+            //};
+
+            //$.connection.hub.start().done(function () {
+            //    chat.server.loadingGroup('KANBAN', "IMCC_MONITORING");
+            //});
+            var pageIndex = 1;//默认显示第一页
+            var pageSize = 15;//默认一页显示20条
+            GetData();
+            clearInterval(timeTicket);
+            var timeTicket = setInterval(GetData, 3000);
+            function GetData() {
+                if (localStorage.getItem("eqpPages") !== null) {
+                    let pages = localStorage.getItem("eqpPages");
+                    pageIndex++;
+                    if (pageIndex > pages) {
+                        pageIndex = 1;
+                    }
+                }
+
+                $.ajax({
+                    type: "post",    //请求方式
+                    async: true,     //是否异步
+                    url: getUrl("GetEqpProductionStatusAsync"),
+                    data: { PageIndex: pageIndex, PageSize: pageSize },
+                    dataType: "json",    //跨域json请求一定是jsonp
+                    //beforeSend: function (request) {
+                    //    //请求前的处理
+                    //    request.setRequestHeader("Content-Type", "application/json");//"application/x-www-form-urlencoded"
+                    //},
+                    success: function (result) {
+                        if (result.Data.list_EqpDto.length > 0) {
+                            var totalCount = result.Data.totalCount;
+                            var pages = Math.ceil(totalCount / pageSize);
+                            if (localStorage.getItem("eqpPages") == null) {
+                                localStorage.setItem("eqpPages", pages);
+                            }
+                            loadingHtml(result.Data.list_EqpDto);
+                        }
+                    },
+                    error: function (msg) {
+                        console.log("进度图报错，api:GetWorkshopAssembly   error:" + msg.responseText);
+                    }
+                });
+            }
+
+
+        });
+
+        function appendHtml(data) {
+            var html = [];
+            var cla, fontClass;
+
+            switch (data.D2) {
+                case '1':
+                    cla = 'tr_color1';
+                    fontClass = 'fa fa-exclamation-circle';
+                    break
+                case '2':
+                    cla = 'tr_color2';
+                    fontClass = 'fa fa-exclamation-triangle';
+                    break;
+                case '3':
+                    cla = 'tr_color3';
+                    fontClass = 'fa fa-times-circle';
+                    break;
+                default:
+            }
+            html.push('<tr  class="' + cla + '">');
+            html.push('<td>' + data.D1 + '</td>');
+            html.push('<td><i class="' + fontClass + '" aria-hidden="true"></i></td>');
+            html.push('<td>' + data.D3 + '</td>');
+            html.push('<td>' + data.D4 + '</td>');
+            html.push('</tr>');
+            $('#tby').prepend(html.join(''));
+            var length = $('#tby').length;
+            if (length == 18) {
+                $("#tby tr").eq(18).remove();
+            }
+        }
+
+        function loadingHtml(arrData) {
+            var html = '';
+            for (var i = 0; i < arrData.length; i++) {
+
+                if (arrData[i].ErrorDateTime == null) {
+                    arrData[i].ErrorDateTime = "";
+                }
+
+                if (arrData[i].FaultDescription == null) {
+                    arrData[i].FaultDescription = "";
+                }
+
+                if (arrData[i].ProductionStatus == 1) {
+                    html += '<tr style="color:red;">';
+                } else {
+                    html += '<tr style="color:#7fb80e;font-weight:bolder;">';
+                }
+                html += '<td>' + (i + 1) + '</td>';
+                html += '<td class="td">' + arrData[i].EqpTypeCode + '</td>';
+                html += '<td>' + arrData[i].EqpTypeName + '</td>';
+                html += '<td>' + arrData[i].EqpCode + '</td>';
+                html += '<td>' + arrData[i].EqpName + '</td>';
+                html += '<td>' + arrData[i].ProductionStatusName + '</td>';
+                html += '<td>' + arrData[i].ErrorDateTime + '</td>';
+                html += '<td>' + arrData[i].FaultDescription + '</td>';
+                html += '</tr>';
+            }
+            $('#tby').html(html);
+        }
+    </script>
+
+</body>
+</html>

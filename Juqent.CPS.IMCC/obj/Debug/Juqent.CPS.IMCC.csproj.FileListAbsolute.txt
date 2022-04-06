@@ -1,0 +1,7 @@
+D:\Juqent.CPS.IMCC\Juqent.CPS.IMCC\bin\Juqent.CPS.IMCC.dll.config
+D:\Juqent.CPS.IMCC\Juqent.CPS.IMCC\bin\Juqent.CPS.IMCC.dll
+D:\Juqent.CPS.IMCC\Juqent.CPS.IMCC\bin\Juqent.CPS.IMCC.pdb
+D:\Juqent.CPS.IMCC\Juqent.CPS.IMCC\obj\Debug\Juqent.CPS.IMCC.csproj.AssemblyReference.cache
+D:\Juqent.CPS.IMCC\Juqent.CPS.IMCC\obj\Debug\Juqent.CPS.IMCC.csproj.CoreCompileInputs.cache
+D:\Juqent.CPS.IMCC\Juqent.CPS.IMCC\obj\Debug\Juqent.CPS.IMCC.dll
+D:\Juqent.CPS.IMCC\Juqent.CPS.IMCC\obj\Debug\Juqent.CPS.IMCC.pdb

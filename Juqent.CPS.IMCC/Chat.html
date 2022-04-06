@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.3.min.js"></script>
+    <script src="http://localhost:6234/signalr/hubs"></script>
+    <script src="js/status.js"></script>
+</head>
+<body>
+    <h2>IMCC</h2>
+    <div class="container">
+        <input type="text" id="message" />
+        <input type="button" id="sendmessage" value="Send" />
+        <input type="hidden" id="displayname" />
+        <ul id="discussion"></ul>
+        <input type="button" id="btn" value="WebApi测试"/>
+    </div>
+    <script type="text/javascript">
+
+        $(function () {
+            $.connection.hub.url = "http://localhost:6234/signalr";
+
+            var chat = $.connection.chatHub;
+            // Create a function that the hub can call back to display messages.
+            chat.client.addNewMessageToPage = function (name, message) {
+                // Add the message to the page.
+                $('#discussion').append('<li><strong>' + htmlEncode(name)
+                    + '</strong>: ' + htmlEncode(message) + '</li>');
+            };
+            // Get the user name and store it to prepend to messages.
+            $('#displayname').val(prompt('Enter your name:', ''));
+            // Set initial focus to message input box.
+            $('#message').focus();
+            // Start the connection.
+            $.connection.hub.start({ xdomain: true }).done(function () {
+                $('#sendmessage').click(function () {
+                    // Call the Send method on the hub.
+                    chat.server.sends($('#displayname').val(), $('#message').val());
+                    // Clear text box and reset focus for next comment.
+                    $('#message').val('').focus();
+                });
+            });
+
+            $('#btn').click(function () {
+                $.ajax({
+                    type: "post",    //请求方式
+                    async: true,     //是否异步
+                    url: getUrl("GetWebApi"),
+                    data: '{"filter": "测试", "selectedIds": "测阿斯顿发试","equipmentId": 0}',
+                    dataType: "json",    //跨域json请求一定是jsonp
+                    beforeSend: function (request) {
+                        //请求前的处理
+                        request.setRequestHeader("Content-Type", "application/json");
+                    },
+                    success: function (data) {
+                        console.log(JSON.stringify(data));
+                    },
+                    error: function (msg) {
+                        //console.log('api:GetSandCoreMakingMachineByModelNo?modelNo=KC800-163,error:' + msg.responseText);
+                        alert(msg.responseText);
+                    }
+                });
+            });
+
+
+        });
+        // This optional function html-encodes messages for display in the page.
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+    </script>
+</body>
+</html>

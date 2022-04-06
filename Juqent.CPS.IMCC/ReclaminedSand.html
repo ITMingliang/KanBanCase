@@ -1,0 +1,713 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!--<meta name="Access-Control-Allow-Methods" content="OPTIONS,POST,GET" />
+    <meta name="Access-Control-Allow-Headers" content="x-requested-with,content-type" />-->
+    <!--<meta http-equiv ="Access-Control-Allow-Origin"  content="*" />-->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>再生砂</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/status.js"></script>
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader">
+            <div class="rmlogo"></div>
+            <div class="rmtitle">
+                <strong>再生砂</strong>
+                <div class="rmsubtitlebg"></div>
+                <div class="rmsubtitle"><b></b><span>Reclamined  Sand</span><em></em></div>
+            </div>
+            <div class="rmdatetime">
+                <span><!--<a href=""><img src="images/icon_pr.png" alt=""></a><a href=""><img src="images/icon_back.png" alt=""></a><a href=""><img src="images/icon_close.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="rmcont">
+            <div class="cont_w626">
+                <div class="cont_h407 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">
+                            用电能耗
+                            <div>Electricity Consumption</div>
+                        </div>
+                        <div class="rmcont_cbox" id="main1" ></div>
+                    </div>
+                </div>
+                <div class="cont_h528 margin_top_10 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">
+                            烧砂温度A
+                            <div>Sand Burning Temperature A</div>
+                        </div>
+                        <div class="rmcont_cbox" id="main3"></div>
+                        <div class="rmcont_box_subtitle">白班</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w626">
+                <div class="cont_h407 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">
+                            天然气能耗
+                            <div>Natural Gas Consumption</div>
+                        </div>
+                        <div class="rmcont_cbox" id="main2"></div>
+                    </div>
+                </div>
+                <div class="cont_h528 margin_top_10 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">
+                            烧砂温度B
+                            <div>Sand Burning Temperature B</div>
+                        </div>
+                        <div class="rmcont_cbox" id="main4"></div>
+                        <div class="rmcont_box_subtitle">白班</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w626">
+                <div class="cont_h407 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">
+                            设备状态
+                            <div>Device Status</div>
+                        </div>
+                        <div class="rmcont_cbox">
+                            <div class="ments_tatus_box">
+                                <ul>
+                                    <li>
+                                        <p>通电</p><span id="status1" class="ments_0_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>运行</p><span id="status2" class="ments_1_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>暂停</p><span id="status3" class="ments_2_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>故障</p><span id="status4" class="ments_3_0"></span>
+                                    </li>
+                                    <li>
+                                        <p>报警</p><span id="status5" class="ments_4_0"></span>
+                                    </li>
+                                    <!--ments_0_0表示关闭，ments_0_1表示开启-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_h528 margin_top_10 cont_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title">
+                            出砂温度
+                            <div>Sand Temperature</div>
+                        </div>
+                        <div class="rmcont_cbox" id="main5"></div>
+                        <div class="rmcont_box_subtitle">白班</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script type="text/javascript">
+
+        function getNowFormatDate() {
+            var date = new Date();
+            var seperator1 = "-";
+            var seperator2 = ":";
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                + " " + date.getHours() + seperator2 + date.getMinutes()
+                + seperator2 + date.getSeconds();
+            return currentdate;
+        }
+
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+
+        function getTableSize() {
+            var height = window.screen.height;
+            var size = 16;
+            if (height >= 300 && height < 600) {
+                size = 5;
+            } else if (height >= 600) {
+                size = 16;
+            }
+            return size;
+        }
+
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                //---------------------用电能耗设置
+                var myChart1 = ec.init(document.getElementById('main1'));
+                var option1 = t2(); //调用函数生成仪表
+                option1.series[0].title.color = '#61b3eb';
+                option1.series[0].min = 0;//最小刻度
+                option1.series[0].max = 150;//最大刻度
+                
+                option1.series[0].splitNumber = 10;//单位刻度
+                option1.series[0].detail.formatter = "{value}kw";
+               
+                //option1.series[0].detail.textStyle.shadowColor="#fff";
+
+                option1.series[0].detail.textStyle.fontSize = getScreenSize()[0];//数值字体大小
+                option1.series[0].axisLabel.fontSize = getScreenSize()[1];//刻度字体大小
+                option1.series[0].axisLine.lineStyle.width = getScreenSize()[2];//仪表盘宽度
+                option1.series[0].title.fontSize = getScreenSize()[3];//标题字体大小
+                option1.series[0].data[0].value = 50;
+                option1.series[0].data[0].name = "瞬时功率"; //
+                option1.tooltip.formatter = "{a} <br/> {c}kw"; //设置弹出提示框的输出格式
+                option1.tooltip.fontSize = 26;
+                option1.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option1.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option1.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart1.setOption(option1);
+
+                window.onresize = function () {
+                    myChart1.resize();
+                }
+
+                //---------------------天然气能耗表
+                var myChart = ec.init(document.getElementById('main2'));
+                var option = t2();
+                option.series[0].max = 100;
+                option.series[0].min = 0;
+                option.series[0].splitNumber = 10;
+                option.series[0].title.color = '#39c87a';
+                option.series[0].detail.formatter = "{value}立方";
+                option.series[0].data[0].name = "瞬时流量"; //
+
+                option.series[0].detail.textStyle.fontSize = getScreenSize()[0];//数值字体大小
+                option.series[0].axisLabel.fontSize = getScreenSize()[1];//刻度字体大小
+                option.series[0].axisLine.lineStyle.width = getScreenSize()[2];//仪表盘宽度
+                option.series[0].title.fontSize = getScreenSize()[3];//标题字体大小
+
+                option.tooltip.fontSize = 26;
+
+                option.tooltip.formatter = "{a} <br/> {c}立方"; //设置弹出提示框的输出格式
+                option.series[0].name = "瞬时流量"; //设置弹出提示框的名称
+                option.series[0].axisLine.lineStyle.shadowColor = "#6ACA8B";
+                option.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2ec977'],
+                    [0.8, '#98f0f5'],
+                    [1, '#e0923d']
+                ]; //刻度线的颜色设置
+                myChart.setOption(option);
+                //------------
+
+
+                var data = [],
+                    date = [],
+                    _line = [];
+
+                var startDate = new Date(2017, 12, 31, 8, 0, 0);
+                var endDate = new Date(2017, 12, 31, 20, 0, 0);
+
+                while (startDate.getTime() <= endDate.getTime()) {
+                    date.push([startDate.getHours(), startDate.getMinutes()].join(':'));
+                    data.push(Math.round(Math.random() * 100) + 75);
+                    _line.push(180);
+                    startDate.setTime(startDate.getTime() + (1000 * 600));
+                }
+
+                var myChart3 = ec.init(document.getElementById('main3'));
+                var option3 = {
+                    baseOption: {
+                        grid: {
+                            borderWidth: '0',
+                            x: '15%',
+                            y: '15%'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap: false,
+                            axisLine: {
+                                lineStyle: {
+                                    color: "#1a3857",
+                                    width: 4
+                                }
+                            },
+                            axisLabel: {
+                                formatter: function (value) {
+                                    return value.split(":").map(function (v) { return v.length == 1 ? ('0' + v) : v }).join(":");
+                                },
+                                textStyle: {
+                                    color: '#aaa',
+                                    fontSize: getTableSize()
+                                }
+                            },
+                            axisTick: {
+                                alignWithLabel: true,
+                            },
+                            data: date,
+
+                        },
+                        yAxis: {
+                            type: 'value',
+                            min: 565,
+                            max: 610,
+                            interval: 5,
+                            axisLine: {
+                                lineStyle: {
+                                    color: "#1a3857",
+                                    width: 4
+                                }
+                            },
+                            splitLine: {
+                                lineStyle: { color: "#1d3f62" }
+                            },
+                            axisLabel: {
+                                formatter: function (value) {
+                                    return value + "℃";
+                                },
+                                textStyle: {
+                                    color: '#aaa',
+                                    fontSize: getTableSize()
+                                }
+                            }
+                        },
+                        series: [{
+                            name: '温度(℃)',
+                            type: 'line',
+                            symbol: 'none',
+                            lineStyle: {
+                                normal: {
+                                    color: '#2685B5',
+                                }
+                            },
+                            areaStyle: {
+                                normal: {
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: '#2685B5'
+                                    }])
+                                }
+                            },
+                            data: data
+                        }
+                        ]
+                    },
+                    media: [
+                        {
+                            //移动端
+                            query: { maxWidth: 300},
+                            option: {
+                                grid: {
+                                    borderWidth: '0',
+                                    x: '15%',
+                                    y: '15%',
+                                    bottom: '20%'
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    boundaryGap: false,
+                                    axisLine: {
+                                        lineStyle: {
+                                            color: "#1a3857",
+                                            width: 2
+                                        }
+                                    },
+                                    axisLabel: {
+                                        formatter: function (value) {
+                                            return value.split(":").map(function (v) { return v.length == 1 ? ('0' + v) : v }).join(":");
+                                        },
+                                        textStyle: {
+                                            color: '#aaa',
+                                            fontSize: getTableSize()
+                                        }
+                                    },
+                                    axisTick: {
+                                        alignWithLabel: true,
+                                    },
+                                    data: date,
+
+                                },
+                                yAxis: {
+                                    type: 'value',
+                                    min: 565,
+                                    max: 610,
+                                    interval: 5,
+                                    axisLine: {
+                                        lineStyle: {
+                                            color: "#1a3857",
+                                            width: 2
+                                        }
+                                    },
+                                    splitLine: {
+                                        lineStyle: { color: "#1d3f62" }
+                                    },
+                                    axisLabel: {
+                                        formatter: function (value) {
+                                            return value + "℃";
+                                        },
+                                        textStyle: {
+                                            color: '#aaa',
+                                            fontSize: getTableSize()
+                                        }
+                                    }
+                                },
+                                series: [{
+                                    name: '温度(℃)',
+                                    type: 'line',
+                                    symbol: 'none',
+                                    lineStyle: {
+                                        normal: {
+                                            color: '#2685B5',
+                                        }
+                                    },
+                                    areaStyle: {
+                                        normal: {
+                                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                                offset: 0,
+                                                color: '#2685B5'
+                                            }])
+                                        }
+                                    },
+                                    data: data
+                                }
+                                ]
+                            }
+                        }
+                    ]
+                    
+                };
+
+                myChart3.setOption(option3);
+                var myChart4 = ec.init(document.getElementById('main4'));
+                var option4 = {
+                    grid: {
+                        borderWidth: '0',
+                        x: '15%',
+                        y: '15%'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        axisLine: {
+                            lineStyle: {
+                                color: "#1a3857",
+                                width: 4
+                            }
+                        },
+                        axisLabel: {
+                            formatter: function (value) {
+                                return value.split(":").map(function (v) { return v.length == 1 ? ('0' + v) : v }).join(":");
+                            },
+                            textStyle: {
+                                color: '#aaa',
+                                fontSize: 16
+                            }
+                        },
+                        axisTick: {
+                            alignWithLabel: true,
+                        },
+                        data: date,
+
+                    },
+                    yAxis: {
+                        type: 'value',
+                        min: 565,
+                        max: 610,
+                        interval: 5,
+                        axisLine: {
+                            lineStyle: {
+                                color: "#1a3857",
+                                width: 4
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: { color: "#1d3f62" }
+                        },
+                        axisLabel: {
+                            formatter: function (value) {
+                                return value + "℃";
+                            },
+                            textStyle: {
+                                color: '#aaa',
+                                fontSize: getTableSize()
+                            }
+                        }
+                    },
+                    series: [{
+                        name: '温度(℃)',
+                        type: 'line',
+                        symbol: 'none',
+                        lineStyle: {
+                            normal: {
+                                color: '#2685B5',
+                            }
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#2685B5'
+                                }])
+                            }
+                        },
+                        data: data
+                    }
+                        // , {
+                        //    name: "警戒线(℃)",
+                        //    type: "line",
+                        //    symbol: 'none',
+                        //    lineStyle: {
+                        //        color: "#F1ED14",
+                        //    },
+                        //    data: _line,
+                        //    smooth: true
+                        //}
+                    ]
+                };
+
+                myChart4.setOption(option4);
+
+                var myChart5 = ec.init(document.getElementById('main5'));
+                var option5 = {
+                    grid: {
+                        borderWidth: '0',
+                        x: '15%',
+                        y: '15%'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        axisLine: {
+                            lineStyle: {
+                                color: "#1a3857",
+                                width: 4
+                            }
+                        },
+                        axisLabel: {
+                            formatter: function (value) {
+                                return value.split(":").map(function (v) { return v.length == 1 ? ('0' + v) : v }).join(":");
+                            },
+                            textStyle: {
+                                color: '#aaa',
+                                fontSize: 16
+                            }
+                        },
+                        axisTick: {
+                            alignWithLabel: true,
+                        },
+                        data: date,
+
+                    },
+                    yAxis: {
+                        type: 'value',
+                        min: 300,
+                        max: 360,
+                        interval: 10,
+                        axisLine: {
+                            lineStyle: {
+                                color: "#1a3857",
+                                width: 4
+                            }
+                        },
+                        splitLine: {
+                            lineStyle: { color: "#1d3f62" }
+                        },
+                        axisLabel: {
+                            formatter: function (value) {
+                                return value + "℃";
+                            },
+                            textStyle: {
+                                color: '#aaa',
+                                fontSize: getTableSize()
+                            }
+                        }
+                    },
+                    series: [{
+                        name: '温度(℃)',
+                        type: 'line',
+                        symbol: 'none',
+                        lineStyle: {
+                            normal: {
+                                color: '#2685B5',
+                            }
+                        },
+                        areaStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                    offset: 0,
+                                    color: '#2685B5'
+                                }])
+                            }
+                        },
+                        data: data
+                    }
+                        //    , {
+                        //    name: "警戒线(℃)",
+                        //    type: "line",
+                        //    symbol: 'none',
+                        //    lineStyle: {
+                        //        color: "#F1ED14",
+                        //    },
+                        //    data: _line,
+                        //    smooth: true
+                        //}
+                    ]
+                };
+
+                myChart5.setOption(option5);
+                var FirstLoad = GetData();
+                clearInterval(timeTicket);
+                var timeTicket = setInterval(GetData, 10000);
+                function GetData() {
+
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("RegeneratedSand"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        //jsonp: "callbackparam",    //跨域请求的参数名，默认是callback
+                        ////jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
+                        //data: { "modelNo": "清洗机" },    //请求参数
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            var ret = data.result[0];
+                            //设备状态
+                            setStatus(ret.equipStatus);
+
+                            //天然气能耗
+                            option.series[0].data[0].value = ret.momentGas;
+                            myChart.setOption(option, true);
+
+                            //用电能耗
+                            option1.series[0].data[0].value = ret.energy;
+                            myChart1.setOption(option1, true);
+
+                            //温度A  PC
+                            option3.baseOption.xAxis.data = ret.arrTime;
+                            option3.baseOption.series[0].data = ret.arrShaoShaA;
+                            option3.baseOption.yAxis.min =  parseFloat(Math.min.apply(null, ret.arrShaoShaA) - parseFloat("10"));
+                            option3.baseOption.yAxis.max =  parseFloat(Math.max.apply(null, ret.arrShaoShaA) + parseFloat("10"));
+                            //温度B  移动端
+                            option3.media[0].option.xAxis.data = ret.arrTime;
+                            option3.media[0].option.series[0].data = ret.arrShaoShaA;
+                            myChart3.setOption(option3, true);
+
+                            //温度B
+                            option4.xAxis.data = ret.arrTime;
+                            option4.series[0].data = ret.arrShaoShaB;
+                            var cc = option4.yAxis.min;
+                            option4.yAxis.min =  parseFloat(Math.min.apply(null, ret.arrShaoShaB) - parseFloat("10"));
+                            option4.yAxis.max =  parseFloat(Math.max.apply(null, ret.arrShaoShaB) + parseFloat("10"));
+
+                            myChart4.setOption(option4, true);
+
+                            //温度C
+                            option5.xAxis.data = ret.arrTime;
+                            option5.series[0].data = ret.arrChuSha;
+                            option5.yAxis.min =  parseFloat(Math.min.apply(null, ret.arrChuSha) - parseFloat("15"));
+                            option5.yAxis.max =  parseFloat(Math.max.apply(null, ret.arrChuSha) + parseFloat("15"));
+                            myChart5.setOption(option5, true);
+                        },
+                        error: function (msg) {
+                            //alert(msg.responseText);
+                        }
+                    });
+                };
+            }       
+        );
+        
+
+          ////仪表1
+                    //var min = option.series[0].min;
+                    //var max = option.series[0].max;
+                    //option.series[0].data[0].value = Math.floor(Math.random() * (max - min)) + min;
+                    //myChart.setOption(option, true);
+
+                    ////仪表2
+                    //var min1 = option1.series[0].min;
+                    //var max1 = option1.series[0].max;
+                    //option1.series[0].data[0].value = Math.floor(Math.random() * (max1 - min1)) + min1;
+                    //myChart1.setOption(option1, true);
+    </script>
+</body>
+</html>

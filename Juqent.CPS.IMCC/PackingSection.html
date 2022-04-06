@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>工段级别看板</title>
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/contain.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/contain.js"></script>
+    <style>
+        .title1 {
+            position: relative;
+            margin: 1.3vh;
+            height: 3.5vh;
+            width: 100%;
+        }
+
+            .title1 span {
+                font-size: 20px;
+                color: #fff;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
+                -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
+                -moz-animation: neon2 2.5s ease-in-out infinite alternate;
+                animation: neon2 2.5s ease-in-out infinite alternate;
+            }
+
+        .mainlist {
+            width: 85%;
+            height: 85%;
+            margin-top: 6.5vh;
+            padding-left: 3.5vw;
+        }
+
+            .mainlist p {
+                font-size: 18px;
+                color: #fff;
+                margin-top: 7.5%;
+            }
+
+                .mainlist p span {
+                    font-size: 20px;
+                    color: #fff;
+                    -webkit-transition: all 0.5s;
+                    -moz-transition: all 0.5s;
+                    transition: all 0.5s;
+                    -webkit-animation: neon5 2.5s ease-in-out infinite alternate;
+                    -moz-animation: neon5 2.5s ease-in-out infinite alternate;
+                    animation: neon5 2.5s ease-in-out infinite alternate;
+                }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="cheader">
+            <div class="ctitle">
+                <strong>包装段看板</strong>
+            </div>
+            <div class="rmdatetime">
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="rmcont_row">
+            <div class="cont_w490">
+                <div class="boxall cont_h350 mt1">
+                    <div class="alltitle">工单总计</div>
+                    <div class="navboxall" id="char1"></div>
+                </div>
+                <div class="boxall cont_h528">
+                    <div class="alltitle">工单进度</div>
+                    <div class="navboxall" id="char2"></div>
+                </div>
+
+            </div>
+            <div class="cont_vw400">
+                <div class="boxall cont_h468 mt1">
+                    <div class="alltitle">工单信息</div>
+                    <div class="navboxall main_table" id="char3">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>工单号</th>
+                                    <th>工单数量</th>
+                                    <th>完成数量</th>
+                                    <th>产成率</th>
+                                    <th>工单状态</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tab2">
+                                <tr class="tr_sky">
+                                    <td>1</td>
+                                    <td>PT001-2</td>
+                                    <td>300</td>
+                                    <td>300</td>
+                                    <td>100%</td>
+                                    <td>已完成</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>2</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>3</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>4</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>5</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>6</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>7</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_org">
+                                    <td>8</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr class="tr_red">
+                                    <td>9</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                                <tr class="tr_red">
+                                    <td>10</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="boxall cont_h407">
+
+                    <div class="alltitle">产出</div>
+                    <div class="navboxall" id="char4"></div>
+                </div>
+
+            </div>
+            <div class="cont_w626">
+                <div class="boxall cont_h39 mt1">
+                    <div class="alltitle">时段产出</div>
+                    <div class="navboxall" id="char5"></div>
+                </div>
+                <div class="boxall cont_h39">
+                    <div class="alltitle">日产出</div>
+                    <div class="navboxall" id="char6"></div>
+                </div>                
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        //给背景粒子高度设为网页全部正文高度，滚动条到的地方也包含
+        $("#particles-js")[0].style.setProperty('height', document.body.scrollHeight + "px");
+    </script>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script src="js/echarts/mooutputcharts.js"></script>
+    <script src="js/progress.js"></script>
+
+    <!--动态粒子背景js-->
+    <!--<script src="js/particles.min.js"></script>-->
+    <!--动态粒子背景js-->
+    <!--<script src="js/app.js"></script>-->
+
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar',
+                'echarts/chart/pie',
+            ],
+            function (ec) {
+                var char1 = echarts.init(document.getElementById("char1"));
+                var value = 10;
+                var option1 = mochar1(value);
+                char1.setOption(option1);
+
+                var char2 = echarts.init(document.getElementById("char2"));
+                var option2 = mochart2();
+                option2.yAxis.data = ['PT001-1', 'PT001-2', 'PT001-3', 'PT001-4', 'PT001-5', 'PT001-6', 'PT001-7', 'PT001-8', 'PT001-9', 'PT001-10'];;
+                option2.series[0].data = [49, 80, 12, 19, 39, 84, 28, 47, 57, 100];
+                option2.series[1].data = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
+                char2.setOption(option2);
+
+                var char4 = echarts.init(document.getElementById("char4"));
+                var option4 = mochar4();
+                option4.series[0]
+                char4.setOption(option4);
+
+                var char5 = echarts.init(document.getElementById("char5"));
+                var option5 = sectionchar7();
+                option5.xAxis[0].data = ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+                option5.series[0].data = [123, 115, 123, 156, 135, 152, 136, 115, 123, 156, 135, 152, 106, 125];
+                option5.xAxis[0].axisLabel.rotate = 45;
+                char5.setOption(option5);
+
+                var char6 = echarts.init(document.getElementById("char6"));
+                var option6 = sectionchar7();
+                option6.series[0].lineStyle.normal.color.colorStops[0].color = '#F6D06F';
+                option6.series[0].lineStyle.normal.color.colorStops[1].color = '#F9A589';
+                option6.series[0].lineStyle.normal.color.colorStops[2].color = '#F9A589';
+                option6.series[0].lineStyle.normal.shadowColor = 'rgba(249,165,137, 0.5)';
+                option6.series[0].itemStyle.normal.color = '#F6D06F';
+                option6.series[0].itemStyle.normal.barWidth = 5;
+                option6.series[0].itemStyle.normal.borderColor = '#F6D06F';
+                char6.setOption(option6);
+               
+            }
+        );
+
+    </script>
+</body>
+</html>

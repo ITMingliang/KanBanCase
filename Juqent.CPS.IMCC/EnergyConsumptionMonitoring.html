@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>能耗监控</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader">
+            <div class="rmlogo"></div>
+            <div class="rmtitle large_title">
+                <strong>能耗监控</strong>
+                <div class="rmsubtitlebg"></div>
+                <div class="rmsubtitle"><b></b><span>Energy Consumption Monitoring</span><em></em></div>
+            </div>
+            <div class="rmdatetime">
+                <span><!--<a href=""><img src="images/icon_pr.png" alt=""></a><a href=""><img src="images/icon_back.png" alt=""></a><a href=""><img src="images/icon_close.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="rmcont">
+            <div class="cont_w1263">
+                <div class="rmcont_subtitle">用电总能耗监控</div>
+                <div class="cont_h890 cont_w1263 cont_box pre_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box" id='main1'></div>
+                </div>
+            </div>
+            <div class="cont_w627">
+                <div class="rmcont_subtitle">天然气流量总能耗监控</div>
+                <div class="cont_h890 cont_w627 cont_box pre_box">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box" id='main2'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script type="text/javascript">
+
+        function getScreenSize() {
+            var size1 = 20;//字体大小
+            var size2 = 60;//矩形宽度
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                size1 = 10;//字体大小
+                size2 = 20;//矩形宽度
+            } else if (height >= 600) {
+                size1 = 20;//字体大小
+                size2 = 60;//矩形宽度
+            }
+            return [size1, size2];
+        }
+
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                //---------------------用电能耗设置
+                var myChart1 = ec.init(document.getElementById('main1'));
+                var dataAxis = ['表1', '表2', '表3', '表4', '表5', '表6', '表7', '表8', '表9', '表10'];
+                var data = ["05 - 01", "05 - 02", "05 - 03", "05 - 04", "05 - 05", "05 - 06", "05 - 07"];
+                var data1 = [7000, 12000, 7000, 12000, 7000, 12000, 7000];
+                var yMax = 20000;
+                var dataShadow = [];
+
+                for (var i = 0; i < data.length; i++) {
+                    dataShadow.push(yMax);
+                }
+                var option1 = {
+                    radius: '100%',
+                    grid: {
+                        borderWidth: '0',
+                        x: '15%',
+                        y: '15%',
+                        bottom: '15%',
+                        right: '10%'
+                    },
+                    xAxis: {
+                        data: dataAxis,
+                        axisLabel: {
+                            textStyle: {
+                                color: '#fff',
+                                fontSize: getScreenSize()[0]     //日期
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLine: {
+                            show: false
+                        },
+                        axisLine: { lineStyle: { color: "#1d3f62", width: "4" } },
+                        data: data,
+                    },
+                    yAxis: {
+                        axisLine: {
+                            show: false
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#aaa',
+                                fontSize: getScreenSize()[0]  //度数
+                            }
+                        },
+                        max: 20000,
+                        interval: 2000,
+                        name: '(度)',
+                        nameTextStyle: {
+                            color: '#2579cf',
+                            fontSize: 18,
+                            align: 'left'
+                        },
+                        axisLine: { lineStyle: { color: "#1d3f62", width: "4" } },
+                        splitLine: {
+                            lineStyle: { color: "#1d3f62" }
+                        }
+                    },
+
+                    series: [{
+                        name: '剩余寿命',
+                        type: 'bar',
+                        barCategoryGap: getScreenSize()[1] ,//柱状图宽度  60
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top',
+                                color: '#fff',
+                                fontSize: getScreenSize()[0]
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    // build a color map as your need.
+                                    var colorList = [
+                                        '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80'
+                                    ];
+                                    return colorList[params.dataIndex]
+                                },
+                            }
+                        },
+                        data: data1
+                    }]
+                };
+                myChart1.setOption(option1);  
+
+                //var data = [],
+                //    date = [],
+                //    _line = [];
+                //var startDate = new Date(2017, 1, 1, 00, 0, 0)
+                //var endDate = new Date(2017, 1, 1, 24, 0, 0)
+
+                //while (startDate.getTime() <= endDate.getTime()) {
+                //    date.push([startDate.getHours(), startDate.getMinutes()].join(':'))
+                //    data.push(Math.round(Math.random() * 30000) + 7500)
+                //    startDate.setTime(startDate.getTime() + (1000 * 600) * 24)
+                //}
+                var myChart2 = ec.init(document.getElementById('main2'));
+                var option2 = {
+                    radius: '100%',
+                    grid: {
+                        borderWidth: '0',
+                        x: '15%',
+                        y: '15%',
+                        bottom: '15%',
+                        right: '10%'
+                    },
+                    xAxis: {
+                        data: dataAxis,
+                        axisLabel: {
+                            textStyle: {
+                                color: '#fff',
+                                fontSize: getScreenSize()[0]     //日期
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLine: {
+                            show: false
+                        },
+                        axisLine: { lineStyle: { color: "#1d3f62", width: "4" } },
+                        data: data,
+                    },
+                    yAxis: {
+                        axisLine: {
+                            show: false
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#aaa',
+                                fontSize: getScreenSize()[0]  //度数
+                            }
+                        },
+                        max: 50000,
+                        interval: 5000,
+                        name: '(立方)',
+                        nameTextStyle: {
+                            color: '#2579cf',
+                            fontSize: 18,
+                            align: 'left'
+                        },
+                        axisLine: { lineStyle: { color: "#1d3f62", width: "4" } },
+                        splitLine: {
+                            lineStyle: { color: "#1d3f62" }
+                        }
+                    },
+
+                    series: [{
+                        name: '天然气列表',
+                        type: 'bar',
+                        barCategoryGap: getScreenSize()[1] ,
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top',
+                                color: '#fff',
+                                fontSize: getScreenSize()[0]
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    // build a color map as your need.
+                                    var colorList = [
+                                        '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80', '#2ec7c9', '#d87a80'
+                                    ];
+                                    return colorList[params.dataIndex]
+                                },
+                            }
+                        },
+                        data: data1
+                    }]
+                };
+                myChart2.setOption(option2);  
+                var getdata = GetData();
+                clearInterval(timeTicket);
+                var timeTicket = setInterval(GetData, 100000);
+                function GetData() {
+
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetEnergyConsumptionMonitoring"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            //用电总能耗
+                            option1.xAxis.data = data.result.arrDate;
+                            option1.series[0].data = data.result.arrElectricityConsumption;
+                            myChart1.setOption(option1, true);
+
+                            //天然气能耗
+                            option2.xAxis.data = data.result.arrDate;
+                            option2.series[0].data = data.result.arrNaturalGasConsumption;
+                            myChart2.setOption(option2, true);
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetEnergyConsumptionMonitoring,error:' + msg.responseText);
+                        }
+                    });
+                }
+            }
+        );
+    </script>
+</body>
+</html>

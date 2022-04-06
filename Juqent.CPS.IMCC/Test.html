@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title></title>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <input type="button" name="测试" onclick="init()" />
+
+    <script type="text/javascript">
+
+        $(function () {
+            $.ajax({
+                type: "post",    //请求方式
+                async: true,     //是否异步
+                url: "http://192.168.1.101:8001/api/services/dashboard/dashboard/GetReclaminedSand",
+                dataType: "json",    //跨域json请求一定是jsonp
+                //jsonp: "callbackparam",    //跨域请求的参数名，默认是callback
+                ////jsonpCallback:"successCallback",    //自定义跨域参数值，回调函数名也是一样，默认为jQuery自动生成的字符串
+                ////data: { "query": "civilnews" },    //请求参数
+                beforeSend: function (request) {
+                    //请求前的处理
+                    request.setRequestHeader("Content-Type", "application/json");
+                    //request.setRequestHeader("Content-Type", "application/json");
+                    //request.setRequestHeader("Content-Type", "application/json");
+                },
+                success: function (data) {
+                    //请求成功处理，和本地回调完全一样
+                    alert(data.result.electricityConsumption);
+                },
+                //complete: function (c) {
+                //    //请求完成的处理
+                //    alert(c);
+                //},
+                error: function (msg) {
+                    alert(msg.responseText);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

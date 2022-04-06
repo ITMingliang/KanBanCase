@@ -1,0 +1,365 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>各站产出PPM</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/contain.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/contain.js"></script>
+
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="cheader">
+            <div class="ctitle">
+                <strong>各站产出PPM</strong>
+                <div class="ctitlebg"></div>
+            </div>
+            <div class="rmdatetime">
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="rmcont_column">
+            <div class="cont_h148 margin_top_22 cont_row">
+                <div class="cont_w370">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox boxall">
+                            <div class="con_div_text02">
+                                <div class="text03_div">
+                                    <p>工单编号</p>
+                                    <p id="MoCode" class="sky">M02018090004859001</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_w370">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox boxall">
+                            <div class="con_div_text02">
+                                <div class="text03_div">
+                                    <p>产品编号</p>
+                                    <p id="ProductCode" class="sky">200102012</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_w390">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox boxall">
+                            <div class="con_div_text02">
+                                <div class="text03_div">
+                                    <p>产品名称</p>
+                                    <p id="ProductName">智能电表</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_w370">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox boxall">
+                            <div class="con_div_text02">
+                                <div class="text03_div">
+                                    <p>工单数量</p>
+                                    <p id="MoQty" class="sky">20000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_w370">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox boxall">
+                            <div class="con_div_text02">
+                                <div class="text03_div">
+                                    <p>完成进度</p>
+                                    <p id="progress" class="sky">75%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_h407  cont_row">
+                <div class="cont_100p">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="cleaning_box_2 boxbg">
+                                <div style="width:24vw;">
+                                    <div id="char1" style="width:23vw;height:35vh;"></div>
+                                </div>
+                                <div style="width:24vw;">
+                                    <div id="char2" style="width:23vw;height:35vh;"></div>
+                                </div>
+                                <div style="width:24vw;">
+                                    <div id="char3" style="width:23vw;height:35vh;"></div>
+                                </div>
+                                <div style="width:24vw;">
+                                    <div id="char4" style="width:23vw;height:35vh;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_h350 margin_top_22 cont_row">
+                <div class="cont_vw489">
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="cleaning_box_2 boxbg">
+                                <div class="cont_vw489">
+                                    <div id="char5" style="width:48vw;height:32vh;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_vw489">
+                    <div class="rmcont_cont_box boxbg">
+                        <div class="rmcont_cbox">
+                            <div class="cleaning_box_2 ">
+                                <p style="margin-left:15px;margin-top:15px;color:#fff;font-size:18px;font-weight:bold;">设备状态</p>
+                                <div id="char6" style="width:80%;height:28vh;margin-top:5vh;">
+
+                                </div>
+                            </div>
+                        </div>
+                           <!--<div style="margin-top:1.2vh;margin-left:1.2vh;color:#fff;font-weight:bold;font-size:18px;">设备状态</div>
+                            <div class="rmcont_cbox">
+                                <div class="ments_tatus_box">
+                                    <ul>
+                                        <li>
+                                            <p>通电</p><span id="status1" class="ments_0_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>运行</p><span id="status2" class="ments_1_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>暂停</p><span id="status3" class="ments_2_1"></span>
+                                        </li>
+                                        <li>
+                                            <p>故障</p><span id="status4" class="ments_3_0"></span>
+                                        </li>
+                                        <li>
+                                            <p>报警</p><span id="status5" class="ments_4_0"></span>
+                                        </li>                                        
+                                    </ul>
+                                </div>
+                            </div>-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //给背景粒子高度设为网页全部正文高度，滚动条到的地方也包含
+        $("#particles-js")[0].style.setProperty('height', document.body.scrollHeight + "px");
+    </script>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script src="js/echarts/workorderinfocharts.js"></script>
+    <script src="js/progress.js"></script>
+
+    <!--动态粒子背景js-->
+    <script src="js/particles.min.js"></script>
+    <!--动态粒子背景js-->
+    <script src="js/app.js"></script>
+
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                var echar1 = echarts.init(document.getElementById('char1'));
+                var option1 = char7();
+                option1.title.text = "外壳打码";
+                option1.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option1.series[0].data = [123, 115, 123, 156, 135, 152, 136];
+                echar1.setOption(option1);
+
+                var echar2 = echarts.init(document.getElementById('char2'));
+                var option2 = char7();
+                option2.title.text = "卷芯入壳";
+                option2.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option2.series[0].data = [123, 115, 123, 156, 135, 152, 136];
+                echar2.setOption(option2);
+
+                var echar3 = echarts.init(document.getElementById('char3'));
+                var option3 = char7();
+                option3.title.text = "高温烘烤";
+                option3.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option3.series[0].data = [123, 115, 123, 156, 135, 152, 136];
+                echar3.setOption(option3);
+
+                var echar4 = echarts.init(document.getElementById('char4'));
+                var option4 = char7();
+                option4.title.text = "注液";
+                option4.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option4.series[0].data = [123, 115, 123, 156, 135, 152, 136];
+                echar4.setOption(option4);
+
+                var echar5 = echarts.init(document.getElementById('char5'));
+                var option5 = char8();
+                echar5.setOption(option5);
+
+                var echar6 = echarts.init(document.getElementById('char6'));
+                var option6 = char9();
+                echar6.setOption(option6);
+
+                //var gdata = gData();
+                //clearInterval(timeTicket);
+                //var timeTicket = setInterval(gData, 20000);
+                //function gData() {
+                //    $.ajax({
+                //        type: "post",    //请求方式
+                //        /* async: false,*/     //是否异步
+                //        url: "http://localhost:5702/api/ProductionInfo/GetStationPPMs",
+                //        dataType: "json",    //跨域json请求一定是jsonp
+                //        success: function (data) {
+
+                //            var part1 = data.part1;
+
+                //            $("#ProductCode").html(part1.ProductCode);
+                //            $("#MoCode").html(part1.MoCode);
+                //            $("#ProductName").html(part1.ProductName);
+                //            $("#MoQty").html(part1.MoQty);
+
+                //            var pro = new progress({
+                //                width: 200,//进度条宽度
+                //                height: 20,//进度条高度
+                //                bgColor: "#3E4E5E",//背景颜色
+                //                proColor: "#25f3e6",//前景颜色
+                //                fontColor: "#FFFFFF",//显示字体颜色
+                //                val: part1.CompleteRate,//默认值
+                //                text: "#*val*#%",//显示文字信息
+                //                showPresent: true,
+
+                //            });
+                //            $('#progress').empty();
+                //            $('#progress').append(pro.getBody());
+
+                //            var datax1 = [];
+                //            var data1 = [];
+                //            var datax2 = [];
+                //            var data2 = [];
+                //            var datax3 = [];
+                //            var data3 = [];
+                //            var datax4 = [];
+                //            var data4 = [];
+
+                //            for (var i = 0; i < part1.length; i++) {
+                //                if (part1[i].StationType == "外壳打码") {
+                //                    datax1.push(part1[i].OutDate);
+                //                    data1.push(part1[i].PPM);
+                //                }
+                //                if (part1[i].StationType == "卷芯入壳") {
+                //                    datax2.push(part1[i].OutDate);
+                //                    data2.push(part1[i].PPM);
+                //                }
+                //                if (part1[i].StationType == "高温烘烤") {
+                //                    datax3.push(part1[i].OutDate);
+                //                    data3.push(part1[i].PPM);
+                //                }
+                //                if (part1[i].StationType == "注液") {
+                //                    datax4.push(part1[i].OutDate);
+                //                    data4.push(part1[i].PPM);
+                //                }
+                                
+                //            }
+                //            option1.xAxis[0].data = datax1;
+                //            option1.series[0].data = data1;
+                //            echar1.setOption(option1);
+
+                //            option2.xAxis[0].data = datax2;
+                //            option2.series[0].data = data2;
+                //            echar2.setOption(option2);
+
+                //            option3.xAxis[0].data = datax3;
+                //            option3.series[0].data = data3;
+                //            echar3.setOption(option3);
+
+                //            option4.xAxis[0].data = datax4;
+                //            option4.series[0].data = data4;
+                //            echar4.setOption(option4);
+
+
+                //            var part2 = data.part2;
+                //            var errordata = [];
+                //            var data = [];
+                //            for (var i = 0; i < part2.length; i++)
+                //            {
+                //                var vol = {};
+                //                errordata.push(part2[i].Name);
+                //                vol.value = part2[i].Value;
+                //                vol.name = part2[i].Name;
+                //                data.push(vol);
+                //            }
+                //            option5.legend.data = errordata;
+                //            option5.series[0].data = data;
+                //            echar5.setOption(option5);
+                //        },
+                //        error: function (msg) {
+                //            console.log('api:GetTestData,error:' + msg.responseText);
+                //        }
+                //    });
+
+                //}
+            }
+        );
+
+       
+
+    </script>
+</body>
+</html>

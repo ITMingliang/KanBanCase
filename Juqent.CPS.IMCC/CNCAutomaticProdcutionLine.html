@@ -1,0 +1,750 @@
+﻿<!DOCTYPE>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>CNC自动化生产线</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="rmheader">
+            <div class="rmlogo"></div>
+            <div class="rmtitle large_title">
+                <strong>CNC自动化生产线</strong>
+                <div class="rmsubtitlebg"></div>
+                <div class="rmsubtitle"><b></b><span>CNC Automatic Production Line</span><em></em></div>
+            </div>
+            <div class="rmdatetime">
+                <span><!--<a href=""><img src="images/icon_pr.png" alt=""></a><a href=""><img src="images/icon_back.png" alt=""></a><a href=""><img src="images/icon_close.png" alt=""></a>--></span>
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="rmcont">
+            <div class="cont_w736">
+                <div class="cont_box cont_h951">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_cbox">
+                            <div class="cnc_ul">
+                                <div class="cnc_li">
+                                    <div class="cnc_title cnc_title_1">
+                                        台1
+                                    </div>
+                                    <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                    <div class="cnc_stats">
+                                        <p><span class="ments_0_0" id="status_1a"></span><em>通电</em></p>
+                                        <p><span class="ments_1_0" id="status_2a"></span><em>运行</em></p>
+                                        <p><span class="ments_2_1" id="status_3a"></span><em>暂停</em></p>
+                                        <p><span class="ments_3_1" id="status_4a"></span><em>故障</em></p>
+                                        <p><span class="ments_4_1" id="status_5a"></span><em>报警</em></p>
+                                    </div>
+                                    <div class="cnc_cont">
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">刀具转数(S)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolRorateSpeedA">3000</strong><span>r/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">进给速度(V)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolFeedingSpeedA">1000</strong><span>m/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">节拍时间(T)</div>
+                                            <div class="cnc_cont_box"><strong id="TempoA">5</strong><span>min</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cnc_li">
+                                    <div class="cnc_title cnc_title_1">台2</div>
+                                    <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                    <div class="cnc_stats">
+                                        <p><span class="ments_0_0" id="status_1b"></span><em>通电</em></p>
+                                        <p><span class="ments_1_0" id="status_2b"></span><em>运行</em></p>
+                                        <p><span class="ments_2_1" id="status_3b"></span><em>暂停</em></p>
+                                        <p><span class="ments_3_1" id="status_4b"></span><em>故障</em></p>
+                                        <p><span class="ments_4_1" id="status_5b"></span><em>报警</em></p>
+                                    </div>
+                                    <div class="cnc_cont">
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">刀具转数(S)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolRorateSpeedB">3000</strong><span>r/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">进给速度(V)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolFeedingSpeedB">1000</strong><span>m/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">节拍时间(T)</div>
+                                            <div class="cnc_cont_box"><strong id="TempoB">5</strong><span>min</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cnc_li">
+                                    <div class="cnc_title cnc_title_1">台3</div>
+                                    <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                    <div class="cnc_stats">
+                                        <p><span class="ments_0_0" id="status_1c"></span><em>通电</em></p>
+                                        <p><span class="ments_1_0" id="status_2c"></span><em>运行</em></p>
+                                        <p><span class="ments_2_1" id="status_3c"></span><em>暂停</em></p>
+                                        <p><span class="ments_3_1" id="status_4c"></span><em>故障</em></p>
+                                        <p><span class="ments_4_1" id="status_5c"></span><em>报警</em></p>
+                                    </div>
+                                    <div class="cnc_cont">
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">刀具转数(S)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolRorateSpeedC">3000</strong><span>r/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">进给速度(V)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolFeedingSpeedC">1000</strong><span>m/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">节拍时间(T)</div>
+                                            <div class="cnc_cont_box"><strong id="TempoC">5</strong><span>min</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cnc_li">
+                                    <div class="cnc_title cnc_title_1">台4</div>
+                                    <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                    <div class="cnc_stats">
+                                        <p><span class="ments_0_0" id="status_1d"></span><em>通电</em></p>
+                                        <p><span class="ments_1_0" id="status_2d"></span><em>运行</em></p>
+                                        <p><span class="ments_2_1" id="status_3d"></span><em>暂停</em></p>
+                                        <p><span class="ments_3_1" id="status_4d"></span><em>故障</em></p>
+                                        <p><span class="ments_4_1" id="status_5d"></span><em>报警</em></p>
+                                    </div>
+                                    <div class="cnc_cont">
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">刀具转数(S)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolRorateSpeedD">3000</strong><span>r/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">进给速度(V)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolFeedingSpeedD">1000</strong><span>m/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">节拍时间(T)</div>
+                                            <div class="cnc_cont_box"><strong id="TempoD">5</strong><span>min</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cnc_ul">
+                                <div class="cnc_li">
+                                    <div class="cnc_cont">
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">刀具转数(S)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolRorateSpeedE">3000</strong><span>r/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">进给速度(V)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolFeedingSpeedE">1000</strong><span>m/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">节拍时间(T)</div>
+                                            <div class="cnc_cont_box"><strong id="TempoE">5</strong><span>min</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="cnc_stats">
+                                        <p><span class="ments_0_0" id="status_1e"></span><em>通电</em></p>
+                                        <p><span class="ments_1_0" id="status_2e"></span><em>运行</em></p>
+                                        <p><span class="ments_2_1" id="status_3e"></span><em>暂停</em></p>
+                                        <p><span class="ments_3_1" id="status_4e"></span><em>故障</em></p>
+                                        <p><span class="ments_4_1" id="status_5e"></span><em>报警</em></p>
+                                    </div>
+                                    <div class="cnc_img"><img src="images/img_cnc_2.png" alt=""></div>
+                                    <div class="cnc_title cnc_title_2">
+                                        台5
+                                    </div>
+                                </div>
+                                <div class="cnc_li">
+                                    <div class="cnc_cont">
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">刀具转数(S)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolRorateSpeedF">3000</strong><span>r/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">进给速度(V)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolFeedingSpeedF">1000</strong><span>m/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">节拍时间(T)</div>
+                                            <div class="cnc_cont_box"><strong id="TempoF">5</strong><span>min</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="cnc_stats">
+                                        <p><span class="ments_0_0" id="status_1f"></span><em>通电</em></p>
+                                        <p><span class="ments_1_0" id="status_2f"></span><em>运行</em></p>
+                                        <p><span class="ments_2_1" id="status_3f"></span><em>暂停</em></p>
+                                        <p><span class="ments_3_1" id="status_4f"></span><em>故障</em></p>
+                                        <p><span class="ments_4_1" id="status_5f"></span><em>报警</em></p>
+                                    </div>
+                                    <div class="cnc_img"><img src="images/img_cnc_2.png" alt=""></div>
+                                    <div class="cnc_title cnc_title_2">
+                                        台6
+                                    </div>
+                                </div>
+                                <div class="cnc_li">
+                                    <div class="cnc_cont">
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">刀具转数(S)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolRorateSpeedG">3000</strong><span>r/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">进给速度(V)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolFeedingSpeedG">1000</strong><span>m/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">节拍时间(T)</div>
+                                            <div class="cnc_cont_box"><strong id="TempoG">5</strong><span>min</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="cnc_stats">
+                                        <p><span class="ments_0_0" id="status_1g"></span><em>通电</em></p>
+                                        <p><span class="ments_1_0" id="status_2g"></span><em>运行</em></p>
+                                        <p><span class="ments_2_1" id="status_3g"></span><em>暂停</em></p>
+                                        <p><span class="ments_3_1" id="status_4g"></span><em>故障</em></p>
+                                        <p><span class="ments_4_1" id="status_5g"></span><em>报警</em></p>
+                                    </div>
+                                    <div class="cnc_img"><img src="images/img_cnc_2.png" alt=""></div>
+                                    <div class="cnc_title cnc_title_2">
+                                        台7
+                                    </div>
+                                </div>
+                                <div class="cnc_li">
+                                    <div class="cnc_cont">
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">刀具转数(S)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolRorateSpeedH">3000</strong><span>r/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">进给速度(V)</div>
+                                            <div class="cnc_cont_box"><strong id="ToolFeedingSpeedH">1000</strong><span>m/min</span></div>
+                                        </div>
+                                        <div class="cnc_cont_line">
+                                            <div class="cnc_cont_title">节拍时间(T)</div>
+                                            <div class="cnc_cont_box"><strong id="TempoH">5</strong><span>min</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="cnc_stats">
+                                        <p><span class="ments_0_0" id="status_1h"></span><em>通电</em></p>
+                                        <p><span class="ments_1_0" id="status_2h"></span><em>运行</em></p>
+                                        <p><span class="ments_2_1" id="status_3h"></span><em>暂停</em></p>
+                                        <p><span class="ments_3_1" id="status_4h"></span><em>故障</em></p>
+                                        <p><span class="ments_4_1" id="status_5h"></span><em>报警</em></p>
+                                    </div>
+                                    <div class="cnc_img"><img src="images/img_cnc_2.png" alt=""></div>
+                                    <div class="cnc_title cnc_title_2">
+                                        台8
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w1146">
+                <div class="cont_h488 cont_row">
+                    <div class="cont_h488 cont_w447 cont_box ">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="rmcont_cont_box">
+                            <div class="rmcont_title">用电能耗<div>Electricity Consumption</div></div>
+                            <div class="rmcont_cbox" id="main1"></div>
+                        </div>
+                    </div>
+                    <div class="cont_h488 cont_w686 cont_box ">
+                        <div class="cont_box_leftop"></div>
+                        <div class="cont_box_righttop"></div>
+                        <div class="cont_box_leftbom"></div>
+                        <div class="cont_box_rightbom"></div>
+                        <div class="rmcont_cont_box">
+                            <div class="rmcont_cbox">
+                                <div class="cnc_ul">
+                                    <div class="cnc_li">
+                                        <div class="cnc_title cnc_title_1">
+                                            台9
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">刀具转数(S)</div>
+                                                <div class="cnc_cont_box"><strong id="ToolRorateSpeedI">3000</strong><span>r/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">进给速度(V)</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">节拍时间(T)</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">5</strong><span>min</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_title cnc_title_1">台10</div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1j"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2j"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3j"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4j"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5j"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">刀具转数(S)</div>
+                                                <div class="cnc_cont_box"><strong id="ToolRorateSpeedJ">3000</strong><span>r/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">进给速度(V)</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedJ">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">节拍时间(T)</div>
+                                                <div class="cnc_cont_box"><strong id="TempoJ">5</strong><span>min</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_title cnc_title_1">台11</div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1k"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2k"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3k"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4k"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5k"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">刀具转数(S)</div>
+                                                <div class="cnc_cont_box"><strong id="ToolRorateSpeedK">3000</strong><span>r/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">进给速度(V)</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedK">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">节拍时间(T)</div>
+                                                <div class="cnc_cont_box"><strong id="TempoK">5</strong><span>min</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_title cnc_title_1">台12</div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1l"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2l"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3l"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4l"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5l"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">刀具转数(S)</div>
+                                                <div class="cnc_cont_box"><strong id="ToolRorateSpeedL">3000</strong><span>r/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">进给速度(V)</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedL">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">节拍时间(T)</div>
+                                                <div class="cnc_cont_box"><strong id="TempoL">5</strong><span>min</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont_h452 cont_box margin_top_10">
+                    <div class="cont_box_leftop"></div>
+                    <div class="cont_box_righttop"></div>
+                    <div class="cont_box_leftbom"></div>
+                    <div class="cont_box_rightbom"></div>
+                    <div class="rmcont_cont_box">
+                        <div class="rmcont_title_tl">
+                            <p><span></span><strong>总寿命</strong></p>
+                            <p><span></span><strong>剩余寿命</strong></p>
+                        </div>
+                        <div class="rmcont_title">
+                            刀具剩余寿命(Tool remaining life)
+                        </div>
+                        <div class="rmcont_cbox" id="main2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                //---------------------用电能耗设置
+                var myChart = ec.init(document.getElementById('main1'));
+                var option = t2(); //调用函数生成仪表
+                option.series[0].title.color = '#61b3eb';
+                option.series[0].min = 0;
+                option.series[0].max = 300;
+                option.series[0].detail.formatter = "{value}kw";
+                option.series[0].data[0].value = 30;
+                option.series[0].data[0].name = "瞬时功率"; //
+                //option.series[0].axisLabel.fontSize = 16;
+                //option.series[0].title.fontSize = 26;
+
+                option.series[0].detail.textStyle.fontSize = getScreenSize()[0];//数值字体大小
+                option.series[0].axisLabel.fontSize = getScreenSize()[1];//刻度字体大小
+                option.series[0].axisLine.lineStyle.width = getScreenSize()[2];//仪表盘宽度
+                option.series[0].title.fontSize = getScreenSize()[3];//标题字体大小
+
+                option.tooltip.formatter = "{a} <br/> {c}kw"; //设置弹出提示框的输出格式
+                option.series[0].name = "瞬时功率"; //设置弹出提示框的名称
+                option.series[0].axisLine.lineStyle.shadowColor = "#0096ff";
+                option.series[0].axisLine.lineStyle.color = [
+                    [0.2, '#2EC6C9'],
+                    [0.8, '#5DB2ED'],
+                    [1, '#D17A87']
+                ]; //刻度线的颜色设置
+                myChart.setOption(option);
+
+
+                //---------------------刀具剩余寿命
+                var myChart1 = ec.init(document.getElementById('main2'));
+                var dataAxis = ['台1', '台2', '台3', '台4', '台5', '台6', '台7', '台8', '台9', '台10', '台11', '台12'];
+                var data = [7000, 12000, 7000, 12000, 7000, 12000, 7000, 12000, 7000, 12000, 7000, 12000];
+                var yMax = 20000;
+                var dataShadow = [];
+                for (var i = 0; i < data.length; i++) {
+                    dataShadow.push(yMax);
+                }
+                var option1 = {
+                    radius: '100%',
+                    grid: {
+                        borderWidth: '0',
+                        x: '15%',
+                        y: '15%',
+                        bottom: '15%',
+                        right: '10%'
+                    },
+                    xAxis: {
+                        data: dataAxis,
+                        axisLabel: {
+                            textStyle: {
+                                color: '#fff',
+                                fontSize: 20
+                            }
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLine: {
+                            show: false
+                        },
+                        axisLine: { lineStyle: { color: "#1d3f62", width: "4" } },
+                    },
+                    yAxis: {
+                        axisLine: {
+                            show: false
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        axisLabel: {
+                            textStyle: {
+                                color: '#aaaaaa',
+                                fontSize: 20
+                            }
+                        },
+                        name: 'PCS',
+                        nameTextStyle: {
+                            color: '#2579cf', fontSize: 18, align: 'left'
+                        },
+                        axisLine: { lineStyle: { color: "#1d3f62", width: "4" } },
+                        splitLine: {
+                            show: false
+                        }
+                    },
+                    series: [{ // For shadow
+                        name: '总寿命',
+                        type: 'bar',
+                        itemStyle: {
+                            normal: { color: 'rgba(0,0,0,0.0)', borderWidth: '2', borderType: 'dashed', borderColor: '#07608d' }
+                        },
+                        barGap: '-100%',
+                        barCategoryGap: '50%',
+                        data: dataShadow,
+                        animation: false,
+                        data: data,
+                    },
+                    {
+                        name: '剩余寿命',
+                        type: 'bar',
+                        itemStyle: {
+                            normal: { color: '#00a0e9', }
+                        },
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top',
+                                color: '#fff',
+                                fontSize: 20
+                            }
+                        },
+                        data: data,
+                    }]
+                };
+                myChart1.setOption(option1);
+                var getdata = GetData();
+                clearInterval(timeTicket);
+                var timeTicket = setInterval(GetData, 20000);
+                function GetData() {
+                    //CNC
+                    $.ajax({
+                        type: "post",    //请求方式
+                        async: true,     //是否异步
+                        url: getUrl("GetCNCAutomaticProdcutionLineList"),
+                        dataType: "json",    //跨域json请求一定是jsonp
+                        beforeSend: function (request) {
+                            //请求前的处理
+                            request.setRequestHeader("Content-Type", "application/json");
+                        },
+                        success: function (data) {
+                            var da = data.result;
+                            //1#CNC设备状态
+                            setStatusX(data.result[0].deviceStatus, "a");
+                            //2#CNC设备状态
+                            setStatusX(data.result[1].deviceStatus, "b");
+                            //3#CNC设备状态
+                            setStatusX(data.result[2].deviceStatus, "c");
+                            //4#CNC设备状态
+                            setStatusX(data.result[3].deviceStatus, "d");
+                            //5#CNC设备状态
+                            setStatusX(data.result[4].deviceStatus, "e");
+                            //6#CNC设备状态
+                            setStatusX(data.result[5].deviceStatus, "f");
+                            //7#CNC设备状态
+                            setStatusX(data.result[6].deviceStatus, "g");
+                            //8#CNC设备状态
+                            setStatusX(data.result[7].deviceStatus, "h");
+                            //9#CNC设备状态
+                            setStatusX(data.result[8].deviceStatus, "i");
+                            //10#CNC设备状态
+                            setStatusX(data.result[9].deviceStatus, "j");
+                            //11#CNC设备状态
+                            setStatusX(data.result[10].deviceStatus, "k");
+                            //12#CNC设备状态
+                            setStatusX(data.result[11].deviceStatus, "l");
+
+                            //CNC自动产线用电能耗
+                            option.series[0].data[0].value = data.result[0].electricityConsumption;
+                            myChart.setOption(option, true);
+
+                            //CNC自动产线刀具剩余寿命与总寿命
+                            var dataArr = [
+                                data.result[0].toolRemainingLife,
+                                data.result[1].toolRemainingLife,
+                                data.result[2].toolRemainingLife,
+                                data.result[3].toolRemainingLife,
+                                data.result[4].toolRemainingLife,
+                                data.result[5].toolRemainingLife,
+                                data.result[6].toolRemainingLife,
+                                data.result[7].toolRemainingLife,
+                                data.result[8].toolRemainingLife,
+                                data.result[9].toolRemainingLife,
+                                data.result[10].toolRemainingLife,
+                                data.result[11].toolRemainingLife];
+                            var dataArrS = [
+                                data.result[0].toolSetLife,
+                                data.result[1].toolSetLife,
+                                data.result[2].toolSetLife,
+                                data.result[3].toolSetLife,
+                                data.result[4].toolSetLife,
+                                data.result[5].toolSetLife,
+                                data.result[6].toolSetLife,
+                                data.result[7].toolSetLife,
+                                data.result[8].toolSetLife,
+                                data.result[9].toolSetLife,
+                                data.result[10].toolSetLife,
+                                data.result[11].toolSetLife];
+                            option1.series[0].data = dataArrS;
+                            option1.series[1].data = dataArr;
+                            myChart1.setOption(option1, true);
+
+
+                            //1#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedA").innerText = data.result[0].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedA").innerText = data.result[0].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoA").innerText = data.result[0].tempo;
+
+                            //2#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedB").innerText = data.result[1].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedB").innerText = data.result[1].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoB").innerText = data.result[1].tempo;
+
+                            //3#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedC").innerText = data.result[2].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedC").innerText = data.result[2].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoC").innerText = data.result[2].tempo;
+
+                            //4#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedD").innerText = data.result[3].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedD").innerText = data.result[3].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoD").innerText = data.result[3].tempo;
+
+                            //5#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedE").innerText = data.result[4].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedE").innerText = data.result[4].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoE").innerText = data.result[4].tempo;
+
+                            //6#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedF").innerText = data.result[5].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedF").innerText = data.result[5].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoF").innerText = data.result[5].tempo;
+
+                            //7#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedG").innerText = data.result[6].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedG").innerText = data.result[6].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoG").innerText = data.result[6].tempo;
+
+                            //8#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedH").innerText = data.result[7].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedH").innerText = data.result[7].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoH").innerText = data.result[7].tempo;
+
+                            //9#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedI").innerText = data.result[8].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedI").innerText = data.result[8].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoI").innerText = data.result[8].tempo;
+
+                            //10#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedJ").innerText = data.result[9].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedJ").innerText = data.result[9].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoJ").innerText = data.result[9].tempo;
+
+                            //11#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedK").innerText = data.result[10].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedK").innerText = data.result[10].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoK").innerText = data.result[10].tempo;
+
+                            //12#CNC
+                            //刀具转数
+                            document.getElementById("ToolRorateSpeedL").innerText = data.result[11].toolRorateSpeed;
+                            //进给速度
+                            document.getElementById("ToolFeedingSpeedL").innerText = data.result[11].toolFeedingSpeed;
+                            //节拍时间
+                            document.getElementById("TempoL").innerText = data.result[11].tempo;
+
+
+
+                        },
+                        error: function (msg) {
+                            //console.log('api:GetCNCAutomaticProdcutionLineList,error:' + msg.responseText);
+                        }
+                    });
+
+                    //var min = option.series[0].min;
+                    //var max = option.series[0].max;
+                    //option.series[0].data[0].value = Math.floor(Math.random() * (max - min)) + min;
+                    //myChart.setOption(option, true);
+                }
+            }
+        );
+    </script>
+</body>
+</html>

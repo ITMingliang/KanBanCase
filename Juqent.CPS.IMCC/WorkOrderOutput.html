@@ -1,0 +1,730 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>工单产出看板</title>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/contain.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/contain.js"></script>
+
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="cheader">
+            <div class="ctitle">
+                <strong>工单产出看板</strong>
+            </div>
+            <div class="rmdatetime">
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+        <div class="rmcont_row">
+            <div class="cont_w490">
+                <div class="boxall cont_h39 mt1">
+                    <div class="alltitle">极片工段</div>
+                    <div class="navboxall main_table" id="echart1">
+                        <table >
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>工单号</th>
+                                    <th>工单数量</th>
+                                    <th>完成数量</th>
+                                    <th>产成率</th>
+                                    <th>工单状态</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tab1">
+                                <tr>
+                                    <td>1</td>
+                                    <td>PT001-2</td>
+                                    <td>300</td>
+                                    <td>300</td>
+                                    <td>100%</td>
+                                    <td>已完成</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="boxall cont_h39">
+                    <div class="alltitle">组装工段</div>
+                    <div class="navboxall main_table" id="echart2">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>工单号</th>
+                                    <th>工单数量</th>
+                                    <th>完成数量</th>
+                                    <th>产成率</th>
+                                    <th>工单状态</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tab2">
+                                <tr>
+                                    <td>1</td>
+                                    <td>PT001-2</td>
+                                    <td>300</td>
+                                    <td>300</td>
+                                    <td>100%</td>
+                                    <td>已完成</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                                <tr >
+                                    <td>10</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="cont_w627">
+                <div class="clearfix boxall cont_h148 center1 ">
+                    <div class="pulll_left title2">
+                        <span>工段进度</span>
+                    </div>
+                    <div class="pulll_right zhibiao" id="char5">
+                        <div class="zb1"><span>极片工段</span><div id="pie1"></div></div>
+                        <div class="zb2"><span>组装工段</span><div id="pie2"></div></div>
+                        <div class="zb3"><span>化成工段</span><div id="pie3"></div></div>
+                        <div class="zb4"><span>包装工段</span><div id="pie4"></div></div>
+                    </div>
+                </div>
+                <div class="boxall cont_h270">
+                    <!--<div class="alltitle">工单进度（柱形图）</div>-->
+                    <div class="navboxall" id="echart7"></div>
+                </div>
+                <div class="boxall cont_h407">
+                    <!--<div class="alltitle">生产进度（已完成，生产中，待生产）</div>-->
+                    <div class="navboxall" id="echart6"></div>
+                </div>
+
+            </div>
+            <div class="cont_w490">
+                <div class="boxall cont_h39 mt1">
+                    <div class="alltitle">化成工段</div>
+                    <div class="navboxall main_table" id="echart3">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>工单号</th>
+                                    <th>工单数量</th>
+                                    <th>完成数量</th>
+                                    <th>产成率</th>
+                                    <th>工单状态</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tab3">
+                                <tr>
+                                    <td>1</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>350</td>
+                                    <td>100%</td>
+                                    <td>已完成</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="boxall cont_h39">
+                    <div class="alltitle">包装工段</div>
+                    <div class="navboxall main_table" id="echart4">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>工单号</th>
+                                    <th>工单数量</th>
+                                    <th>完成数量</th>
+                                    <th>产成率</th>
+                                    <th>工单状态</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tab4">
+                                <tr>
+                                    <td>1</td>
+                                    <td>PT001-2</td>
+                                    <td>300</td>
+                                    <td>300</td>
+                                    <td>100%</td>
+                                    <td>已完成</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>PT001-2</td>
+                                    <td>350</td>
+                                    <td>200</td>
+                                    <td>57.4%</td>
+                                    <td>生产中</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>PT001-2</td>
+                                    <td>550</td>
+                                    <td>200</td>
+                                    <td>0%</td>
+                                    <td>待生产</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        //给背景粒子高度设为网页全部正文高度，滚动条到的地方也包含
+        $("#particles-js")[0].style.setProperty('height', document.body.scrollHeight + "px");
+    </script>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script src="js/echarts/workoutputcharts.js"></script>
+
+    <!--动态粒子背景js-->
+    <script src="js/particles.min.js"></script>
+    <!--动态粒子背景js-->
+    <script src="js/app.js"></script>
+
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar'
+            ],
+            function (ec) {
+                var pie1 = echarts.init(document.getElementById('pie1'));
+                var option1 = char1();
+                option1.series[0].data[0].value = 70;
+                option1.series[0].data[1].value = 30;
+                option1.series[0].data[1].label.normal.formatter = function () {
+                    return '占比' + Math.round(70 / (70 + 30) * 100) + '%';
+                };
+                pie1.setOption(option1);
+
+                var pie2 = echarts.init(document.getElementById('pie2'));
+                var option2 = char1();
+                option2.series[0].data[0].itemStyle.normal.color = 'lightgreen';
+                option2.series[0].data[0].value = 50;
+                option2.series[0].data[1].value = 50;
+                option2.series[0].data[1].label.normal.formatter = function () {
+                    return '占比' + Math.round(50 / (70 + 30) * 100) + '%';
+                };
+                pie2.setOption(option2);
+
+                var pie3 = echarts.init(document.getElementById('pie3'));
+                var option3 = char1();
+                option3.series[0].data[0].itemStyle.normal.color = 'lightyellow';
+                option3.series[0].data[0].value = 40;
+                option3.series[0].data[1].value = 60;
+                option3.series[0].data[1].label.normal.formatter = function () {
+                    return '占比' + Math.round(40 / (70 + 30) * 100) + '%';
+                };
+                pie3.setOption(option3);
+
+                var pie4 = echarts.init(document.getElementById('pie4'));
+                var option4 = char1();
+                option4.series[0].data[0].itemStyle.normal.color = 'lightpink';
+                option4.series[0].data[0].value = 30;
+                option4.series[0].data[1].value = 70;
+                option4.series[0].data[1].label.normal.formatter = function () {
+                    return '占比' + Math.round(30 / (70 + 30) * 100) + '%';
+                };
+                pie4.setOption(option4);
+
+                var char6 = echarts.init(document.getElementById('echart6'));
+                var option6 = char2();
+                option6.xAxis.data =  ['PT001-1', 'PT001-2', 'PT001-3', 'PT001-4', 'PT001-5', 'PT001-6', 'PT001-7', 'PT001-8', 'PT001-9', 'PT001-10'];
+                option6.series[0].data = [150, 160, 120, 120, 180, 40, 20, 10, 20, 15];
+                option6.series[1].data = [20, 15, 25, 10, 15, 30, 40, 80, 90, 120];
+                option6.series[2].data = [5, 15, 25, 10, 15, 30, 80, 10, 0, 0];
+                option6.series[3].data = [24, 22, 24, 26, 30, 88, 80, 10, 25, 17];
+                char6.setOption(option6);
+
+                var char7 = echarts.init(document.getElementById('echart7'));
+                var option7 = char3();
+                option7.series[0].data = [2, 2, 3, 3];
+                option7.series[1].data = [5, 5, 5, 5];
+                option7.series[2].data = [3, 3, 2, 2];
+                char7.setOption(option7);
+
+                var gdata = gData();
+                clearInterval(timeTicket);
+                var timeTicket = setInterval(gData, 20000);
+                function gData() {
+
+                    //$.ajax({
+                    //    type: "post",    //请求方式
+                    //    /* async: false,*/     //是否异步
+                    //    url: "http://localhost:5702/api/ProductionInfo/GetMoOutputs",
+                    //    dataType: "json",    //跨域json请求一定是jsonp
+                    //    success: function (data) {
+
+                    //        var bar1data0 = [];
+                    //        var bar1data1 = [];
+                    //        var bar1data2 = [];
+                    //        var num0 = 0;
+                    //        var num1 = 0;
+                    //        var num2 = 0;
+
+                    //        var part1 = data.part1;                       
+                    //        var html = "";
+                    //        for (var i = 0; i < part1.length; i++) {
+                    //            if (part1[i].MoStatus == "已完成") num0++;
+                    //            if (part1[i].MoStatus == "生产中") num1++;
+                    //            if (part1[i].MoStatus == "待生产") num2++;
+
+                    //            html += "<tr>";
+                    //            html += "<td>" + part1[i].MoCode + "</td>";
+                    //            html += "<td>" + part1[i].SectionType + "</td>";
+                    //            html += "<td>" + part1[i].MoNum + "</td>";
+                    //            html += "<td>" + part1[i].CompleteNum + "</td>";
+                    //            html += "<td>" + part1[i].MoRate + "</td>";
+                    //            html += "<td>" + part1[i].MoStatus + "</td>";
+                    //            html += "</tr>";                               
+                    //        }
+                    //        $('#tab1').html(html);
+                    //        bar1data0.push(num0);
+                    //        bar1data1.push(num1);
+                    //        bar1data2.push(num2);
+
+
+                    //        var num0 = 0;
+                    //        var num1 = 0;
+                    //        var num2 = 0;
+                    //        var part2 = data.part2;
+                    //        var html2 = "";
+                    //        for (var i = 0; i < part2.length; i++) {
+                    //            if (part1[i].MoStatus == "已完成") num0++;
+                    //            if (part1[i].MoStatus == "生产中") num1++;
+                    //            if (part1[i].MoStatus == "待生产") num2++;
+
+                    //            html2 += "<tr>";
+                    //            html2 += "<td>" + part2[i].MoCode + "</td>";
+                    //            html2 += "<td>" + part2[i].SectionType + "</td>";
+                    //            html2 += "<td>" + part2[i].MoNum + "</td>";
+                    //            html2 += "<td>" + part2[i].CompleteNum + "</td>";
+                    //            html2 += "<td>" + part2[i].MoRate + "</td>";
+                    //            html2 += "<td>" + part2[i].MoStatus + "</td>";
+                    //            html2 += "</tr>";
+                    //        }
+                    //        $('#tab2').html(html2);
+                    //        bar1data0.push(num0);
+                    //        bar1data1.push(num1);
+                    //        bar1data2.push(num2);
+
+                    //        var num0 = 0;
+                    //        var num1 = 0;
+                    //        var num2 = 0;
+                    //        var part3 = data.part3;
+                    //        var html3 = "";
+                    //        for (var i = 0; i < part3.length; i++) {
+                    //            if (part1[i].MoStatus == "已完成") num0++;
+                    //            if (part1[i].MoStatus == "生产中") num1++;
+                    //            if (part1[i].MoStatus == "待生产") num2++;
+
+                    //            html3 += "<tr>";
+                    //            html3 += "<td>" + part3[i].MoCode + "</td>";
+                    //            html3 += "<td>" + part3[i].SectionType + "</td>";
+                    //            html3 += "<td>" + part3[i].MoNum + "</td>";
+                    //            html3 += "<td>" + part3[i].CompleteNum + "</td>";
+                    //            html3 += "<td>" + part3[i].MoRate + "</td>";
+                    //            html3 += "<td>" + part3[i].MoStatus + "</td>";
+                    //            html3 += "</tr>";
+                    //        }
+                    //        $('#tab3').html(html3);
+                    //        bar1data0.push(num0);
+                    //        bar1data1.push(num1);
+                    //        bar1data2.push(num2);
+
+                    //        var num0 = 0;
+                    //        var num1 = 0;
+                    //        var num2 = 0;
+                    //        var part4 = data.part4;
+                    //        var html4 = "";
+                    //        for (var i = 0; i < part4.length; i++) {
+                    //            if (part1[i].MoStatus == "已完成") num0++;
+                    //            if (part1[i].MoStatus == "生产中") num1++;
+                    //            if (part1[i].MoStatus == "待生产") num2++;
+
+                    //            html4 += "<tr>";
+                    //            html4 += "<td>" + part4[i].MoCode + "</td>";
+                    //            html4 += "<td>" + part4[i].SectionType + "</td>";
+                    //            html4 += "<td>" + part4[i].MoNum + "</td>";
+                    //            html4 += "<td>" + part4[i].CompleteNum + "</td>";
+                    //            html4 += "<td>" + part4[i].MoRate + "</td>";
+                    //            html4 += "<td>" + part4[i].MoStatus + "</td>";
+                    //            html4 += "</tr>";
+                    //        }
+                    //        $('#tab4').html(html4);
+                    //        bar1data0.push(num0);
+                    //        bar1data1.push(num1);
+                    //        bar1data2.push(num2);
+
+                            
+                    //        var part5 = data.part5;
+                    //        option1.series[0].data[0].value = data.part5.part1 ;
+                    //        option1.series[0].data[1].value = data.part1.length - data.part5.part1;
+                    //        option1.series[0].data[1].label.normal.formatter = function () {
+                    //            return '占比' + Math.round(data.part5.part1 / data.part1.length * 100) + '%';
+                    //        };
+                    //        pie1.setOption(option1);
+
+                    //        option2.series[0].data[0].value = data.part5.part2;
+                    //        option2.series[0].data[1].value = data.part2.length - data.part5.part2;
+                    //        option2.series[0].data[1].label.normal.formatter = function () {
+                    //            return '占比' + Math.round(data.part5.part2/ data.part2.length * 100) + '%';
+                    //        };
+                    //        pie2.setOption(option2);
+
+                    //        option3.series[0].data[0].value = data.part5.part3;
+                    //        option3.series[0].data[1].value = data.part3.length - data.part5.part3;
+                    //        option3.series[0].data[1].label.normal.formatter = function () {
+                    //            return '占比' + Math.round(data.part5.part3 / data.part3.length * 100) + '%';
+                    //        };
+                    //        pie3.setOption(option3);
+
+                    //        option4.series[0].data[0].value = data.part5.part4;
+                    //        option4.series[0].data[1].value = data.part4.length - data.part5.part4;
+                    //        option4.series[0].data[1].label.normal.formatter = function () {
+                    //            return '占比' + Math.round(data.part5.part4 / data.part4.length * 100) + '%';
+                    //        };
+                    //        pie4.setOption(option4)
+
+                    //        option7.series[0].data = bar1data0;
+                    //        option7.series[1].data = bar1data1;
+                    //        option7.series[2].data = bar1data2;
+                    //        char7.setOption(option7);
+                    //    },
+                    //    error: function (msg) {
+                    //        console.log('api:GetTestData,error:' + msg.responseText);
+                    //    }
+                    //});
+
+                }
+            }
+        );
+    </script>
+</body>
+</html>

@@ -1,0 +1,735 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>设备参数</title>
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/contain.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/contain.js"></script>
+    <style>
+     
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="cheader">
+            <div class="ctitle">
+                <strong>设备参数监控</strong>
+            </div>
+            <div class="rmdatetime">
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="rmcont_row">
+            <div class="cont_w626">
+                <div class="boxall cont_h468 mt1">
+                    <div class="alltitle">卷绕机</div>
+                    <div class="navboxall">
+                        <div class="rmcont_cont_box">
+                            <div class="rmcont_cbox">
+                                <div class="cnc_ul">
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台1
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台2
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台3
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台4
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxall cont_h407">
+                    <div class="alltitle">外壳打码</div>
+                    <div class="navboxall">
+                        <div class="rmcont_cont_box">
+                            <div class="rmcont_cbox">
+                                <div class="cnc_ul">
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台1
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台2
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台3
+                                        </div>
+                                    </div>
+
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台4
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w626">
+                <div class="boxall cont_h468 mt1">
+                    <div class="alltitle">注液</div>
+                    <div class="navboxall">
+                        <div class="rmcont_cont_box">
+                            <div class="rmcont_cbox">
+                                <div class="cnc_ul">
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台1
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台2
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台3
+                                        </div>
+                                    </div>
+
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台4
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxall cont_h407">
+                    <div class="alltitle">X-RAY</div>
+                    <div class="navboxall">
+                        <div class="rmcont_cont_box">
+                            <div class="rmcont_cbox">
+                                <div class="cnc_ul">
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台1
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台2
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台3
+                                        </div>
+                                    </div>
+
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台4
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w626">
+                <div class="boxall cont_h468 mt1">
+                    <div class="alltitle">化成</div>
+                    <div class="navboxall">
+                        <div class="rmcont_cont_box">
+                            <div class="rmcont_cbox">
+                                <div class="cnc_ul">
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台1
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台2
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台3
+                                        </div>
+                                    </div>
+
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台4
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxall cont_h407">
+                    <div class="alltitle">自动包装线</div>
+                    <div class="navboxall">
+                        <div class="rmcont_cont_box">
+                            <div class="rmcont_cbox">
+                                <div class="cnc_ul">
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台1
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台2
+                                        </div>
+                                    </div>
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台3
+                                        </div>
+                                    </div>
+
+                                    <div class="cnc_li">
+                                        <div class="cnc_cont">
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">运行时间</div>
+                                                <div class="cnc_cont_box"><strong id="ToolFeedingSpeedI">1000</strong><span>m/min</span></div>
+                                            </div>
+                                            <div class="cnc_cont_line">
+                                                <div class="cnc_cont_title">线速</div>
+                                                <div class="cnc_cont_box"><strong id="TempoI">15</strong><span>m/min</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="cnc_stats">
+                                            <p><span class="ments_0_0" id="status_1i"></span><em>通电</em></p>
+                                            <p><span class="ments_1_0" id="status_2i"></span><em>运行</em></p>
+                                            <p><span class="ments_2_1" id="status_3i"></span><em>暂停</em></p>
+                                            <p><span class="ments_3_1" id="status_4i"></span><em>故障</em></p>
+                                            <p><span class="ments_4_1" id="status_5i"></span><em>报警</em></p>
+                                        </div>
+                                        <div class="cnc_img"><img src="images/img_cnc_1.png" alt=""></div>
+                                        <div class="cnc_title cnc_title_2">
+                                            台4
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        //给背景粒子高度设为网页全部正文高度，滚动条到的地方也包含
+        $("#particles-js")[0].style.setProperty('height', document.body.scrollHeight + "px");
+    </script>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script src="js/echarts/mooutputcharts.js"></script>
+    <script src="js/progress.js"></script>
+
+    <!--动态粒子背景js-->
+    <!--<script src="js/particles.min.js"></script>-->
+    <!--动态粒子背景js-->
+    <!--<script src="js/app.js"></script>-->
+
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar',
+                'echarts/chart/pie',
+            ],
+            function (ec) {
+           
+
+            }
+        );
+
+
+
+
+    </script>
+</body>
+</html>

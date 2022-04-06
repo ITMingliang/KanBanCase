@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>组装设备信息</title>
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/contain.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/contain.js"></script>
+    <style>
+        .title1 {
+            position: relative;
+            margin: 1.3vh;
+            height: 3.5vh;
+            width: 100%;
+        }
+
+            .title1 span {
+                font-size: 20px;
+                color: #fff;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                transition: all 0.5s;
+                -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
+                -moz-animation: neon2 2.5s ease-in-out infinite alternate;
+                animation: neon2 2.5s ease-in-out infinite alternate;
+            }
+
+        .mainlist {
+            width: 85%;
+            height: 85%;
+            margin-top: 6.5vh;
+            padding-left: 3.5vw;
+        }
+
+            .mainlist p {
+                font-size: 18px;
+                color: #fff;
+                margin-top: 7.5%;
+            }
+
+                .mainlist p span {
+                    font-size: 20px;
+                    color: #fff;
+                    -webkit-transition: all 0.5s;
+                    -moz-transition: all 0.5s;
+                    transition: all 0.5s;
+                    -webkit-animation: neon5 2.5s ease-in-out infinite alternate;
+                    -moz-animation: neon5 2.5s ease-in-out infinite alternate;
+                    animation: neon5 2.5s ease-in-out infinite alternate;
+                }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="cheader">
+            <div class="ctitle">
+                <strong>设备稼动率看板</strong>
+            </div>
+            <div class="rmdatetime">
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="rmcont_row">
+            <div class="cont_w627">
+                <div class="boxall cont_h39 mt1">
+                    <div class="rmcont_subtitle margin_5">
+                       卷绕机
+                    </div>
+                    <div class="box1">
+                        <div class="box2">
+                            <img src="images/pr/Winding.png"/>
+                        </div>
+                        <div class="box2" id="char1"></div>
+                    </div>
+                </div>
+                <div class="boxall cont_h39 ">
+                    <div class="rmcont_subtitle margin_5">
+                        外壳打码
+                    </div>                    
+                    <div class="box1">
+                        <div class="box2">
+                            <img src="images/pr/ShellCode.png" />
+                        </div>
+                        <div class="box2" id="char2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w627">
+                <div class="boxall cont_h39 mt1">
+                    <div class="rmcont_subtitle margin_5">
+                        注液
+                    </div>                   
+                    <div class="box1">
+                        <div class="box2">
+                            <img src="images/pr/LiquidInjection.png" />
+                        </div>
+                        <div class="box2" id="char3"></div>
+                    </div>
+                </div>
+                <div class="boxall cont_h39 ">
+                    <div class="rmcont_subtitle margin_5">
+                        X-Ray
+                    </div>                   
+                    <div class="box1">
+                        <div class="box2">
+                            <img src="images/pr/X-Ray.png" />
+                        </div>
+                        <div class="box2" id="char4"></div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        //给背景粒子高度设为网页全部正文高度，滚动条到的地方也包含
+        $("#particles-js")[0].style.setProperty('height', document.body.scrollHeight + "px");
+    </script>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script src="js/echarts/mooutputcharts.js"></script>
+    <script src="js/progress.js"></script>
+
+    <!--动态粒子背景js-->
+    <!--<script src="js/particles.min.js"></script>-->
+    <!--动态粒子背景js-->
+    <!--<script src="js/app.js"></script>-->
+
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar',
+            ],
+            function (ec) {
+                
+                var echar1 = echarts.init(document.getElementById('char1'));
+                var option1 = sectionchar5();
+                option1.title.show = false;                
+                option1.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option1.series[0].data = [123, 115, 123, 156, 135, 152, 136];
+                option1.series[0].lineStyle.normal.color = "#ffa800";
+                option1.series[0].areaStyle.normal.color = new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(205,52,42, 0.5)'
+                }, {
+                    offset: 0.8,
+                    color: 'rgba(235,235,21, 0)'
+                }], false);
+                echar1.setOption(option1); 
+
+
+                var echar2 = echarts.init(document.getElementById('char2'));
+                var option2 = sectionchar5();
+                option2.title.show = false;
+                option2.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option2.series[0].data = [123, 115, 123, 156, 135, 152, 136];                
+                echar2.setOption(option2); 
+
+                var echar3 = echarts.init(document.getElementById('char3'));
+                var option3 = sectionchar5();
+                option3.title.show = false;
+                option3.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option3.series[0].data = [123, 115, 123, 156, 135, 152, 136];
+                option3.series[0].lineStyle.normal.color = "rgb(123,188,101)";
+                option3.series[0].areaStyle.normal.color = new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(205,52,42, 0.5)'
+                }, {
+                    offset: 0.8,
+                    color: 'rgba(235,235,21, 0)'
+                }], false);
+                echar3.setOption(option3); 
+
+                var echar4 = echarts.init(document.getElementById('char4'));
+                var option4 = sectionchar5();
+                option4.title.show = false;
+                option4.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option4.series[0].data = [123, 115, 123, 156, 135, 152, 136];
+                option4.series[0].lineStyle.normal.color = "rgb(54, 120, 200)";
+                option4.series[0].areaStyle.normal.color = new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                    offset: 1,
+                    color: 'rgba(54, 120, 200, 0.2)'
+                }, {
+                    offset: 0,
+                    color: 'rgba(54, 120, 200, 0)'
+                }], false); 
+                echar4.setOption(option4); 
+            }
+        );
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!--<WebApi Code="ServerUrl" Name="服务路径" Description="WebApi路径" ParamName="" Url="http://192.168.1.101:80/"/>-->
+  <WebApi Code="ServerUrl" Name="服务路径" Description="WebApi路径" ParamName="" Url="http://localhost:49279/"/>
+  <WebApi Code="Sys.ServerTime" Name="服务器时间" Description="应用服务器" ParamName="" Url="api/services/app/common/GetServerTime"/>
+  <WebApi Code="Sys.DatabaseTime" Name="数据库时间" Description="数据库" ParamName="" Url="api/services/app/common/GetDatabaseTime"/>
+  <!--<WebApi Code="Sys.Login" Name="登录" Description="用户登录" ParamName="" Url="/api/services/app/userManagement/Login"/>-->
+  <WebApi Code="Sys.Login" Name="登录" Description="用户登录" ParamName="" Url="api/Account/ClientLogin"/>
+  <WebApi Code="Sys.Menu" Name="菜单" Description="初始化菜单" ParamName="" Url="api/services/app/menu/GetMenu"/>
+  <WebApi Code="Sys.GetUser" Name="获得用户" Description="根据ID获得用户" ParamName="Id" Url="api/services/app/userManagement/GetUser"/>
+  <WebApi Code="Sys.GetScanConfig" Name="获得扫描配置" Description="根据菜单获得扫描配置" ParamName="MenuId" Url="api/services/app/scan/GetScanConfigByMenu"/>
+  <WebApi Code="Sys.GetScanConfigDetail" Name="获得扫描配置明细" Description="根据ID获得扫描配置明细" ParamName="ScanConfigId" Url="api/services/app/scan/GetScanConfigDetail"/>
+  <WebApi Code="Sys.CreateOrUpdateUser" Name="创建或修改用户" Description="创建或修改用户" ParamName="" Url="api/services/app/user/CreateOrUpdateUser "/>
+  <WebApi Code="Sys.GetUserForEdit" Name="获得用户" Description="获得用户信息" ParamName="" Url="api/services/app/user/GetUserForEdit"/>
+  <WebApi Code="Sys.GetUserByUserName" Name="获得用户" Description="获得用户信息" ParamName="" Url="api/services/app/user/GetUserByUserName"/>
+  <WebApi Code="Sys.UpdateUserActive" Name="修改用户状态" Description="修改用户状态" ParamName="" Url="api/services/app/user/UpdateUserActive"/>
+
+  <WebApi Code="Pms.Equipment" Name="获得设备" Description="根据设备编号获得设备" ParamName="input" Url="api/services/equipment/pmsEquipment/GetPmsEquipmentByCode"/>
+  <WebApi Code="Pms.Equipment.Get" Name="检索设备" Description="按查询条件检索设备" ParamName="" Url="api/services/equipment/pmsEquipment/GetPmsEquipmentList"/>
+  <WebApi Code="Pms.EquipmentType" Name="设备类型" Description="获取设备类型" ParamName="" Url="api/services/equipment/pmsEquipmentType/GetPmsEquipmentTypesListAsync"/>
+  <WebApi Code="Pms.EquipStopReason" Name="停机原因" Description="获得停机原因" ParamName="" Url="api/services/equipment/pmsEquipStopReason/GetStopReason"/>
+  <WebApi Code="Pms.GetEquipStopReason" Name="停机原因" Description="根据Id获得停机原因" ParamName="Id" Url="api/services/equipment/pmsEquipStopReason/GetStopReasonById"/>
+  <!--计划-->
+  <WebApi Code="Pms.PollingPlan" Name="巡检计划" Description="获得巡检计划" Url="api/services/equipment/pmsMaintenancePlan/GetPollingPlanAsync"/>
+  <WebApi Code="Pms.MaintanencePlan" Name="保养计划" Description="获得保养计划" Url="api/services/equipment/pmsMaintenancePlan/GetMaintanencePlan"/>
+  <WebApi Code="Pms.PlanForIng" Name="进行计划" Description="将计划状态置为进行中" Url="api/services/equipment/pmsMaintenancePlan/SetPlanStatusForIngAsync"/>
+  <WebApi Code="Pms.FinishPlan" Name="结束计划" Description="将计划状态置为结束" Url="api/services/equipment/pmsMaintenancePlan/SetPlanStatusFinish"/>
+  <!--计划详情-->
+  <WebApi Code="Pms.MaintanencePlanDetail" Name="计划详情" Description="根据计划获得详情" Url="api/services/equipment/pmsMaintenancePlanDetail/GetPlanDetailAsync"/>
+  <WebApi Code="Pms.MaintanencePlanDetailByEquipmentCode" Name="计划详情" Description="根据设备号获得相关的计划详情" Url="api/services/equipment/pmsMaintenancePlanDetail/GetPlanDetailByEquipmentAsync"/>
+  <WebApi Code="Pms.SetPlanDetailRepair" Name="标注报修" Description="标注计划详情对应的设备为报修" Url="api/services/equipment/pmsMaintenancePlanDetail/SetPlanDetailRepair"/>
+  <WebApi Code="Pms.SetPlanDetailNormal" Name="确认正常" Description="确认计划详情对应的设备为正常" Url="api/services/equipment/pmsMaintenancePlanDetail/SetPlanDetailNormal"/>
+  <!--计划日志-->
+  <WebApi Code="Pms.GetPollingLog" Name="巡检日志" Description="根据设备号获取巡检日志" Url="api/services/equipment/pmsMaintenancePlanDetail/GetPollingLogByEquipmentAsync"/>
+  <WebApi Code="Pms.GetMaintanenceLog" Name="保养日志" Description="根据设备号获取保养日志" Url="api/services/equipment/pmsMaintenancePlanDetail/GetMaintenanceLogByEquipmentAsync"/>
+  <!--设备维修-->
+  <WebApi Code="Pms.CreateOrUpdateEquipmentRepair" Name="创建/更新保养单" Description="创建新的保养单或者更新保养单" Url="api/services/equipment/pmsEquipmentRepair/CreateOrUpdatePmsEquipmentRepairAsync"/>
+
+  <WebApi Code="Pms.EquipStopGet" Name="获取设备停机" Description="获得当前有效的停机记录" ParamName="EquipmentCode" Url="api/services/equipment/pmsEquipmentStop/GetPmsEquipmentStop"/>
+  <WebApi Code="Pms.EquipStopCreate" Name="创建设备停机" Description="开始停机" ParamName="" Url="api/services/equipment/pmsEquipmentStop/CreatePmsEquipmentStop"/>
+  <WebApi Code="Pms.EquipStopModify" Name="修改设备停机" Description="结束停机，修改停机原因" ParamName="" Url="api/services/equipment/pmsEquipmentStop/ModifyPmsEquipmentStop"/>
+  <WebApi Code="Pms.EquipStopCancel" Name="取消设备停机" Description="删除设备停机记录" ParamName="Id" Url="api/services/equipment/pmsEquipmentStop/DeletePmsEquipmentStop"/>
+
+  <!--监控中心-->
+  <WebApi Code="Imcc.GetPageInfo" Name="获得大屏页面定义" Description="获得大屏页面定义" ParamName="" Url="api/services/imcc/common/GetPageInfo"/>
+
+  <!--EWI文档显示-->
+  <WebApi Code="EWI.GetFile" Name="获取相关文件信息" Description="获取相关文件名" ParamName="" Url="api/services/ewi/stationOperation/GetDocName"/>
+  <WebApi Code="EWI.DownLoadFile" Name="下载文件" Description="下载文件" ParamName="" Url="api/services/ewi/stationOperation/GetFile"/>
+</configuration>

@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>设备参数</title>
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/contain.css" rel="stylesheet" />
+    <link href="css/common.css" rel="stylesheet" />
+    <script src="js/status.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/contain.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="body_warp">
+        <!--顶部标题-->
+        <div class="cheader">
+            <div class="ctitle">
+                <strong>设备参数监控</strong>
+            </div>
+            <div class="rmdatetime">
+                <span id='Timers'>&nbsp;</span>
+            </div>
+        </div>
+
+        <div class="rmcont_row">
+            <div class="cont_w626">
+                <div class="boxall cont_h468 mt1">
+                    <div class="alltitle">时段产出</div>
+                    <div class="navboxall" id="char1">
+
+                    </div>
+                </div>
+                <div class="boxall cont_h407">
+                    <div class="alltitle">日产出</div>
+                    <div class="navboxall" id="char2">
+
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w626">
+                <div class="boxall cont_h468 mt1">
+                    <div class="alltitle">工单信息</div>
+                    <div class="navboxall" id="char6">
+
+                    </div>
+                </div>
+                <div class="boxall cont_h407">
+                    <div class="alltitle">PPM</div>
+                    <div class="navboxall" id="char3">
+
+                    </div>
+                </div>
+            </div>
+            <div class="cont_w626">
+                <div class="boxall cont_h468 mt1">
+                    <div class="alltitle">各站产出</div>
+                    <div class="navboxall" id="char4">
+
+                    </div>
+                </div>
+                <div class="boxall cont_h407">
+                    <div class="alltitle">异常信息</div>
+                    <div class="navboxall" id="char5">
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+        //给背景粒子高度设为网页全部正文高度，滚动条到的地方也包含
+        $("#particles-js")[0].style.setProperty('height', document.body.scrollHeight + "px");
+    </script>
+    <script src="js/echarts/time.js"></script>
+    <script src="js/echarts/echarts.js"></script>
+    <script type="text/javascript" src="js/echarts/gauge.js"></script>
+    <script src="js/echarts/mooutputcharts.js"></script>
+    <script src="js/progress.js"></script>
+
+    <!--动态粒子背景js-->
+    <!--<script src="js/particles.min.js"></script>-->
+    <!--动态粒子背景js-->
+    <!--<script src="js/app.js"></script>-->
+
+    <script type="text/javascript">
+        function getScreenSize() {
+            var valueSize = 25;//数值字体大小
+            var scaleSize = 15;//刻度字体大小
+            var barWidth = 10;//仪表盘宽度
+            var titleSize = 20;//标题字体大小
+            var height = window.screen.height;
+            if (height >= 300 && height < 600) {
+                valueSize = 10;//数值字体大小
+                scaleSize = 0.1;//刻度字体大小
+                barWidth = 6;//仪表盘宽度
+                titleSize = 3;//标题字体大小
+            } else if (height >= 600) {
+                valueSize = 25;//数值字体大小
+                scaleSize = 15;//刻度字体大小
+                barWidth = 10;//仪表盘宽度
+                titleSize = 20;//标题字体大小
+            }
+            return [valueSize, scaleSize, barWidth, titleSize];
+        }
+
+        if (!window.require) {
+            require = function (a, b) {
+                b(echarts);
+            };
+            require.config = function () { };
+        }
+
+        require.config({
+            paths: {
+                echarts: 'js/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+                'echarts/chart/bar',
+                'echarts/chart/pie',
+            ],
+            function (ec) {
+                var char1 = echarts.init(document.getElementById("char1"));
+                var data1 = [89, 78, 86, 85, 84, 83];
+                var option1 = sectionchar1(data1);
+                option1.xAxis.data = ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00'];
+                option1.series[0].data = [150, 160, 120, 120, 180, 140];
+                option1.xAxis.axisLabel.textStyle.fontSize = 10;
+                option1.series[0].barWidth = '30%';
+                //option1.xAxis.axisLabel.rotate = 35,
+                option1.series[0].itemStyle.normal.color = '#3F8FD2';
+                option1.series[1].itemStyle.normal.color = '#323086';
+                option1.series[1].markPoint.itemStyle.normal.color = '#323086';
+                char1.setOption(option1);
+
+                var char2 = echarts.init(document.getElementById("char2"));
+                var data2 = [89, 78, 86, 85, 84, 83, 87];
+                var option2 = sectionchar1(data2);
+                option2.xAxis.data = ['5日', '6日', '7日', '8日', '9日', '10日', '11日'];
+                option2.series[0].data = [111, 123, 156, 178, 169, 128, 126];
+                option2.series[0].barWidth = '30%';
+                option2.series[0].itemStyle.normal.color = '#BF8330';
+                option2.series[1].itemStyle.normal.color = '#A67D00';
+                option2.series[1].markPoint.itemStyle.normal.color = '#A67D00';
+                char2.setOption(option2);
+
+                var echar3 = echarts.init(document.getElementById('char3'));
+                var option3 = sectionchar5();
+                option3.title.show = false;
+                option3.xAxis[0].data = ["6日", "7日", "8日", "9日", "10日", "11日", "12日"];
+                option3.series[0].data = [123, 115, 123, 156, 135, 152, 136];
+                option3.series[0].lineStyle.normal.color = "#ffa800";
+                option3.series[0].areaStyle.normal.color = new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(205,52,42, 0.5)'
+                }, {
+                        offset: 0.8,
+                        color: 'rgba(235,235,21, 0)'
+                    }], false);
+                echar3.setOption(option3);
+
+                var char4 = echarts.init(document.getElementById("char4"));
+                var option4 = mochar4();
+                option4.grid.top = "15%";
+                option4.grid.bottom = "15%";
+                option4.legend.show = true;
+                option4.xAxis.boundaryGap = true;
+                option4.xAxis.axisTick.alignWithLabel = true;
+                option4.xAxis.axisLabel.textStyle.fontSize = 10;
+                option4.xAxis.axisLabel.rotate = 30;
+                option4.xAxis.data = ['搅拌', '涂布', '辊压', '分切', '卷绕', '外壳打码', '卷芯入壳', '高温烘烤', '注液', 'X-Ray', '化成', '包装'];
+                option4.yAxis[0].max = 2500;
+                option4.yAxis[1].show = false;
+                option4.series[0].barWidth = '35%';
+                option4.series[0].data = [1500, 1600, 1500, 1200, 1100, 1100, 980, 1300, 1500, 1200, 1398, 1280];
+                option4.series[0].itemStyle.normal.color = '#7573D9';
+                option4.series[1].smooth = false;
+                option4.series[1].data = [84, 92, 94, 96, 100, 99, 88, 95, 88, 87, 89, 87];
+                option4.series[1].itemStyle.normal.color = '#514ED9';
+                char4.setOption(option4);
+
+                var char5 = echarts.init(document.getElementById("char5"));
+                var option5 = sectionchar2();
+                //option5.series[0].label.normal.color = "#FF9400";
+                //option5.series[0].color = ['#FFD040', '#FFDD73', '#FFAE40', '#FFC473', '#FFD040', '#FFDD73', '#FFAE40', '#FFC473', '#FFD040', '#FFDD73'];
+                char5.setOption(option5);
+
+                var char6 = echarts.init(document.getElementById("char6"));
+                var option6 = charCenter2();
+                char6.setOption(option6);
+            }
+        );
+
+
+
+
+    </script>
+</body>
+</html>
